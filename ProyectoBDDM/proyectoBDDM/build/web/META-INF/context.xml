@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/proyectoBDDM"/>
+<Context antiJARLocking="true" path="/proyectoBDDM">
+ <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" logAbandoned="true" maxActive="100" maxIdle="30" name="jdbc/pvwlmad" password="" removeAbandoned="true" removeAbandonedTimeout="60" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/pvwlmad?autoReconnect=true" username="root"/>
+
+</Context>
