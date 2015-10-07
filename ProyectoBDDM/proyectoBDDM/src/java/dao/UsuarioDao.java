@@ -60,7 +60,7 @@ public class UsuarioDao {
             cs.setString(1, e.getNombre());
             cs.setString(2, e.getApellido());
             cs.setString(3, e.getUsername());
-            cs.setString(4, e.getPassword());
+           
             cs.setString(5, e.getPuesto());
             cs.execute();
             
