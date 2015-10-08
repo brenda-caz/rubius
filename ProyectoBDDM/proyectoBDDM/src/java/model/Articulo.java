@@ -20,6 +20,7 @@ public class Articulo {
     private int impuesto;
     private int descuento;
     private int activoArticulo;
+    private Departamento departamento;
 
     public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, int impuesto, int descuento, int activoArticulo) {
         this.idArticulo = idArticulo;
@@ -32,6 +33,14 @@ public class Articulo {
         this.impuesto = impuesto;
         this.descuento = descuento;
         this.activoArticulo = activoArticulo;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
     public int getIdArticulo() {

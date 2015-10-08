@@ -29,12 +29,26 @@ public class UsuarioDao {
             rs = cs.executeQuery();
             while (rs.next()) {
                 Usuario emp = new Usuario(
-                        rs.getInt("id"), 
-                        rs.getString("nombre"), 
-                        rs.getString("apellido"), 
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("puesto")
+                        rs.getInt("idUsuario"), 
+                        rs.getString("nombreUsuario"), 
+                        rs.getString("apellidoPaterno"), 
+                        rs.getString("apellidoMaterno"),
+                        rs.getString("puesto"),
+                        rs.getString("sexo"),
+                        rs.getDate("fechaNacimiento"),
+                        rs.getString("nivelEstudios"),
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("colonia"), 
+                        rs.getInt("municipio"), 
+                        rs.getInt("estado"), 
+                        rs.getInt("codigoPostal"), 
+                        rs.getString("RFC"),
+                        rs.getString("CURP"),
+                        rs.getInt("numeroNomina"),
+                        rs.getBinaryStream(1),
+                        rs.getString("correoUsuario"),
+                        rs.getInt("activoUsuario")  
                 );
 
                 empleados.add(emp);
@@ -56,12 +70,27 @@ public class UsuarioDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call insertUsuario(?, ?, ?, ?) }");
+            cs = connection.prepareCall("{ call insertUsuario(?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,) }");
             cs.setString(1, e.getNombre());
             cs.setString(2, e.getApellido());
-            cs.setString(3, e.getUsername());
-           
-            cs.setString(5, e.getPuesto());
+            cs.setString(3, e.getPuesto());
+            cs.setString(4, e.getSexo());
+            cs.setDate(5, e.getFechaNacimiento());
+            cs.setString(6, e.getCalle());
+            cs.setInt(7, e.getNumero());
+            cs.setString(8, e.getColonia());
+            cs.setInt(9, e.getMunicipio());
+            cs.setInt(10, e.getEstado());
+            cs.setInt(11, e.getPostal());
+            cs.setString(12, e.getRFC());
+            cs.setInt(13, e.getMunicipio());
+            cs.setInt(14, e.getEstado());
+            cs.setInt(15, e.getPostal());
+            cs.setString(16, e.getRFC());
+            cs.setString(17, e.getCURP());
+            cs.setInt(18, e.getNomina());
+            cs.setBlob(19, e.getFoto());
+            cs.setString(20, e.getEmail());
             cs.execute();
             
         } catch (Exception ex) {
@@ -72,4 +101,6 @@ public class UsuarioDao {
             pool.freeConnection(connection);
         }
     }
+     
+     
 }

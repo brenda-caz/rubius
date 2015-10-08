@@ -16,6 +16,8 @@ public class Video {
     private String pathVideo;
     private Date fechaVideo;
     private String horaVideo;
+    private Articulo articuloVideo;
+    private Empresa empresaVideo;
 
     public Video(int idVideo, String pathVideo, Date fechaVideo, String horaVideo) {
         this.idVideo = idVideo;
@@ -54,6 +56,22 @@ public class Video {
 
     public void setHoraVideo(String horaVideo) {
         this.horaVideo = horaVideo;
+    }
+
+    public Articulo getArticuloVideo() {
+        return articuloVideo;
+    }
+
+    public void setArticuloVideo(Articulo articuloVideo) {
+        this.articuloVideo = articuloVideo;
+    }
+
+    public Empresa getEmpresaVideo() {
+        return empresaVideo;
+    }
+
+    public void setEmpresaVideo(Empresa empresaVideo) {
+        this.empresaVideo = empresaVideo;
     }
     
 }

@@ -16,6 +16,8 @@ public class Imagen {
     private String path;
     private Date fechaImagen;
     private String horaImagen;
+    private Articulo articuloImagen;
+    private Empresa empresaImagen;
 
     public Imagen(int idImagen, String path, Date fechaImagen, String horaImagen) {
         this.idImagen = idImagen;
@@ -46,6 +48,22 @@ public class Imagen {
 
     public void setHoraImagen(String horaImagen) {
         this.horaImagen = horaImagen;
+    }
+
+    public Articulo getArticuloImagen() {
+        return articuloImagen;
+    }
+
+    public void setArticuloImagen(Articulo articuloImagen) {
+        this.articuloImagen = articuloImagen;
+    }
+
+    public Empresa getEmpresaImagen() {
+        return empresaImagen;
+    }
+
+    public void setEmpresaImagen(Empresa empresaImagen) {
+        this.empresaImagen = empresaImagen;
     }
     
     

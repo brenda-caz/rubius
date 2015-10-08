@@ -20,6 +20,12 @@ public class Departamento {
         this.activoDepartamento = activoDepartamento;
     }
 
+    public Departamento(int idDepartamento, String nombreDepartamento) {
+        this.idDepartamento = idDepartamento;
+        this.nombreDepartamento = nombreDepartamento;
+    }
+    
+
     public int getIdDepartamento() {
         return idDepartamento;
     }

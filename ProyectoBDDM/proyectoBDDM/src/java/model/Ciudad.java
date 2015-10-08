@@ -12,6 +12,7 @@ package model;
 public class Ciudad {
     private int idCiudad;
     private String nombreCiudad;
+    private Estado estado;
 
     public Ciudad(int idCiudad, String nombreCiudad) {
         this.idCiudad = idCiudad;
@@ -24,6 +25,10 @@ public class Ciudad {
 
     public String getNombreCiudad() {
         return nombreCiudad;
+    }
+
+    public Estado getEstado() {
+        return estado;
     }
     
     

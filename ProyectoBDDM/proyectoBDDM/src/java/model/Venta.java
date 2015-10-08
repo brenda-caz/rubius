@@ -13,8 +13,53 @@ import java.sql.Date;
  */
 public class Venta {
     private int idVenta;
+    private Sucursal sucursalVenta;
+    private Departamento departamentoVenta;
+    private Usuario usuarioVenta;
     private int cantidadVenta;
     private double subtotal;
+    private Pago pagoVenta;
+    private Articulo articuloVenta;
+
+    public Sucursal getSucursalVenta() {
+        return sucursalVenta;
+    }
+
+    public void setSucursalVenta(Sucursal sucursalVenta) {
+        this.sucursalVenta = sucursalVenta;
+    }
+
+    public Departamento getDepartamentoVenta() {
+        return departamentoVenta;
+    }
+
+    public void setDepartamentoVenta(Departamento departamentoVenta) {
+        this.departamentoVenta = departamentoVenta;
+    }
+
+    public Usuario getUsuarioVenta() {
+        return usuarioVenta;
+    }
+
+    public void setUsuarioVenta(Usuario usuarioVenta) {
+        this.usuarioVenta = usuarioVenta;
+    }
+
+    public Pago getPagoVenta() {
+        return pagoVenta;
+    }
+
+    public void setPagoVenta(Pago pagoVenta) {
+        this.pagoVenta = pagoVenta;
+    }
+
+    public Articulo getArticuloVenta() {
+        return articuloVenta;
+    }
+
+    public void setArticuloVenta(Articulo articuloVenta) {
+        this.articuloVenta = articuloVenta;
+    }
     private Date fechaVenta;
 
     public Venta(int idVenta, int cantidadVenta, double subtotal, Date fechaVenta) {
