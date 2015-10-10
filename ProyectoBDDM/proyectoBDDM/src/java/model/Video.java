@@ -15,11 +15,11 @@ public class Video {
     private int idVideo;
     private String pathVideo;
     private Date fechaVideo;
-    private String horaVideo;
+    private Date horaVideo;
     private Articulo articuloVideo;
     private Empresa empresaVideo;
 
-    public Video(int idVideo, String pathVideo, Date fechaVideo, String horaVideo) {
+    public Video(int idVideo, String pathVideo, Date fechaVideo, Date horaVideo) {
         this.idVideo = idVideo;
         this.pathVideo = pathVideo;
         this.fechaVideo = fechaVideo;
@@ -50,11 +50,11 @@ public class Video {
         this.fechaVideo = fechaVideo;
     }
 
-    public String getHoraVideo() {
+    public Date getHoraVideo() {
         return horaVideo;
     }
 
-    public void setHoraVideo(String horaVideo) {
+    public void setHoraVideo(Date horaVideo) {
         this.horaVideo = horaVideo;
     }
 

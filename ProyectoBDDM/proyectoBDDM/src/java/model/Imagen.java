@@ -15,11 +15,11 @@ public class Imagen {
     private int idImagen;
     private String path;
     private Date fechaImagen;
-    private String horaImagen;
+    private Date horaImagen;
     private Articulo articuloImagen;
     private Empresa empresaImagen;
 
-    public Imagen(int idImagen, String path, Date fechaImagen, String horaImagen) {
+    public Imagen(int idImagen, String path, Date fechaImagen, Date horaImagen) {
         this.idImagen = idImagen;
         this.path = path;
         this.fechaImagen = fechaImagen;
@@ -38,7 +38,7 @@ public class Imagen {
         return fechaImagen;
     }
 
-    public String getHoraImagen() {
+    public Date getHoraImagen() {
         return horaImagen;
     }
 
@@ -46,7 +46,7 @@ public class Imagen {
         this.fechaImagen = fechaImagen;
     }
 
-    public void setHoraImagen(String horaImagen) {
+    public void setHoraImagen(Date horaImagen) {
         this.horaImagen = horaImagen;
     }
 

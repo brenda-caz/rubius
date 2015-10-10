@@ -20,6 +20,10 @@ public class Pago {
         this.nombrePago = nombrePago;
     }
 
+    public Pago(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getIdPago() {
         return idPago;
     }

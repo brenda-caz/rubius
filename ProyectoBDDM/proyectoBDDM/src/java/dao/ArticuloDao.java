@@ -18,14 +18,15 @@ import model.Departamento;
  * @author BrendaCázares
  */
 public class ArticuloDao {
-     public static List<Articulo> buscarArticulo() {
+    //busqueda general
+     public static List<Articulo> buscarArticulos() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         ResultSet rs = null;
         try {
             List<Articulo> articulos = new ArrayList();
-            cs = connection.prepareCall("{ call listaUsuarios() }");
+            cs = connection.prepareCall("{ call listaArticulo() }");
             rs = cs.executeQuery();
             while (rs.next()) {
                 Articulo art = new Articulo(
@@ -60,5 +61,73 @@ public class ArticuloDao {
             pool.freeConnection(connection);
         }
     }
+     
+     public static void borrarArticulo(int id) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        try {
+            cs = connection.prepareCall("{ call eliminarArticulo(?) }");
+            cs.setInt(1, id);
+            cs.execute();            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
+     public static void insertarArticulo(Articulo a) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        try {
+            cs = connection.prepareCall("{ call insertArticulo(?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+            cs.setString(1, a.getCodigoArticulo());
+            cs.setInt(2, a.getDepartamento().getIdDepartamento());
+            cs.setString(3, a.getDescripcionCorta());
+            cs.setString(4, a.getDescripcionLarga());
+            cs.setDouble(5, a.getPrecioPublico());
+            cs.setString(6, a.getMedida());
+            cs.setInt(7, a.getExistencia());
+            cs.setInt(8, a.getImpuesto());
+            cs.setInt(9, a.getDescuento());
+            cs.execute();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            
+        } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
     
+     public static void actualizarArticulo(Articulo a) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        try {
+            cs = connection.prepareCall("{ call insertArticulo(?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+            cs.setString(1, a.getCodigoArticulo());
+            cs.setInt(2, a.getDepartamento().getIdDepartamento());
+            cs.setString(3, a.getDescripcionCorta());
+            cs.setString(4, a.getDescripcionLarga());
+            cs.setDouble(5, a.getPrecioPublico());
+            cs.setString(6, a.getMedida());
+            cs.setInt(7, a.getExistencia());
+            cs.setInt(8, a.getImpuesto());
+            cs.setInt(9, a.getDescuento());
+            cs.execute();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            
+        } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
 }

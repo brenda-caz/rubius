@@ -21,6 +21,16 @@ public class Venta {
     private Pago pagoVenta;
     private Articulo articuloVenta;
 
+    public Venta(Sucursal sucursalVenta, Departamento departamentoVenta, Usuario usuarioVenta, Pago pagoVenta, Articulo articuloVenta) {
+        this.sucursalVenta = sucursalVenta;
+        this.departamentoVenta = departamentoVenta;
+        this.usuarioVenta = usuarioVenta;
+        this.pagoVenta = pagoVenta;
+        this.articuloVenta = articuloVenta;
+    }
+
+    
+    
     public Sucursal getSucursalVenta() {
         return sucursalVenta;
     }

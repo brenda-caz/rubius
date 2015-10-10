@@ -30,6 +30,10 @@ public class Ciudad {
     public Estado getEstado() {
         return estado;
     }
+
+    public void getEstado(Estado est) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }
