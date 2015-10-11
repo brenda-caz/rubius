@@ -22,7 +22,9 @@ import model.Pago;
  * @author BrendaCázares
  */
 public class VentaDao {
-     // buscar general
+
+    // buscar general
+
     public static List<Venta> buscaVentas() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -34,53 +36,55 @@ public class VentaDao {
             rs = cs.executeQuery();
             while (rs.next()) {
                 Venta ven = new Venta(
-                        rs.getInt("idVenta"), 
-                        rs.getInt("cantidadVenta"), 
+                        rs.getInt("idVenta"),
+                        rs.getInt("cantidadVenta"),
                         rs.getDouble("subtotal"),
                         rs.getDate("fechaVenta")
-                              
                 );
-                
-               Sucursal suc = new Sucursal(
-                       rs.getInt("idSucursal"),
-                       rs.getString("nombreSucursal")
+
+                Sucursal suc = new Sucursal(
+                        rs.getInt("idSucursal"),
+                        rs.getString("nombreSucursal")
                 );
-                        
+
                 Departamento dep = new Departamento(
-                       rs.getInt("idDepartamento"),
-                       rs.getString("nombreDepartamento")
+                        rs.getInt("idDepartamento"),
+                        rs.getString("nombreDepartamento")
                 );
-                
-                 Usuario  usu = new Usuario(
-                       rs.getInt("idUsuarioVenta")
+
+                Usuario usu = new Usuario(
+                        rs.getInt("idUsuarioVenta"),
+                        rs.getString("nombreUsuario")
                 );
-                 
-                 Pago pag = new Pago(
-                       rs.getInt("idPago")
+
+                Pago pag = new Pago(
+                        rs.getInt("idMetodoPago"),
+                        rs.getString("nombreMetodoPago")
                 );
-                
-                 Articulo art = new Articulo(
-                       rs.getInt("idArticulo")
+
+                Articulo art = new Articulo(
+                        rs.getInt("idArticulo"),
+                        rs.getString("descripcionCorta")
                 );
-                    ven.setSucursalVenta(suc);
-                    ven.setDepartamentoVenta(dep);
-                    ven.setUsuarioVenta(usu);
-                    ven.setPagoVenta(pag);
-                    ven.setArticuloVenta(art);
-                    ventas.add(ven);
+                ven.setSucursalVenta(suc);
+                ven.setDepartamentoVenta(dep);
+                ven.setUsuarioVenta(usu);
+                ven.setPagoVenta(pag);
+                ven.setArticuloVenta(art);
+                ventas.add(ven);
             }
             return ventas;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
-            
+
         } finally {
             DBUtil.closeResultSet(rs);
             DBUtil.closeStatement(cs);
             pool.freeConnection(connection);
         }
     }
-    
+
     public static void insertarVenta(Venta v) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -95,12 +99,12 @@ public class VentaDao {
             cs.setInt(6, v.getPagoVenta().getIdPago());
             cs.setInt(7, v.getArticuloVenta().getIdArticulo());
             cs.setDate(8, v.getFechaVenta());
-        
+
             cs.execute();
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
-            
+
         } finally {
             DBUtil.closeStatement(cs);
             pool.freeConnection(connection);

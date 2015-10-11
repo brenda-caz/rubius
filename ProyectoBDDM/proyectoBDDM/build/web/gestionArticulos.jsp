@@ -20,7 +20,7 @@
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
-	<li><a href="consuUsuario.jsp" align="left">Gestion Empleados</a></li>	
+	<li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
             <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
               
 	</ul>
@@ -29,7 +29,7 @@
   <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
 
 	<ul>
-	<li><a href="consultaArticulos.jsp" align="left">Gestion Articulos</a></li>	
+	<li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
             <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
 		
 	</ul>
@@ -52,8 +52,8 @@
   <li class="nivel1"><a href="#" class="nivel1">Tiendas</a>
 
 	<ul>
-            <li><a href="gestionsucursal.jsp" align="left">Gestion Sucursal</a></li>
-	<li><a href="consultaDepartamento.jsp" align="left">Gestion Departamentos</a></li>	
+            <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
+	<li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
 
 	</ul>
 
@@ -62,24 +62,25 @@
 </div>
               
 <br><br><br><br><h2>Agregar Articulos</h2>
-<form id="agregarArticulos">
+<form id="agregarArticulos" method="post" action="articuloInsertarServlet">
         <br> <fieldset id="f1"><br>
 <legend>Introduce la siguiente informaci&oacuten</legend> 
 
-Codigo del articulo: <input id="txt"  type="text"><br><br>
-Precio: <input id="txt"  type="text" ><br><br>
-Descripcion corta: <input id="txt"  type="text"><br><br>
-Descripcion larga: <input id="txt"  type="text"><br><br>
-Departamento: <input id="txt"  type="text"><br><br>
-Unidad de medida: <input id="txt"  type="text"><br><br>
-Existencia: <input id="txt"  type="text"><br><br>
+
+Codigo del articulo: <input id="txt"  type="text" name="codigoArticulo"><br><br>
+Precio: <input id="txt"  type="text" name="precioArticulo"><br><br>
+Descripcion corta: <input id="txt"  type="text" name="descriCorta"><br><br>
+Descripcion larga: <input id="txt"  type="text" name="descriLarga"><br><br>
+Departamento: <input id="txt"  type="text"  name="Departamento"><br><br>
+Unidad de medida: <input id="txt"  type="text"  name="medida"><br><br>
+Existencia: <input id="txt"  type="text"  name="existencia"><br><br>
 
 <caption>¿Aplica impuesto? &nbsp;</caption><br>
-<input type="radio" name="siImpuesto" checked>SI &nbsp;
-<input type= "radio" name= "noImpuesto" >NO<br><br>
+<input type="radio" name="Impuestos" value="siI" checked>SI &nbsp;
+<input type= "radio" name= "Impuestos"  value="noI"  >NO<br><br>
 
-Impuesto: <input id="txt"  type="text"><br><br>
-Descuento: <input id="txt"  type="text"><br><br>
+Impuesto: <input id="txt"  type="text"  name="impuesto"><br><br>
+Descuento: <input id="txt"  type="text"  name="descuento"><br><br>
 
 <input id="botones" type="submit" value="Agregar" />
 

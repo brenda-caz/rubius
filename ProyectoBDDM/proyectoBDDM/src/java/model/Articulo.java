@@ -22,6 +22,17 @@ public class Articulo {
   
     private Departamento departamento;
 
+    public Articulo(String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, int impuesto, int descuento) {
+        this.codigoArticulo = codigoArticulo;
+        this.descripcionCorta = descripcionCorta;
+        this.descripcionLarga = descripcionLarga;
+        this.precioPublico = precioPublico;
+        this.medida = medida;
+        this.existencia = existencia;
+        this.impuesto = impuesto;
+        this.descuento = descuento;
+    }
+
     public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, int impuesto, int descuento) {
         this.idArticulo = idArticulo;
         this.codigoArticulo = codigoArticulo;
@@ -35,9 +46,11 @@ public class Articulo {
    
     }
 
-    public Articulo(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Articulo(int idArticulo, String descripcionCorta) {
+        this.idArticulo = idArticulo;
+        this.descripcionCorta = descripcionCorta;
     }
+
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;

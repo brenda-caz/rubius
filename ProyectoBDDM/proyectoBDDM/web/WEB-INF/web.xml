@@ -4,6 +4,7 @@
         <servlet-name>usuarioConsultaServlet</servlet-name>
         <servlet-class>servlet.usuarioConsultaServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>articuloConsultaServlet</servlet-name>
         <servlet-class>servlet.articuloConsultaServlet</servlet-class>
@@ -19,8 +20,20 @@
         <servlet-class>servlet.departamentoConsultaServlet</servlet-class>
     </servlet>
    
+    <servlet>
+        <servlet-name>usuarioInsertarServlet</servlet-name>
+        <servlet-class>servlet.usuarioInsertarServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>-1</max-file-size>
+            <max-request-size>-1</max-request-size>
+            <file-size-threshold>52428800</file-size-threshold>
+        </multipart-config>
+    </servlet>
 
-
+<servlet>
+        <servlet-name>articuloInsertarServlet</servlet-name>
+        <servlet-class>servlet.articuloInsertarServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -41,6 +54,16 @@
     <servlet-mapping>
         <servlet-name>departamentoConsultaServlet</servlet-name>
         <url-pattern>/departamentoConsultaServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>usuarioInsertarServlet</servlet-name>
+        <url-pattern>/usuarioInsertarServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>articuloInsertarServlet</servlet-name>
+        <url-pattern>/articuloInsertarServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>

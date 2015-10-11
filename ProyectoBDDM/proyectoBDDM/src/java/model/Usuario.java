@@ -20,7 +20,7 @@ public class Usuario {
     private String apellidoMaterno;
     private String puesto;
     private String sexo;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private String nivelEstudio;
     private String calle;
     private int numero;
@@ -34,7 +34,7 @@ public class Usuario {
     private InputStream foto;
     private String email;
 
-    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, Date fechaNacimiento, String nivelEstudio, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
+    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String nivelEstudio, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -55,11 +55,36 @@ public class Usuario {
         this.foto = foto;
         this.email = email;
     }
-   
-    public Usuario(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String nivelEstudio, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.puesto = puesto;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nivelEstudio = nivelEstudio;
+        this.calle = calle;
+        this.numero = numero;
+        this.colonia = colonia;
+        this.municipio = municipio;
+        this.estado = estado;
+        this.postal = postal;
+        this.RFC = RFC;
+        this.CURP = CURP;
+        this.nomina = nomina;
+        this.foto = foto;
+        this.email = email;
     }
 
+    
+    
+    
+    public Usuario(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+   
     public int getId() {
         return id;
     }
@@ -108,11 +133,11 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

@@ -18,7 +18,7 @@ import model.Usuario;
  * @author 
  */
 public class UsuarioDao {
-    //busqyeda general
+    //busqueda general
      public static List<Usuario> buscarUsuarios() {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -36,7 +36,7 @@ public class UsuarioDao {
                         rs.getString("apellidoMaterno"),
                         rs.getString("puesto"),
                         rs.getString("sexo"),
-                        rs.getDate("fechaNacimiento"),
+                        rs.getString("fechaNacimiento"),
                         rs.getString("nivelEstudios"),
                         rs.getString("calle"),
                         rs.getInt("numero"),
@@ -73,21 +73,22 @@ public class UsuarioDao {
             cs = connection.prepareCall("{ call insertUsuario(?,?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?) }");
             cs.setString(1, e.getNombre());
             cs.setString(2, e.getApellidoPaterno());
-            cs.setString(2, e.getApellidoPaterno());
-            cs.setString(3, e.getPuesto());
-            cs.setString(4, e.getSexo());
-            cs.setDate(5, e.getFechaNacimiento());
-            cs.setString(6, e.getCalle());
-            cs.setInt(7, e.getNumero());
-            cs.setString(8, e.getColonia());
-            cs.setString(9, e.getMunicipio());
-            cs.setString(10, e.getEstado());
-            cs.setInt(11, e.getPostal());
-            cs.setString(12, e.getRFC());
-            cs.setString(13, e.getCURP());
-            cs.setInt(14, e.getNomina());
-            cs.setBlob(15, e.getFoto());
-            cs.setString(16, e.getEmail());
+            cs.setString(3, e.getApellidoMaterno());
+            cs.setString(4, e.getPuesto());
+            cs.setString(5, e.getSexo());
+            cs.setString(6, e.getFechaNacimiento());
+            cs.setString(7, e.getNivelEstudio());
+            cs.setString(8, e.getCalle());
+            cs.setInt(9, e.getNumero());
+            cs.setString(10, e.getColonia());
+            cs.setString(11, e.getMunicipio());
+            cs.setString(12, e.getEstado());
+            cs.setInt(13, e.getPostal());
+            cs.setString(14, e.getRFC());
+            cs.setString(15, e.getCURP());
+            cs.setInt(16, e.getNomina());
+            cs.setBlob(17, e.getFoto());
+            cs.setString(18, e.getEmail());
             cs.execute();
             
         } catch (Exception ex) {
@@ -115,6 +116,41 @@ public class UsuarioDao {
         }
     }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
    
+      public static void actualizarUsuario(Usuario u) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        try {
+            cs = connection.prepareCall("{ call insertUsuario(?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?) }");
+                        cs.setString(1, u.getNombre());
+                        cs.setString(2, u.getApellidoPaterno()); 
+                        cs.setString(3, u.getApellidoMaterno());
+                        cs.setString(4, u.getPuesto());
+                        cs.setString(5, u.getSexo());
+                        cs.setString(6, u.getFechaNacimiento());
+                        cs.setString(7, u.getNivelEstudio());
+                        cs.setString(8, u.getCalle());
+                        cs.setInt(9, u.getNumero());
+                        cs.setString(10, u.getColonia());
+                        cs.setString(11, u.getMunicipio());
+                        cs.setString(12, u.getEstado());
+                        cs.setInt(13, u.getPostal());
+                        cs.setString(14, u.getRFC());
+                        cs.setString(15, u.getCURP());
+                        cs.setInt(16, u.getNomina());
+                        cs.setBinaryStream(17, u.getFoto());
+                        cs.setString(18, u.getEmail());
+                        cs.execute();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            
+        } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
 
 
 
@@ -163,38 +199,6 @@ public class UsuarioDao {
 //        }
 //    }
 //    
-    public static void actualizarUsuario(Usuario u) {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        CallableStatement cs = null;
-        try {
-            cs = connection.prepareCall("{ call insertUsuario(?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?) }");
-            cs.setString(1, u.getNombre());
-            cs.setString(2, u.getApellidoPaterno());
-            cs.setString(3, u.getPuesto());
-            cs.setString(4, u.getSexo());
-            cs.setDate(5, u.getFechaNacimiento());
-            cs.setString(6, u.getCalle());
-            cs.setInt(7, u.getNumero());
-            cs.setString(8, u.getColonia());
-            cs.setString(9, u.getMunicipio());
-            cs.setString(10, u.getEstado());
-            cs.setInt(11, u.getPostal());
-            cs.setString(12, u.getRFC());
-            cs.setString(17, u.getCURP());
-            cs.setInt(18, u.getNomina());
-            cs.setBlob(19, u.getFoto());
-            cs.setString(20, u.getEmail());
-            cs.execute();
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            
-        } finally {
-            DBUtil.closeStatement(cs);
-            pool.freeConnection(connection);
-        }
-    }
-     
+   
      
 }
