@@ -19,10 +19,10 @@ public class Articulo {
     private int existencia;
     private int impuesto;
     private int descuento;
-    private int activoArticulo;
+  
     private Departamento departamento;
 
-    public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, int impuesto, int descuento, int activoArticulo) {
+    public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, int impuesto, int descuento) {
         this.idArticulo = idArticulo;
         this.codigoArticulo = codigoArticulo;
         this.descripcionCorta = descripcionCorta;
@@ -32,7 +32,7 @@ public class Articulo {
         this.existencia = existencia;
         this.impuesto = impuesto;
         this.descuento = descuento;
-        this.activoArticulo = activoArticulo;
+   
     }
 
     public Articulo(int aInt) {
@@ -118,13 +118,5 @@ public class Articulo {
     public void setDescuento(int descuento) {
         this.descuento = descuento;
     }
-
-    public int getActivoArticulo() {
-        return activoArticulo;
-    }
-
-    public void setActivoArticulo(int activoArticulo) {
-        this.activoArticulo = activoArticulo;
-    }
-    
+   
 }

@@ -25,7 +25,7 @@ and open the template in the editor.
                         <div class="beta-line"></div>
                     </div>
                 </div>
-                <form method="post">
+                <form action="usuarioConsultaServlet" method="post">
                     <div class="containerb">
                         <input name="email" type="text" placeholder="Correo Electronico">
                         <input name="password" type="password" placeholder="Contraseña">

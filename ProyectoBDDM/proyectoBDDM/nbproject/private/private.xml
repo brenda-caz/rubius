@@ -3,7 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/dao/UsuarioDao.java</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/model/Articulo.java</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/dao/UsuarioDao.java</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/consultaArticulos.jsp</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/servlet/articuloConsultaServlet.java</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/dao/ArticuloDao.java</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/model/Usuario.java</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/servlet/usuarioConsultaServlet.java</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/consuUsuario.jsp</file>
+            <file>file:/C:/Users/ErickAlejandro/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

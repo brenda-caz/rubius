@@ -4,6 +4,9 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Usuario"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +21,7 @@
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
-	<li><a href="consuUsuario.jsp" align="left">Consultar Empleados</a></li>	
+	<li><a href="usuarioConsultaServlet" align="left">Consultar Empleados</a></li>	
             <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
                 <li><a href="modUsuario.jsp" align="left">Editar Empleado</a></li>
                 <li><a href="#">Borrar Empleado</a></li>  
@@ -29,7 +32,7 @@
   <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
 
 	<ul>
-	<li><a href="consultaArticulos.jsp" align="left">Consultar Articulos</a></li>	
+	<li><a href="articuloConsultaServlet" align="left">Consultar Articulos</a></li>	
             <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
 		<li><a href="modArticulos.jsp" align="left">Editar Articulos</a></li>
 		<li><a href="#">Borrar Articulos</a></li>
@@ -73,29 +76,38 @@
             <tr> 
             <th>Editar</th>
             <th>Borrar</th>
-            <th>ID</th>
             <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
             <th>Puesto</th>
             <th>Numero de nomina</th>
+            <th>Email</th>
             </tr>
             
-              <tr>
-    <td><input type="submit" value="Editar" /></td>
-    <td><input type="submit" value="Borrar" /></td>
- <td>1</td>
-    <td>Brenda Cazares</td>
-    <td>Cajera</td>
-    <td>6846849</td>
-  </tr> 
-  
-   <tr>
-    <td><input type="submit" value="Editar" /></td>
-    <td><input type="submit" value="Borrar" /></td>
- <td>2</td>
-    <td>Norma Cazares</td>
-    <td>Manager</td>
-    <td>84377234</td>
-  </tr> 
+             <%
+                List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
+                if (usuarios != null) {
+                    for (Usuario usua : usuarios) {  
+            %>            
+                        <tr>
+                            <td>
+                               editar
+                            </td>
+                            <td>
+                               borrar
+                            </td>
+                            
+                            <td><%= usua.getNombre()%></td>
+                            <td><%= usua.getApellidoPaterno()%></td>
+                            <td><%= usua.getApellidoMaterno()%></td>
+                            <td><%= usua.getPuesto()%></td>
+                            <td><%= usua.getNomina()%></td>
+                            <td><%= usua.getEmail()%></td>                        
+                        </tr>
+            <%      }
+                }
+            %>
+             
         </table>
             <input id="botones" type="submit" value="Aceptar" />
 
