@@ -4,6 +4,8 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Articulo"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +20,7 @@
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
-	<li><a href="consuUsuario.jsp" align="left">Consultar Empleados</a></li>	
+	<li><a href="usuarioConsultaServlet" align="left">Consultar Empleados</a></li>	
             <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
                 <li><a href="modUsuario.jsp" align="left">Editar Empleado</a></li>
                 <li><a href="#">Borrar Empleado</a></li>  
@@ -29,7 +31,7 @@
   <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
 
 	<ul>
-	<li><a href="consultaArticulos.jsp" align="left">Consultar Articulos</a></li>	
+	<li><a href="articuloConsultaServlet" align="left">Consultar Articulos</a></li>	
             <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
 		<li><a href="modArticulos.jsp" align="left">Editar Articulos</a></li>
 		<li><a href="#">Borrar Articulos</a></li>
@@ -71,32 +73,39 @@
             <tr>
             <th>Editar</th>
             <th>Borrar</th>
-            <th>ID</th>
             <th>Codigo</th>
             <th>Descripcion Corta</th>
             <th>Precio</th>
             <th>Existencia</th>
+            <th>Impuesto</th>
+            <th>Descuento</th>
             </tr>
             
-        <tr>
-            <td><input type="submit" value="Editar" /></td>
-            <td><input type="submit" value="Borrar" /></td>
-            <td>1</td>
-            <td>34657</td>
-            <td>Laptop HP</td>
-            <td>5,000</td>
-            <td>15</td>
-        </tr> 
-        
-         <tr>
-            <td><input type="submit" value="Editar" /></td>
-            <td><input type="submit" value="Borrar" /></td>
-            <td>2</td>
-            <td>98463</td>
-            <td>Celular LG L90</td>
-            <td>3,000</td>
-            <td>40</td>
-        </tr> 
+            <%
+                List<Articulo> articulos = (List<Articulo>) request.getAttribute("articulos");
+                if (articulos != null) {
+                    for (Articulo arti : articulos) {  
+            %>            
+                        <tr>
+                            <td>
+                               editar
+                            </td>
+                            <td>
+                               borrar
+                            </td>
+                            
+                            <td><%= arti.getCodigoArticulo()%></td>
+                            <td><%= arti.getDescripcionCorta()%></td>
+                            <td><%= arti.getPrecioPublico()%></td>
+                            <td><%= arti.getExistencia()%></td>
+                            <td><%= arti.getImpuesto()%></td>
+                            <td><%= arti.getDescuento()%></td>                        
+                        </tr>
+            <%      }
+                }
+            %>
+            
+      
         </table>
            
             

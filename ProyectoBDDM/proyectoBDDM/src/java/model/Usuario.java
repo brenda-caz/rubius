@@ -16,8 +16,8 @@ import javax.print.DocFlavor;
 public class Usuario {
     private int id;
     private String nombre;
-    private String apellido;
-    private String username;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
     private String puesto;
     private String sexo;
     private Date fechaNacimiento;
@@ -25,21 +25,20 @@ public class Usuario {
     private String calle;
     private int numero;
     private String colonia;
-    private int municipio;
-    private int estado;
+    private String municipio;
+    private String estado;
     private int postal;
     private String RFC;
     private String CURP;
     private int nomina;
     private InputStream foto;
     private String email;
-    private int activo;
 
-    public Usuario(int id, String nombre, String apellido, String username, String puesto, String sexo, Date fechaNacimiento, String nivelEstudio, String calle, int numero, String colonia, int municipio, int estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email, int activo) {
+    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, Date fechaNacimiento, String nivelEstudio, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.id = id;
         this.nombre = nombre;
-        this.apellido = apellido;
-        this.username = username;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
         this.puesto = puesto;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
@@ -55,9 +54,8 @@ public class Usuario {
         this.nomina = nomina;
         this.foto = foto;
         this.email = email;
-        this.activo = activo;
     }
-
+   
     public Usuario(int aInt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -78,20 +76,20 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
     }
 
-    public String getUsername() {
-        return username;
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
     }
 
     public String getPuesto() {
@@ -150,19 +148,19 @@ public class Usuario {
         this.colonia = colonia;
     }
 
-    public int getMunicipio() {
+    public String getMunicipio() {
         return municipio;
     }
 
-    public void setMunicipio(int municipio) {
+    public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -212,14 +210,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getActivo() {
-        return activo;
-    }
-
-    public void setActivo(int activo) {
-        this.activo = activo;
     }
 
     

@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>ListaServlet</servlet-name>
-        <servlet-class>edu.uanl.fcfm.lmad.papw.servlet.ListaServlet</servlet-class>
+        <servlet-name>usuarioConsultaServlet</servlet-name>
+        <servlet-class>servlet.usuarioConsultaServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DetalleServlet</servlet-name>
-        <servlet-class>edu.uanl.fcfm.lmad.papw.servlet.DetalleServlet</servlet-class>
+        <servlet-name>articuloConsultaServlet</servlet-name>
+        <servlet-class>servlet.articuloConsultaServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>edu.uanl.fcfm.lmad.papw.servlet.IndexServlet</servlet-class>
-    </servlet>
+   
     <servlet-mapping>
-        <servlet-name>ListaServlet</servlet-name>
-        <url-pattern>/lista</url-pattern>
+        <servlet-name>usuarioConsultaServlet</servlet-name>
+        <url-pattern>/usuarioConsultaServlet</url-pattern>
     </servlet-mapping>
+    
     <servlet-mapping>
-        <servlet-name>DetalleServlet</servlet-name>
-        <url-pattern>/detalle</url-pattern>
+        <servlet-name>articuloConsultaServlet</servlet-name>
+        <url-pattern>/articuloConsultaServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>IndexServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
+
     <session-config>
         <session-timeout>
             30

@@ -38,8 +38,7 @@ public class ArticuloDao {
                         rs.getString("unidadMedida"),
                         rs.getInt("existencia"),
                         rs.getInt("impuestos"), 
-                        rs.getInt("descuento"), 
-                        rs.getInt("activoArticulo")        
+                        rs.getInt("descuento")      
                 );
 
                 Departamento dpto = new Departamento(
