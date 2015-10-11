@@ -30,8 +30,7 @@ public class DepartamentoDao {
             while (rs.next()) {
                 Departamento dpo = new Departamento(
                         rs.getInt("idDepartamento"), 
-                        rs.getString("nombreDepartamento"),  
-                        rs.getInt("activoDepartamento")        
+                        rs.getString("nombreDepartamento")       
                 );
 
                     departamentos.add(dpo);

@@ -29,8 +29,7 @@ public class SucursalDao {//busqueda general
             while (rs.next()) {
                 Sucursal suc = new Sucursal(
                         rs.getInt("idSucursal"), 
-                        rs.getString("nombreSucursal"),
-                        rs.getInt("activoSucursal")  
+                        rs.getString("nombreSucursal")
                 );
 
              

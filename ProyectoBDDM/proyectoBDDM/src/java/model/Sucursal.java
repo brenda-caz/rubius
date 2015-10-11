@@ -12,17 +12,15 @@ package model;
 public class Sucursal {
     private int idSucursal;
     private String nombreSucursal;
-    private int activoSucursal;
 
-    public Sucursal(int idSucursal, String nombreSucursal, int activoSucursal) {
+
+    public Sucursal(int idSucursal, String nombreSucursal) {
         this.idSucursal = idSucursal;
         this.nombreSucursal = nombreSucursal;
-        this.activoSucursal = activoSucursal;
+       
     }
 
-    public Sucursal(int aInt, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 
     public int getIdSucursal() {
         return idSucursal;
@@ -40,12 +38,5 @@ public class Sucursal {
         this.nombreSucursal = nombreSucursal;
     }
 
-    public int getActivoSucursal() {
-        return activoSucursal;
-    }
-
-    public void setActivoSucursal(int activoSucursal) {
-        this.activoSucursal = activoSucursal;
-    }
-    
+  
 }

@@ -12,19 +12,13 @@ package model;
 public class Departamento {
     private int idDepartamento;
     private String nombreDepartamento;
-    private int activoDepartamento;
 
-    public Departamento(int idDepartamento, String nombreDepartamento, int activoDepartamento) {
-        this.idDepartamento = idDepartamento;
-        this.nombreDepartamento = nombreDepartamento;
-        this.activoDepartamento = activoDepartamento;
-    }
 
     public Departamento(int idDepartamento, String nombreDepartamento) {
         this.idDepartamento = idDepartamento;
         this.nombreDepartamento = nombreDepartamento;
+  
     }
-    
 
     public int getIdDepartamento() {
         return idDepartamento;
@@ -42,13 +36,5 @@ public class Departamento {
         this.nombreDepartamento = nombreDepartamento;
     }
 
-    public int getActivoDepartamento() {
-        return activoDepartamento;
-    }
-
-    public void setActivoDepartamento(int activoDepartamento) {
-        this.activoDepartamento = activoDepartamento;
-    }
-    
     
 }

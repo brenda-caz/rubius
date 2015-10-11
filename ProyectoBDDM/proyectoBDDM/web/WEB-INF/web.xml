@@ -8,7 +8,21 @@
         <servlet-name>articuloConsultaServlet</servlet-name>
         <servlet-class>servlet.articuloConsultaServlet</servlet-class>
     </servlet>
+    
+    <servlet>
+        <servlet-name>sucursalConsultaServlet</servlet-name>
+        <servlet-class>servlet.sucursalConsultaServlet</servlet-class>
+    </servlet>
    
+    <servlet>
+        <servlet-name>departamentoConsultaServlet</servlet-name>
+        <servlet-class>servlet.departamentoConsultaServlet</servlet-class>
+    </servlet>
+   
+
+
+
+
     <servlet-mapping>
         <servlet-name>usuarioConsultaServlet</servlet-name>
         <url-pattern>/usuarioConsultaServlet</url-pattern>
@@ -17,6 +31,16 @@
     <servlet-mapping>
         <servlet-name>articuloConsultaServlet</servlet-name>
         <url-pattern>/articuloConsultaServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>sucursalConsultaServlet</servlet-name>
+        <url-pattern>/sucursalConsultaServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>departamentoConsultaServlet</servlet-name>
+        <url-pattern>/departamentoConsultaServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>

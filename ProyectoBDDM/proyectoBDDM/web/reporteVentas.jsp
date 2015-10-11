@@ -12,7 +12,9 @@
         <title>Ventas</title>
 <link rel="stylesheet" type="text/css" href="./jquery.datetimepicker.css"/>
 <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
-      
+<link href="Css/chosen.css" rel="stylesheet" type="text/css"/>
+<script src="Css/chosen.jquery.min.js" type="text/javascript"></script>
+<script src="Css/chosen.proto.min.js" type="text/javascript"></script>
     </head>
     <body>  <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
             <div id="menu">
@@ -75,7 +77,7 @@
              
                 
                  Sucursal: 
-                <select>
+                 <select class="chosen-select">
                     <option value="1">Monterrey</option>
                     <option value="2">San Nicolas</option>
                     <option value="3">Santa Catarina</option>
@@ -114,6 +116,11 @@
 <script src="./jquery.js"></script>
 <script src="./jquery.datetimepicker.js"></script>
 <script>
+    $( document ).ready(function() {
+        alert('hola');
+    $(".chosen-select").chosen(); 
+});
+     
 jQuery(function(){
  jQuery('#date_timepicker_start').datetimepicker({
       lang:'es',

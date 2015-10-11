@@ -19,10 +19,9 @@
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
-	<li><a href="consuUsuario.jsp" align="left">Consultar Empleados</a></li>	
+	<li><a href="consuUsuario.jsp" align="left">Gestion Empleados</a></li>	
             <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
-                <li><a href="modUsuario.jsp" align="left">Editar Empleado</a></li>
-                <li><a href="#">Borrar Empleado</a></li>  
+            
                 <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
 	</ul>
 
@@ -30,10 +29,9 @@
   <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
 
 	<ul>
-	<li><a href="consultaArticulos.jsp" align="left">Consultar Articulos</a></li>	
+	<li><a href="consultaArticulos.jsp" align="left">Gestion Articulos</a></li>	
             <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
-		<li><a href="modArticulos.jsp" align="left">Editar Articulos</a></li>
-		<li><a href="#">Borrar Articulos</a></li>
+		
 	</ul>
 
 </li>
@@ -51,14 +49,12 @@
 	</ul>
 
 </li>
-  <li class="nivel1"><a href="#" class="nivel1">Sucursales</a>
+  <li class="nivel1"><a href="#" class="nivel1">Tiendas</a>
 
 	<ul>
-            <li><a href="gestionsucursal.jsp" align="left">Agregar Sucursal</a></li>
-	<li><a href="consultaDepartamento.jsp" align="left">Consultar Departamentos</a></li>	
-            <li><a href="gestionDepartamento.jsp" align="left">Agregar Departamentos</a></li>
-		<li><a href="modDepartamento.jsp" align="left">Editar Departamentos</a></li>
-		<li><a href="#">Borrar Departamentos</a></li>
+            <li><a href="gestionsucursal.jsp" align="left">Gestion Sucursal</a></li>
+	<li><a href="consultaDepartamento.jsp" align="left">Gestion Departamentos</a></li>	
+          
 	</ul>
 
 </li>

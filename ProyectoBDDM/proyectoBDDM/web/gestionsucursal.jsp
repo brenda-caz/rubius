@@ -4,6 +4,8 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Sucursal"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,10 +21,9 @@
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
-	<li><a href="consuUsuario.jsp" align="left">Consultar Empleados</a></li>	
+	<li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
             <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
-                <li><a href="modUsuario.jsp" align="left">Editar Empleado</a></li>
-                <li><a href="#">Borrar Empleado</a></li>  
+          
                 <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
 	</ul>
 
@@ -30,10 +31,9 @@
   <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
 
 	<ul>
-	<li><a href="consultaArticulos.jsp" align="left">Consultar Articulos</a></li>	
+	<li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
             <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
-		<li><a href="modArticulos.jsp" align="left">Editar Articulos</a></li>
-		<li><a href="#">Borrar Articulos</a></li>
+		
 	</ul>
 
 </li>
@@ -51,14 +51,12 @@
 	</ul>
 
 </li>
-  <li class="nivel1"><a href="#" class="nivel1">Sucursales</a>
+  <li class="nivel1"><a href="#" class="nivel1">Tiendas</a>
 
 	<ul>
-            <li><a href="gestionsucursal.jsp" align="left">Agregar Sucursal</a></li>
-	<li><a href="consultaDepartamento.jsp" align="left">Consultar Departamentos</a></li>	
-            <li><a href="gestionDepartamento.jsp" align="left">Agregar Departamentos</a></li>
-		<li><a href="modDepartamento.jsp" align="left">Editar Departamentos</a></li>
-		<li><a href="#">Borrar Departamentos</a></li>
+            <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
+	<li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
+     
 	</ul>
 
 </li>
@@ -72,6 +70,36 @@
 <h3>Sucursal</h3><br>
 
 Nombre: <input id="txt"  type="text" name="E2"><br><br>
+
+<table id="grid" border="1" align="left">
+            <caption>Sucursal</caption>
+            <tr> 
+                <th>Editar</th>
+                <th>Borrar</th>
+            <th>Nombre</th>
+            </tr>
+            
+             <%
+                List<Sucursal> sucursales = (List<Sucursal>) request.getAttribute("sucursales");
+                if (sucursales != null) {
+                    for (Sucursal sucu : sucursales) {  
+            %>            
+                        <tr>
+                            <td>
+                               editar
+                            </td>
+                            <td>
+                               borrar
+                            </td>
+                            
+                            <td><%= sucu.getNombreSucursal()%></td>
+                        
+                        </tr>
+            <%      }
+                }
+            %>
+             
+        </table>
  <input id="botones" type="submit" value="Agregar" />
 
 <input id="botones" type="reset" value="Cancelar"/>
