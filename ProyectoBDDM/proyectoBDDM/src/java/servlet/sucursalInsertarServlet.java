@@ -5,26 +5,25 @@
  */
 package servlet;
 
-import dao.DepartamentoDao;
+import dao.ArticuloDao;
 import dao.SucursalDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Articulo;
 import model.Departamento;
-
+import model.Sucursal;
 
 /**
  *
  * @author BrendaCázares
  */
-
-public class departamentoConsultaServlet extends HttpServlet {
+public class sucursalInsertarServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,12 +37,25 @@ public class departamentoConsultaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
-                request.setAttribute("departamentos", departamentos);
+        String strId = request.getParameter("idSucursal");
+            int id = 0;
+            if (strId != null && !strId.equals("")) {
+                id = Integer.parseInt(strId);
+            }
+            String stragregarSucursal = request.getParameter("agregarSucursal");
+           
+            Sucursal s = new Sucursal(stragregarSucursal);
+            s.setIdSucursal(id);
 
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
-                disp.forward(request, response);
-        
+            if (id > 0) {
+                s.setIdSucursal(id);
+               // EmpleadoDao.actualizar(e);
+            } else {
+                SucursalDao.insertarSucursal(s);
+            }
+
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/sucursalConsultaServlet");
+            disp.forward(request, response);     
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

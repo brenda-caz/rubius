@@ -63,13 +63,14 @@
 </ul>
 </div>
 
-       <br><br><br><br><h2>Agregar Departamentos</h2>
+       <br><br><br><br><h2>Agregar Sucursal</h2>
        
 <fieldset id="f1">
 <legend>Introduce la siguiente informaci&oacuten</legend> 
+<form method="post" action="sucursalInsertarServlet">
 <h3>Sucursal</h3><br>
 
-Nombre: <input id="txt"  type="text" name="E2"><br><br>
+Nombre: <input id="txt"  type="text" name="agregarSucursal"><br><br>
 
 <table id="grid" border="1" align="left">
             <caption>Sucursal</caption>
@@ -103,6 +104,7 @@ Nombre: <input id="txt"  type="text" name="E2"><br><br>
  <input id="botones" type="submit" value="Agregar" />
 
 <input id="botones" type="reset" value="Cancelar"/>
+</form>
 </fieldset>
        
     </body>

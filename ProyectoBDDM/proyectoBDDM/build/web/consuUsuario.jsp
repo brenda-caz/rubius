@@ -55,7 +55,7 @@
 
 	<ul>
             <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
-	<li><a href="departamentoConsultaServlet" align="left">Consultar Departamentos</a></li>	
+	<li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
 
 		
 	</ul>

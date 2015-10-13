@@ -50,8 +50,8 @@
   <li class="nivel1"><a href="#" class="nivel1">Tiendas</a>
 
 	<ul>
-            <li><a href="gestionsucursal.jsp" align="left">Gestion Sucursal</a></li>
-	<li><a href="consultaDepartamento.jsp" align="left">Gestion Departamentos</a></li>	
+            <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
+	<li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
             
 	</ul>
 

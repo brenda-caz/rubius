@@ -4,6 +4,8 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.Departamento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -51,8 +53,8 @@
   <li class="nivel1"><a href="#" class="nivel1">Tiendas</a>
 
 	<ul>
-            <li><a href="gestionsucursal.jsp" align="left">Gestion Sucursal</a></li>
-	<li><a href="consultaDepartamento.jsp" align="left">Gestion Departamentos</a></li>	
+            <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
+	<li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
      
 	</ul>
 
@@ -60,17 +62,46 @@
 </ul>
 </div>
 
-       <br><br><br><br><h2>Agregar Departamentos</h2>
+      <br><br><br><br><h2>Agregar Departamento</h2>
        
 <fieldset id="f1">
 <legend>Introduce la siguiente informaci&oacuten</legend> 
-<h3>Departamentos</h3>
+<form method="post" action="departamentoInsertarServlet">
+<h3>Departamento</h3><br>
 
-Sucursal: <input id="txt"  type="text" name="E2"><br><br>
-Nombre: <input id="txt"  type="text"><br><br>
- <input id="botones" type="submit" value="Agregar" />
+Nombre: <input id="txt"  type="text" name="agregarDepartamento"><br><br>
 
+<table id="grid" border="1" align="left">
+            <caption>Departamento</caption>
+            <tr> 
+                <th>Editar</th>
+                <th>Borrar</th>
+            <th>Nombre</th>
+            </tr>
+            
+             <%
+                List<Departamento> departamentos = (List<Departamento>) request.getAttribute("departamentos");
+                if (departamentos != null) {
+                    for (Departamento depa : departamentos) {  
+            %>            
+                        <tr>
+                            <td>
+                               editar
+                            </td>
+                            <td>
+                               borrar
+                            </td>
+                            
+                            <td><%= depa.getNombreDepartamento()%></td>
+                        
+                        </tr>
+            <%      }
+                }
+            %>
+             </table>
+<input id="botones" type="submit" value="Agregar" />
 <input id="botones" type="reset" value="Cancelar"/>
+</form>
 </fieldset>
        
     </body>

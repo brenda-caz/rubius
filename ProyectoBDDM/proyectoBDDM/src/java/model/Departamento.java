@@ -13,6 +13,10 @@ public class Departamento {
     private int idDepartamento;
     private String nombreDepartamento;
 
+    public Departamento(String nombreDepartamento) {
+        this.nombreDepartamento = nombreDepartamento;
+    }
+
     public Departamento(int idDepartamento) {
         this.idDepartamento = idDepartamento;
     }

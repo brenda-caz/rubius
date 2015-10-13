@@ -36,6 +36,24 @@
     </servlet>
 
 
+<servlet>
+        <servlet-name>sucursalInsertarServlet</servlet-name>
+        <servlet-class>servlet.sucursalInsertarServlet</servlet-class>
+    </servlet>
+
+   <servlet>
+        <servlet-name>departamentoInsertarServlet</servlet-name>
+        <servlet-class>servlet.departamentoInsertarServlet</servlet-class>
+    </servlet>
+
+
+
+
+
+
+
+
+
     <servlet-mapping>
         <servlet-name>usuarioConsultaServlet</servlet-name>
         <url-pattern>/usuarioConsultaServlet</url-pattern>
@@ -64,6 +82,16 @@
     <servlet-mapping>
         <servlet-name>articuloInsertarServlet</servlet-name>
         <url-pattern>/articuloInsertarServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>sucursalInsertarServlet</servlet-name>
+        <url-pattern>/sucursalInsertarServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>departamentoInsertarServlet</servlet-name>
+        <url-pattern>/departamentoInsertarServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>
