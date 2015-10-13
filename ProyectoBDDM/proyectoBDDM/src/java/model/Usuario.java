@@ -77,8 +77,9 @@ public class Usuario {
         this.email = email;
     }
 
-    
-    
+    public Usuario(int id) {
+        this.id = id;
+    }
     
     public Usuario(int id, String nombre) {
         this.id = id;

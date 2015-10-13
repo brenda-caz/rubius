@@ -91,7 +91,9 @@
                                editar
                             </td>
                             <td>
-                               borrar
+                                <a href="<%= request.getServletContext().getContextPath()%>/usuarioConsultaServlet?accion=borrar&id=<%= usua.getId() %>">
+                                    <img src="Css/bote-1.png" alt="Borrar"/>
+                                </a>                     
                             </td>
                             
                             <td><%= usua.getNombre()%></td>

@@ -19,9 +19,8 @@ import model.Usuario;
 
 /**
  *
- * @author 
+ * @author
  */
-
 public class usuarioConsultaServlet extends HttpServlet {
 
     /**
@@ -35,11 +34,22 @@ public class usuarioConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
-                request.setAttribute("usuarios", usuarios);
+        String accion = request.getParameter("accion");
+        String strIdUsuario = request.getParameter("id");
+            int id = 0;
+            if (strIdUsuario != null && !strIdUsuario.equals("")) {
+                id = Integer.parseInt(strIdUsuario);
+            }
 
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
-                disp.forward(request, response);
+        if ("borrar".equals(accion) && strIdUsuario != "") {
+            UsuarioDao.borrar(id);
+        }
+
+        List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
+        request.setAttribute("usuarios", usuarios);
+
+        RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
+        disp.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
