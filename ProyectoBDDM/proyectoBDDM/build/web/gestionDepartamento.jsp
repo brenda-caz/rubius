@@ -89,7 +89,9 @@ Nombre: <input id="txt"  type="text" name="agregarDepartamento"><br><br>
                                editar
                             </td>
                             <td>
-                               borrar
+                               <a href="<%= request.getServletContext().getContextPath()%>/departamentoConsultaServlet?accion=borrar&id=<%= depa.getIdDepartamento()%>">
+                                    <img src="Css/bote-1.png" alt="Borrar"/>
+                                </a> 
                             </td>
                             
                             <td><%= depa.getNombreDepartamento()%></td>

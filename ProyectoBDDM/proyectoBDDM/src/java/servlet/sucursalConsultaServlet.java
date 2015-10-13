@@ -6,6 +6,7 @@
 package servlet;
 
 import dao.SucursalDao;
+import dao.UsuarioDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -34,7 +35,16 @@ public class sucursalConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        String accion = request.getParameter("accion");
+        String strIdSucursal = request.getParameter("id");
+            int id = 0;
+            if (strIdSucursal != null && !strIdSucursal.equals("")) {
+                id = Integer.parseInt(strIdSucursal);
+            }
+
+        if ("borrar".equals(accion) && strIdSucursal != "") {
+            SucursalDao.borrarSucursal(id);
+        }
           List<Sucursal> sucursales = SucursalDao.buscarSucursales();
                 request.setAttribute("sucursales", sucursales);
 

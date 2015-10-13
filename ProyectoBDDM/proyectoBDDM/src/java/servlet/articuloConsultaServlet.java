@@ -7,6 +7,7 @@ package servlet;
 
 
 import dao.ArticuloDao;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -36,7 +37,17 @@ public class articuloConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+         String accion = request.getParameter("accion");
+        String strIdArticulo = request.getParameter("id");
+            int id = 0;
+            if (strIdArticulo != null && !strIdArticulo.equals("")) {
+                id = Integer.parseInt(strIdArticulo);
+            }
+
+        if ("borrar".equals(accion) && strIdArticulo != "") {
+            ArticuloDao.borrarArticulo(id);
+        }
+       
          List<Articulo> articulos = ArticuloDao.buscarArticulos();
                 request.setAttribute("articulos", articulos);
 

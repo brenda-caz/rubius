@@ -6,7 +6,8 @@
 package servlet;
 
 import dao.DepartamentoDao;
-import dao.SucursalDao;
+
+import dao.UsuarioDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -37,7 +38,16 @@ public class departamentoConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+      String accion = request.getParameter("accion");
+        String strIdDepartamento = request.getParameter("id");
+            int id = 0;
+            if (strIdDepartamento != null && !strIdDepartamento.equals("")) {
+                id = Integer.parseInt(strIdDepartamento);
+            }
+
+        if ("borrar".equals(accion) && strIdDepartamento != "") {
+            DepartamentoDao.borrarDepartamento(id);
+        }
          List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
                 request.setAttribute("departamentos", departamentos);
 

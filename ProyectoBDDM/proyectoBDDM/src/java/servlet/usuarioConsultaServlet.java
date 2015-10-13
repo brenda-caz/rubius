@@ -44,12 +44,21 @@ public class usuarioConsultaServlet extends HttpServlet {
         if ("borrar".equals(accion) && strIdUsuario != "") {
             UsuarioDao.borrar(id);
         }
+        else if("editar".equals(accion) && strIdUsuario != "")
+        {
+            Usuario usua = UsuarioDao.buscarUsuario(id);
+            request.setAttribute("usuario", usua);
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionUsuarios.jsp");
+            disp.forward(request, response);
+        }
+        else {
 
         List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
         request.setAttribute("usuarios", usuarios);
 
         RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
         disp.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

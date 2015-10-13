@@ -163,42 +163,51 @@ public class UsuarioDao {
 
 
 
-//    public static Usuario buscarUsuario(int id) {
-//        ConnectionPool pool = ConnectionPool.getInstance();
-//        Connection connection = pool.getConnection();
-//        CallableStatement cs = null;
-//        ResultSet rs = null;
-//        try {
-//            cs = connection.prepareCall("{ call buscarUsuario(?) }");
-//            cs.setInt(1, id);
-//            rs = cs.executeQuery();
-//            if (rs.next()) {//                Usuario usua = new Usuario(
-
-//                        rs.getInt("id"), 
-//                        rs.getString("nombreEmpleado"), 
-//                        rs.getString("apePaterno"), 
-//                        rs.getString("apeMaterno"),
-//                        rs.getByte("sexo")); //aqui se le pone como en la base de datos
-//               //asi se hace un join con llave foranea
-//                //Departamento d = new Departamento(
-//                //rs.getInt("idDepartamento",
-//                //rs.getString("name" ));
-//                //usua.setDepartamento(d);
-//                
-//                return usua;
-//            }
-//            return null;
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//            return null;
-//            
-//        } finally {
-//            DBUtil.closeResultSet(rs);
-//            DBUtil.closeStatement(cs);
-//            pool.freeConnection(connection);
-//        }
-//    }
-//    
+    public static Usuario buscarUsuario(int id) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = connection.prepareCall("{ call buscarUsuario(?) }");
+            cs.setInt(1, id);
+            rs = cs.executeQuery();
+            if (rs.next()) {
+                Usuario emp = new Usuario( 
+                     rs.getInt("idUsuario"), 
+                        rs.getString("nombreUsuario"), 
+                        rs.getString("apellidoPaterno"), 
+                        rs.getString("apellidoMaterno"),
+                        rs.getString("puesto"),
+                        rs.getString("sexo"),
+                        rs.getString("fechaNacimiento"),
+                        rs.getString("nivelEstudios"),
+                        rs.getString("calle"),
+                        rs.getInt("numero"),
+                        rs.getString("colonia"), 
+                        rs.getString("nombreCiudad"), 
+                        rs.getString("nombreEstado"), 
+                        rs.getInt("codigoPostal"), 
+                        rs.getString("RFC"),
+                        rs.getString("CURP"),
+                        rs.getInt("numeroNomina"),
+                        rs.getBinaryStream(1),
+                        rs.getString("correoElectronico")    
+                );
+                return emp;
+            }
+            return null;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+    
    
      
 }

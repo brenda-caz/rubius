@@ -90,7 +90,9 @@ Nombre: <input id="txt"  type="text" name="agregarSucursal"><br><br>
                                editar
                             </td>
                             <td>
-                               borrar
+                               <a href="<%= request.getServletContext().getContextPath()%>/sucursalConsultaServlet?accion=borrar&id=<%= sucu.getIdSucursal()%>">
+                                    <img src="Css/bote-1.png" alt="Borrar"/>
+                                </a> 
                             </td>
                             
                             <td><%= sucu.getNombreSucursal()%></td>

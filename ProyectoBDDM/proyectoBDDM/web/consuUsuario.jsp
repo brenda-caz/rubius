@@ -88,7 +88,9 @@
             %>            
                         <tr>
                             <td>
-                               editar
+                               <a href="<%= request.getServletContext().getContextPath()%>/usuarioConsultaServlet?accion=editar&id=<%= usua.getId() %>">
+                                    <img src="Css/pencil-1.png" alt="Editar"/>
+                                </a> 
                             </td>
                             <td>
                                 <a href="<%= request.getServletContext().getContextPath()%>/usuarioConsultaServlet?accion=borrar&id=<%= usua.getId() %>">

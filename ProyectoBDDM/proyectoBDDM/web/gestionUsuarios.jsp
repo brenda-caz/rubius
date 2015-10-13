@@ -4,6 +4,8 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="java.io.InputStream"%>
+<%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -66,49 +68,101 @@
         <fieldset id="f1">
             <legend>Introduce la siguiente informaci&oacuten</legend> 
             <br><h3>Datos Personales</h3><br>
+
+            <%
+                Usuario usua = (Usuario) request.getAttribute("usuario");
+                int id = 0;
+                String nombre = "";
+                String apePaterno = "";
+                String apeMaterno = "";
+                String puesto = "";
+                String sexo = "";
+                String fechaNacimiento = "";
+                String nivelEstudio = "";
+                String calle = "";
+                int numero = 0;
+                String colonia = "";
+                String municipio = "";
+                String estado = "";
+                int postal = 0;
+                String rfc = "";
+                String curp = "";
+                int nomina = 0;
+                InputStream foto = null;
+                String emails = "";
+
+                if (usua != null) {
+                    id = usua.getId();
+                    nombre = usua.getNombre() != null ? usua.getNombre() : "";
+                    apePaterno = usua.getApellidoPaterno() != null ? usua.getApellidoPaterno() : "";
+                    apeMaterno = usua.getApellidoMaterno() != null ? usua.getApellidoMaterno() : "";
+                    puesto = usua.getPuesto() != null ? usua.getPuesto() : "";
+                    sexo = usua.getSexo() != null ? usua.getSexo() : "";
+                    fechaNacimiento = usua.getFechaNacimiento() != null ? usua.getFechaNacimiento() : "";
+                    nivelEstudio = usua.getNivelEstudio() != null ? usua.getNivelEstudio() : "";
+                    calle = usua.getCalle() != null ? usua.getCalle() : "";
+                    numero = usua.getNumero();
+                    colonia = usua.getColonia() != null ? usua.getColonia() : "";
+                    municipio = usua.getMunicipio() != null ? usua.getMunicipio() : "";
+                    estado = usua.getEstado() != null ? usua.getEstado() : "";
+                    postal = usua.getPostal();
+                    rfc = usua.getRFC() != null ? usua.getRFC() : "";
+                    curp = usua.getCURP() != null ? usua.getCURP() : "";
+                    nomina = usua.getNomina();
+                    foto = usua.getFoto();
+                    emails = usua.getEmail() != null ? usua.getEmail() : "";
+
+                }
+            %>
+
             <form method="post" enctype="multipart/form-data" action="usuarioInsertarServlet">
-            <img align="right" title="Fotografia empledo" alt="Agregar foto usuario" src = "Css/foto.jpg"/>
-            Foto: <input type="file" name="archivo" id="txt" required><br><br>
-            Nombre: <input id="txt"  type="text" name="E2"><br><br>
-            Apellido Paterno: <input id="txt"  type="text" name="apePaterno"><br><br>
-            Apellido Materno: <input id="txt"  type="text" name="apeMaterno"><br><br>
+                <img align="right" title="Fotografia empledo" alt="Agregar foto usuario" src = "Css/foto.jpg"/>
+                Foto: <input type="file" name="archivo" id="txt" required><br><br>
+                Nombre: <input id="txt"  type="text" name="E2" value="<%= nombre%>"><br><br>
+                Apellido Paterno: <input id="txt"  type="text" name="apePaterno" value="<%= apePaterno%>"><br><br>
+                Apellido Materno: <input id="txt"  type="text" name="apeMaterno" value="<%= apeMaterno%>"><br><br>
 
-            <caption>Sexo: &nbsp;</caption><br>
-            <input type="radio" value="H" name="sexo" />Hombre
-            <input type="radio" value="M" name="sexo"/>Mujer
+                <caption>Sexo: &nbsp;</caption><br>
+                <% if (sexo == "M") { %>
+                <input type="radio" value="H" name="sexo" checked/>Hombre
+                <input type="radio" value="M" name="sexo"/>Mujer
+                <% } else { %>
+                <input type="radio" value="H" name="sexo" />Hombre
+                <input type="radio" value="M" name="sexo" checked/>Mujer
+                <%}%>
 
-            <caption>Fecha de nacimiento: &nbsp;</caption>
-            <input id="txt" name="fechaNacimiento" type="text"><br><br>
-            
-            CURP:<input id="txt" type="text" name="curp"><br><br>
-            Correo Electronico: <input id="txt"  type="text" name="emails"><br><br>
+                <caption>Fecha de nacimiento: &nbsp;</caption>
+                <input id="txt" name="fechaNacimiento" type="text" value="<%= fechaNacimiento%>"><br><br>
 
-            <legend>Domicilio </legend>
-            Calle:<input id="txt"  type="text" name="calle"><br><br>
-            Numero:<input id="txt"  type="text" name="numero"><br><br>
-            Colonia:<input id="txt"  type="text" name="colonia"><br><br>
-            Ciudad:<input id="txt"  type="text" name="ciudad"><br><br>
-            Estado:<input id="txt"  type="text" name="estado"><br><br>
-            Codigo postal:<input id="txt"  type="text" name="postal"><br><br>
-            Nivel academico <br>
-            <select name="estudios">
-                <option>Seleccionar...</option>
-                <option value="jardin">Jardin de niños</option>
-                <option value="Primaria">Primaria</option>
-                <option value="Secundaria">Secundaria</option>
-                <option value="Prepa">Preparatoria</option>
-                <option value="Uni">Universidad</option>
-                <option value="Maestria">Maestria</option>
-                <option value="Doctorado">Doctorado</option>
-                <option value="ninguno">Ninguno</option>
-            </select>
-            <br><br>Puesto: <input id="txt"  type="text" name="puesto"><br><br>
-            RFC: <input id="txt"  type="text" name="rfc"><br><br>
-            Numero de nomina: <input id="txt"  type="text" name="nomina"><br><br>
+                CURP:<input id="txt" type="text" name="curp" value="<%= curp%>"><br><br>
+                Correo Electronico: <input id="txt"  type="text" name="emails" value="<%= emails%>"><br><br>
 
-            <input id="botones" type="submit" value="Agregar" />
+                <legend>Domicilio </legend>
+                Calle:<input id="txt"  type="text" name="calle" value="<%= calle%>"><br><br>
+                Numero:<input id="txt"  type="text" name="numero" value="<%= numero%>"><br><br>
+                Colonia:<input id="txt"  type="text" name="colonia" value="<%= colonia%>"><br><br>
+                Ciudad:<input id="txt"  type="text" name="ciudad" value="<%= municipio%>"><br><br>
+                Estado:<input id="txt"  type="text" name="estado" value="<%= estado%>"><br><br>
+                Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal%>"><br><br>
+                Nivel academico <br>
+                <select name="estudios" value="<%= nivelEstudio%>">
+                    <option>Seleccionar...</option>
+                    <option value="jardin">Jardin de niños</option>
+                    <option value="Primaria">Primaria</option>
+                    <option value="Secundaria">Secundaria</option>
+                    <option value="Prepa">Preparatoria</option>
+                    <option value="Uni">Universidad</option>
+                    <option value="Maestria">Maestria</option>
+                    <option value="Doctorado">Doctorado</option>
+                    <option value="ninguno">Ninguno</option>
+                </select>
+                <br><br>Puesto: <input id="txt"  type="text" name="puesto" value="<%= nivelEstudio%>"><br><br>
+                RFC: <input id="txt"  type="text" name="rfc" value="<%= rfc%>"><br><br>
+                Numero de nomina: <input id="txt"  type="text" name="nomina" value="<%= nomina%>"><br><br>
 
-            <input id="botones" type="reset" value="Cancelar"/>
+                <input id="botones" type="submit" value="Agregar" />
+
+                <input id="botones" type="reset" value="Cancelar"/>
             </form>
         </fieldset>
 
