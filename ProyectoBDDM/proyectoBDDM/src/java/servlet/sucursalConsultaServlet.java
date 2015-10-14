@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Sucursal;
+import model.Usuario;
 
 /**
  *
@@ -45,12 +46,20 @@ public class sucursalConsultaServlet extends HttpServlet {
         if ("borrar".equals(accion) && strIdSucursal != "") {
             SucursalDao.borrarSucursal(id);
         }
+        else if("editar".equals(accion) && strIdSucursal != "")
+        {
+            Sucursal sucu = SucursalDao.buscarSucursal(id);
+            request.setAttribute("sucursal", sucu);
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionsucursal.jsp");
+            disp.forward(request, response);
+        }
+        else {
           List<Sucursal> sucursales = SucursalDao.buscarSucursales();
                 request.setAttribute("sucursales", sucursales);
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionsucursal.jsp");
                 disp.forward(request, response);
-        
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

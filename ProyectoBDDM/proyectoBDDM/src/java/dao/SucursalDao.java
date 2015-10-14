@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Sucursal;
+import model.Usuario;
 
 /**
  *
@@ -95,6 +96,34 @@ public class SucursalDao {//busqueda general
             ex.printStackTrace();
             
         } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
+     public static Sucursal buscarSucursal(int id) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = connection.prepareCall("{ call buscarSucursal(?) }");
+            cs.setInt(1, id);
+            rs = cs.executeQuery();
+            if (rs.next()) {
+                Sucursal suc = new Sucursal( 
+                         rs.getInt("idSucursal"), 
+                        rs.getString("nombreSucursal")
+                );
+                return suc;
+            }
+            return null;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
             DBUtil.closeStatement(cs);
             pool.freeConnection(connection);
         }

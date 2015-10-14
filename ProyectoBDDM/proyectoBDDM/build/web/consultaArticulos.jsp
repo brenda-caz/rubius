@@ -81,24 +81,25 @@
             <%
                 List<Articulo> articulos = (List<Articulo>) request.getAttribute("articulos");
                 if (articulos != null) {
-                    for (Articulo arti : articulos) {  
+                    for (Articulo artis : articulos) {  
             %>            
                         <tr>
                             <td>
-                               editar
+                             <a href="<%= request.getServletContext().getContextPath()%>/articuloConsultaServlet?accion=editar&id=<%= artis.getIdArticulo()%>">
+                                    <img src="Css/pencil-1.png" alt="Editar"/>
                             </td>
                             <td>
-                              <a href="<%= request.getServletContext().getContextPath()%>/articuloConsultaServlet?accion=borrar&id=<%= arti.getIdArticulo()%>">
+                              <a href="<%= request.getServletContext().getContextPath()%>/articuloConsultaServlet?accion=borrar&id=<%= artis.getIdArticulo()%>">
                                     <img src="Css/bote-1.png" alt="Borrar"/>
                                 </a> 
                             </td>
                             
-                            <td><%= arti.getCodigoArticulo()%></td>
-                            <td><%= arti.getDescripcionCorta()%></td>
-                            <td><%= arti.getPrecioPublico()%></td>
-                            <td><%= arti.getExistencia()%></td>
-                            <td><%= arti.getImpuesto()%></td>
-                            <td><%= arti.getDescuento()%></td>                        
+                            <td><%= artis.getCodigoArticulo()%></td>
+                            <td><%= artis.getDescripcionCorta()%></td>
+                            <td><%= artis.getPrecioPublico()%></td>
+                            <td><%= artis.getExistencia()%></td>
+                            <td><%= artis.getImpuesto()%></td>
+                            <td><%= artis.getDescuento()%></td>                        
                         </tr>
             <%      }
                 }

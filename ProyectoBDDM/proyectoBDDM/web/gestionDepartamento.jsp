@@ -66,10 +66,21 @@
        
 <fieldset id="f1">
 <legend>Introduce la siguiente informaci&oacuten</legend> 
+   <%
+                Departamento depas = (Departamento) request.getAttribute("departamento");
+                int id = 0;
+                String nombreDepa = "";;
+
+                if (depas != null) {
+                    id = depas.getIdDepartamento();
+                    nombreDepa = depas.getNombreDepartamento()!= null ? depas.getNombreDepartamento(): "";
+
+                }
+            %>
 <form method="post" action="departamentoInsertarServlet">
 <h3>Departamento</h3><br>
 
-Nombre: <input id="txt"  type="text" name="agregarDepartamento"><br><br>
+Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombreDepa%>"><br><br>
 
 <table id="grid" border="1" align="left">
             <caption>Departamento</caption>
@@ -86,7 +97,8 @@ Nombre: <input id="txt"  type="text" name="agregarDepartamento"><br><br>
             %>            
                         <tr>
                             <td>
-                               editar
+                                <a href="<%= request.getServletContext().getContextPath()%>/departamentoConsultaServlet?accion=editar&id=<%= depa.getIdDepartamento()%>">
+                                    <img src="Css/pencil-1.png" alt="Editar"/>
                             </td>
                             <td>
                                <a href="<%= request.getServletContext().getContextPath()%>/departamentoConsultaServlet?accion=borrar&id=<%= depa.getIdDepartamento()%>">

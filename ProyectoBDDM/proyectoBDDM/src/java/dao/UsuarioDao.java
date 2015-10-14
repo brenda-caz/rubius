@@ -151,18 +151,6 @@ public class UsuarioDao {
         }
     }
      
-
-
-
-
-
-
-
-
-
-
-
-
     public static Usuario buscarUsuario(int id) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();

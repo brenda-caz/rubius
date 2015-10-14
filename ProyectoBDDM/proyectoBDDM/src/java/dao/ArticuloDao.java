@@ -13,6 +13,7 @@ import java.util.List;
 import model.Articulo;
 import model.Departamento;
 
+
 /**
  *
  * @author BrendaCázares
@@ -124,6 +125,41 @@ public class ArticuloDao {
             ex.printStackTrace();
             
         } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
+     public static Articulo buscarArticulo(int id) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = connection.prepareCall("{ call buscarArticulo(?) }");
+            cs.setInt(1, id);
+            rs = cs.executeQuery();
+            if (rs.next()) {
+                Articulo art = new Articulo( 
+                        rs.getInt("idArticulo"), 
+                        rs.getString("codigoArticulo"), 
+                        rs.getString("descripcionCorta"),
+                        rs.getString("descripcionLarga"),
+                        rs.getDouble("precioPublico"),
+                        rs.getString("unidadMedida"),
+                        rs.getInt("existencia"),
+                        rs.getInt("impuestos"), 
+                        rs.getInt("descuento")        
+                );
+                return art;
+            }
+            return null;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
             DBUtil.closeStatement(cs);
             pool.freeConnection(connection);
         }

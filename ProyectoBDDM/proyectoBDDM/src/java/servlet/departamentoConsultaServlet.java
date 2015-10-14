@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Departamento;
+import model.Usuario;
 
 
 /**
@@ -48,12 +49,21 @@ public class departamentoConsultaServlet extends HttpServlet {
         if ("borrar".equals(accion) && strIdDepartamento != "") {
             DepartamentoDao.borrarDepartamento(id);
         }
+         else if("editar".equals(accion) && strIdDepartamento != "")
+        {
+            Departamento depa = DepartamentoDao.buscarDepartamento(id);
+            request.setAttribute("departamento", depa);
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
+            disp.forward(request, response);
+        }
+        else {
          List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
                 request.setAttribute("departamentos", departamentos);
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
                 disp.forward(request, response);
         
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

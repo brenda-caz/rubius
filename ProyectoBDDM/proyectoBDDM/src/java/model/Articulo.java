@@ -10,7 +10,9 @@ package model;
  * @author BrendaCázares
  */
 public class Articulo {
-     private int idArticulo;
+
+  
+    private int idArticulo;
     private String codigoArticulo;
     private String descripcionCorta;
     private String descripcionLarga;

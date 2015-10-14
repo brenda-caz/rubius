@@ -48,7 +48,7 @@ public class usuarioConsultaServlet extends HttpServlet {
         {
             Usuario usua = UsuarioDao.buscarUsuario(id);
             request.setAttribute("usuario", usua);
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionUsuarios.jsp");
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/modDepartamentoUsuarios.jsp");
             disp.forward(request, response);
         }
         else {

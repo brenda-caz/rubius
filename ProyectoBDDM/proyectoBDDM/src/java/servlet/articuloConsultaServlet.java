@@ -8,6 +8,7 @@ package servlet;
 
 import dao.ArticuloDao;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Articulo;
+;
 
 
 /**
@@ -47,12 +49,20 @@ public class articuloConsultaServlet extends HttpServlet {
         if ("borrar".equals(accion) && strIdArticulo != "") {
             ArticuloDao.borrarArticulo(id);
         }
-       
+        else if("editar".equals(accion) && strIdArticulo != "")
+        {
+            Articulo arti = ArticuloDao.buscarArticulo(id);
+            request.setAttribute("articulo", arti);
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionArticulos.jsp");
+            disp.forward(request, response);
+        }
+       else {
          List<Articulo> articulos = ArticuloDao.buscarArticulos();
                 request.setAttribute("articulos", articulos);
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/consultaArticulos.jsp");
                 disp.forward(request, response);
+        }
     
     }
 

@@ -67,10 +67,20 @@
        
 <fieldset id="f1">
 <legend>Introduce la siguiente informaci&oacuten</legend> 
+ <%
+                Sucursal sucus = (Sucursal) request.getAttribute("sucursal");
+                int id = 0;
+                String nombreSucursal = "";
+
+                if (sucus != null) {
+                    id = sucus.getIdSucursal();
+                    nombreSucursal = sucus.getNombreSucursal()!= null ? sucus.getNombreSucursal(): "";
+                }
+            %>
 <form method="post" action="sucursalInsertarServlet">
 <h3>Sucursal</h3><br>
 
-Nombre: <input id="txt"  type="text" name="agregarSucursal"><br><br>
+Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSucursal%>"><br><br>
 
 <table id="grid" border="1" align="left">
             <caption>Sucursal</caption>
@@ -87,7 +97,8 @@ Nombre: <input id="txt"  type="text" name="agregarSucursal"><br><br>
             %>            
                         <tr>
                             <td>
-                               editar
+                               <a href="<%= request.getServletContext().getContextPath()%>/sucursalConsultaServlet?accion=editar&id=<%= sucu.getIdSucursal()%>">
+                                    <img src="Css/pencil-1.png" alt="Editar"/>
                             </td>
                             <td>
                                <a href="<%= request.getServletContext().getContextPath()%>/sucursalConsultaServlet?accion=borrar&id=<%= sucu.getIdSucursal()%>">
