@@ -22,7 +22,7 @@
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
 	<li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
-            <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
+            <li>  <a href="usuarioInsertarServlet?inicio=no&id=0" align="left">Agregar Empleado</a></li>
                 
                 <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
 	</ul>

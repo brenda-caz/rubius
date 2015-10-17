@@ -4,6 +4,8 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.NivelEstudios"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -78,7 +80,7 @@
                 String puesto = "";
                 String sexo = "";
                 String fechaNacimiento = "";
-                String nivelEstudio = "";
+                int nivelEstudio = 0;
                 String calle = "";
                 int numero = 0;
                 String colonia = "";
@@ -99,7 +101,7 @@
                     puesto = usua.getPuesto() != null ? usua.getPuesto() : "";
                     sexo = usua.getSexo() != null ? usua.getSexo() : "";
                     fechaNacimiento = usua.getFechaNacimiento() != null ? usua.getFechaNacimiento() : "";
-                    nivelEstudio = usua.getNivelEstudio() != null ? usua.getNivelEstudio() : "";
+                    nivelEstudio = usua.getNivelEstudio().getId();
                     calle = usua.getCalle() != null ? usua.getCalle() : "";
                     numero = usua.getNumero();
                     colonia = usua.getColonia() != null ? usua.getColonia() : "";
@@ -145,16 +147,22 @@
                 Estado:<input id="txt"  type="text" name="estado" value="<%= estado%>"><br><br>
                 Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal%>"><br><br>
                 Nivel academico <br>
-                <select name="estudios" value="<%= nivelEstudio%>">
-                    <option>Seleccionar...</option>
-                    <option value="jardin">Jardin de niños</option>
-                    <option value="Primaria">Primaria</option>
-                    <option value="Secundaria">Secundaria</option>
-                    <option value="Prepa">Preparatoria</option>
-                    <option value="Uni">Universidad</option>
-                    <option value="Maestria">Maestria</option>
-                    <option value="Doctorado">Doctorado</option>
-                    <option value="ninguno">Ninguno</option>
+                <select name="estudios">
+                    <option value="0" selected>
+                                            Seleccione una opcion...
+                                        </option>
+                    <%
+                                List<NivelEstudios> nes = (List<NivelEstudios>) request.getAttribute("estudios");
+                                if (nes != null) {
+                                    for (NivelEstudios level : nes) {
+                            %>
+                                        <option value="<%= level.getId() %>">
+                                            <%= level.getNombreNivelEstudios()%>
+                                        </option>
+                            <%
+                                    }
+                                }
+                            %>
                 </select>
                 <br><br>Puesto: <input id="txt"  type="text" name="puesto" value="<%= nivelEstudio%>"><br><br>
                 RFC: <input id="txt"  type="text" name="rfc" value="<%= rfc%>"><br><br>

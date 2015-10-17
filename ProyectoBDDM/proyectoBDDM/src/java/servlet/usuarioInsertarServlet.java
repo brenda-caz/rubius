@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import model.NivelEstudios;
 import model.Usuario;
 
 /**
@@ -53,6 +55,20 @@ public class usuarioInsertarServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+                List<NivelEstudios> nes = UsuarioDao.buscarNivelEstudios();
+        request.setAttribute("estudios", nes);
+        
+        String strinicio = request.getParameter("inicio");
+        String strId = request.getParameter("id");
+            int id = 0;
+            if (strId != null && !strId.equals("")) {
+                id = Integer.parseInt(strId);
+            }
+        
+        if(!"no".equals(strinicio))
+        {
+        
         response.setContentType("text/html;charset=UTF-8");
             
         InputStream inputStream = null;
@@ -83,13 +99,7 @@ public class usuarioInsertarServlet extends HttpServlet {
             }
         }
         
-        
-        
-            String strId = request.getParameter("id");
-            int id = 0;
-            if (strId != null && !strId.equals("")) {
-                id = Integer.parseInt(strId);
-            }
+            
             String strnombre = request.getParameter("E2");
             String strapePaterno = request.getParameter("apePaterno");
             String strapeMaterno = request.getParameter("apeMaterno");
@@ -112,6 +122,10 @@ public class usuarioInsertarServlet extends HttpServlet {
                 postal = Integer.parseInt(strpostal);
             }
             String strestudios = request.getParameter("estudios");
+               int idEstudios = 0;
+            if (strestudios != null && !strestudios.equals("")) {
+                idEstudios = Integer.parseInt(strestudios);
+            }
             String strpuesto = request.getParameter("puesto");
             String strrfc = request.getParameter("rfc");
             String strnomina = request.getParameter("nomina");
@@ -120,15 +134,11 @@ public class usuarioInsertarServlet extends HttpServlet {
                 nominap = Integer.parseInt(strnomina);
             }
 
-            
-            
-            
-            
-            
-
             Usuario u = new Usuario(strnombre, strapePaterno, strapeMaterno, strpuesto, strSexo, strfechaNacimiento, 
-                    strestudios, strcalle, numero, strcolonia, strciudad, strestado, postal, strrfc, strcurp, 
+                    strcalle, numero, strcolonia, strciudad, strestado, postal, strrfc, strcurp, 
                     nominap, inputStream, stremails);
+            NivelEstudios ne = new NivelEstudios(idEstudios);
+            u.setNivelEstudio(ne);
               u.setId(id);
 
             if (id > 0) {
@@ -138,7 +148,9 @@ public class usuarioInsertarServlet extends HttpServlet {
             }
 
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/usuarioConsultaServlet");
-            disp.forward(request, response);        
+            disp.forward(request, response);      
+        }
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

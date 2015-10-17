@@ -21,7 +21,7 @@ public class Usuario {
     private String puesto;
     private String sexo;
     private String fechaNacimiento;
-    private String nivelEstudio;
+    private NivelEstudios nivelEstudio;
     private String calle;
     private int numero;
     private String colonia;
@@ -34,7 +34,7 @@ public class Usuario {
     private InputStream foto;
     private String email;
 
-    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String nivelEstudio, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
+    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -42,7 +42,6 @@ public class Usuario {
         this.puesto = puesto;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
-        this.nivelEstudio = nivelEstudio;
         this.calle = calle;
         this.numero = numero;
         this.colonia = colonia;
@@ -56,14 +55,13 @@ public class Usuario {
         this.email = email;
     }
 
-    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String nivelEstudio, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.puesto = puesto;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
-        this.nivelEstudio = nivelEstudio;
         this.calle = calle;
         this.numero = numero;
         this.colonia = colonia;
@@ -142,11 +140,11 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getNivelEstudio() {
+    public NivelEstudios getNivelEstudio() {
         return nivelEstudio;
     }
 
-    public void setNivelEstudio(String nivelEstudio) {
+    public void setNivelEstudio(NivelEstudios nivelEstudio) {
         this.nivelEstudio = nivelEstudio;
     }
 

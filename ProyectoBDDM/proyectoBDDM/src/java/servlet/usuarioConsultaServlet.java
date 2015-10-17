@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.NivelEstudios;
 import model.Usuario;
 
 /**
@@ -48,13 +49,17 @@ public class usuarioConsultaServlet extends HttpServlet {
         {
             Usuario usua = UsuarioDao.buscarUsuario(id);
             request.setAttribute("usuario", usua);
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/modDepartamentoUsuarios.jsp");
+//            List<NivelEstudios> nes = UsuarioDao.buscarNivelEstudios();
+//            request.setAttribute("estudios", nes);
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionUsuarios.jsp");
             disp.forward(request, response);
         }
         else {
 
         List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
         request.setAttribute("usuarios", usuarios);
+        
+        
 
         RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
         disp.forward(request, response);

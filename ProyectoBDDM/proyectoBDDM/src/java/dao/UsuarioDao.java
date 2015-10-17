@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import model.NivelEstudios;
 import model.Usuario;
 
 /**
@@ -37,7 +38,6 @@ public class UsuarioDao {
                         rs.getString("puesto"),
                         rs.getString("sexo"),
                         rs.getString("fechaNacimiento"),
-                        rs.getString("nivelEstudios"),
                         rs.getString("calle"),
                         rs.getInt("numero"),
                         rs.getString("colonia"), 
@@ -50,6 +50,13 @@ public class UsuarioDao {
                         rs.getBinaryStream(1),
                         rs.getString("correoElectronico") 
                 );
+                
+                NivelEstudios ne = new NivelEstudios(
+                       rs.getInt("idNivelEstudio"),
+                       rs.getString("nombreNivelEstudio")
+                );
+                
+                emp.setNivelEstudio(ne);  
 
                 empleados.add(emp);
             }
@@ -77,7 +84,7 @@ public class UsuarioDao {
             cs.setString(4, e.getPuesto());
             cs.setString(5, e.getSexo());
             cs.setString(6, e.getFechaNacimiento());
-            cs.setString(7, e.getNivelEstudio());
+            cs.setInt(7, e.getNivelEstudio().getId());
             cs.setString(8, e.getCalle());
             cs.setInt(9, e.getNumero());
             cs.setString(10, e.getColonia());
@@ -128,7 +135,7 @@ public class UsuarioDao {
                         cs.setString(4, u.getPuesto());
                         cs.setString(5, u.getSexo());
                         cs.setString(6, u.getFechaNacimiento());
-                        cs.setString(7, u.getNivelEstudio());
+                        cs.setInt(7, u.getNivelEstudio().getId());
                         cs.setString(8, u.getCalle());
                         cs.setInt(9, u.getNumero());
                         cs.setString(10, u.getColonia());
@@ -169,7 +176,6 @@ public class UsuarioDao {
                         rs.getString("puesto"),
                         rs.getString("sexo"),
                         rs.getString("fechaNacimiento"),
-                        rs.getString("nivelEstudios"),
                         rs.getString("calle"),
                         rs.getInt("numero"),
                         rs.getString("colonia"), 
@@ -182,6 +188,8 @@ public class UsuarioDao {
                         rs.getBinaryStream(1),
                         rs.getString("correoElectronico")    
                 );
+                NivelEstudios ne = new NivelEstudios(rs.getInt("idNivelEstudio"));
+                emp.setNivelEstudio(ne);
                 return emp;
             }
             return null;
@@ -196,6 +204,31 @@ public class UsuarioDao {
         }
     }
     
-   
+   public static List<NivelEstudios> buscarNivelEstudios() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<NivelEstudios> nes = new ArrayList<NivelEstudios>();
+            cs = connection.prepareCall("{ call listaNivelEstudio() }");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                NivelEstudios ne = new NivelEstudios(
+                        rs.getInt("idNivelEstudio"), 
+                        rs.getString("nombreNivelEstudio"));
+                nes.add(ne);
+            }
+            return nes;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
      
 }
