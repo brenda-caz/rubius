@@ -153,10 +153,14 @@ public class usuarioInsertarServlet extends HttpServlet {
             }
 
             Usuario u = new Usuario(strnombre, strapePaterno, strapeMaterno, strpuesto, strSexo, strfechaNacimiento, 
-                    strcalle, numero, strcolonia, strciudad, strestado, postal, strrfc, strcurp, 
+                    strcalle, numero, strcolonia, postal, strrfc, strcurp, 
                     nominap, inputStream, stremails);
             NivelEstudios ne = new NivelEstudios(idEstudios);
             u.setNivelEstudio(ne);
+            Ciudad ci = new Ciudad(idCiudad);
+            u.setMunicipio(ci);
+            Estado es = new Estado(idEstado);
+            u.setEstado(es);
               u.setId(id);
 
             if (id > 0) {

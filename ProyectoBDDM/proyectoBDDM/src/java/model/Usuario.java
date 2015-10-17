@@ -34,7 +34,7 @@ public class Usuario {
     private InputStream foto;
     private String email;
 
-    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
+    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -53,7 +53,7 @@ public class Usuario {
         this.email = email;
     }
 
-    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, String municipio, String estado, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
