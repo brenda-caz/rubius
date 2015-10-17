@@ -25,8 +25,8 @@ public class Usuario {
     private String calle;
     private int numero;
     private String colonia;
-    private String municipio;
-    private String estado;
+    private Ciudad municipio;
+    private Estado estado;
     private int postal;
     private String RFC;
     private String CURP;
@@ -45,8 +45,6 @@ public class Usuario {
         this.calle = calle;
         this.numero = numero;
         this.colonia = colonia;
-        this.municipio = municipio;
-        this.estado = estado;
         this.postal = postal;
         this.RFC = RFC;
         this.CURP = CURP;
@@ -65,8 +63,6 @@ public class Usuario {
         this.calle = calle;
         this.numero = numero;
         this.colonia = colonia;
-        this.municipio = municipio;
-        this.estado = estado;
         this.postal = postal;
         this.RFC = RFC;
         this.CURP = CURP;
@@ -172,22 +168,6 @@ public class Usuario {
         this.colonia = colonia;
     }
 
-    public String getMunicipio() {
-        return municipio;
-    }
-
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public int getPostal() {
         return postal;
     }
@@ -234,6 +214,22 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Ciudad getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Ciudad municipio) {
+        this.municipio = municipio;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     

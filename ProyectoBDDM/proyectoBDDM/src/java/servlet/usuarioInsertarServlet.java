@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import model.Ciudad;
+import model.Estado;
 import model.NivelEstudios;
 import model.Usuario;
 
@@ -58,6 +60,10 @@ public class usuarioInsertarServlet extends HttpServlet {
         
                 List<NivelEstudios> nes = UsuarioDao.buscarNivelEstudios();
         request.setAttribute("estudios", nes);
+         List<Ciudad> ciu = UsuarioDao.buscarCiudades();
+            request.setAttribute("ciudades", ciu);
+            List<Estado> est = UsuarioDao.buscarEstados();
+            request.setAttribute("estados", est);
         
         String strinicio = request.getParameter("inicio");
         String strId = request.getParameter("id");
@@ -114,18 +120,30 @@ public class usuarioInsertarServlet extends HttpServlet {
                 numero = Integer.parseInt(strnumero);
             }
             String strcolonia = request.getParameter("colonia");
+            
             String strciudad = request.getParameter("ciudad");
+              int idCiudad = 0;
+            if (strciudad != null && !strciudad.equals("")) {
+                idCiudad = Integer.parseInt(strciudad);
+            }
+           
             String strestado = request.getParameter("estado");
+            int idEstado = 0;
+            if (strestado != null && !strestado.equals("")) {
+                idEstado = Integer.parseInt(strestado);
+            }
             String strpostal = request.getParameter("postal");
                int postal = 0;
             if (strpostal != null && !strpostal.equals("")) {
                 postal = Integer.parseInt(strpostal);
             }
+           
             String strestudios = request.getParameter("estudios");
                int idEstudios = 0;
             if (strestudios != null && !strestudios.equals("")) {
                 idEstudios = Integer.parseInt(strestudios);
             }
+           
             String strpuesto = request.getParameter("puesto");
             String strrfc = request.getParameter("rfc");
             String strnomina = request.getParameter("nomina");
@@ -142,6 +160,7 @@ public class usuarioInsertarServlet extends HttpServlet {
               u.setId(id);
 
             if (id > 0) {
+                 u.setId(id);
                // EmpleadoDao.actualizar(e);
             } else {
                 UsuarioDao.insertarUsuario(u);
@@ -149,6 +168,11 @@ public class usuarioInsertarServlet extends HttpServlet {
 
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/usuarioConsultaServlet");
             disp.forward(request, response);      
+        }
+        else
+        {
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionUsuarios.jsp");
+            disp.forward(request, response);  
         }
        
     }

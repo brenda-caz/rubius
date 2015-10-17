@@ -18,6 +18,10 @@ public class Estado {
         this.nombreEstado = nombreEstado;
     }
 
+    public Estado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
     public int getIdEstado() {
         return idEstado;
     }

@@ -19,6 +19,12 @@ public class Ciudad {
         this.nombreCiudad = nombreCiudad;
     }
 
+    public Ciudad(int idCiudad) {
+        this.idCiudad = idCiudad;
+    }
+    
+    
+
     public int getIdCiudad() {
         return idCiudad;
     }

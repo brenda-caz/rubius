@@ -5,6 +5,8 @@
  */
 package servlet;
 
+import dao.CiudadDao;
+import dao.EstadoDao;
 import dao.UsuarioDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Ciudad;
+import model.Estado;
 import model.NivelEstudios;
 import model.Usuario;
 
@@ -37,32 +41,31 @@ public class usuarioConsultaServlet extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
         String strIdUsuario = request.getParameter("id");
-            int id = 0;
-            if (strIdUsuario != null && !strIdUsuario.equals("")) {
-                id = Integer.parseInt(strIdUsuario);
-            }
+        int id = 0;
+        if (strIdUsuario != null && !strIdUsuario.equals("")) {
+            id = Integer.parseInt(strIdUsuario);
+        }
 
         if ("borrar".equals(accion) && strIdUsuario != "") {
             UsuarioDao.borrar(id);
-        }
-        else if("editar".equals(accion) && strIdUsuario != "")
-        {
+        } else if ("editar".equals(accion) && strIdUsuario != "") {
             Usuario usua = UsuarioDao.buscarUsuario(id);
             request.setAttribute("usuario", usua);
-//            List<NivelEstudios> nes = UsuarioDao.buscarNivelEstudios();
-//            request.setAttribute("estudios", nes);
+            List<NivelEstudios> nes = UsuarioDao.buscarNivelEstudios();
+            request.setAttribute("estudios", nes);
+            List<Ciudad> ciu = UsuarioDao.buscarCiudades();
+            request.setAttribute("ciudades", ciu);
+            List<Estado> est = UsuarioDao.buscarEstados();
+            request.setAttribute("estados", est);
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionUsuarios.jsp");
             disp.forward(request, response);
-        }
-        else {
+        } else {
 
-        List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
-        request.setAttribute("usuarios", usuarios);
-        
-        
+            List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
+            request.setAttribute("usuarios", usuarios);
 
-        RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
-        disp.forward(request, response);
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
+            disp.forward(request, response);
         }
     }
 

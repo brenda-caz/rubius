@@ -4,6 +4,8 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Estado"%>
+<%@page import="model.Ciudad"%>
 <%@page import="java.util.List"%>
 <%@page import="model.NivelEstudios"%>
 <%@page import="java.io.InputStream"%>
@@ -84,8 +86,8 @@
                 String calle = "";
                 int numero = 0;
                 String colonia = "";
-                String municipio = "";
-                String estado = "";
+                int municipio = 0;
+                int estado = 0;
                 int postal = 0;
                 String rfc = "";
                 String curp = "";
@@ -105,8 +107,8 @@
                     calle = usua.getCalle() != null ? usua.getCalle() : "";
                     numero = usua.getNumero();
                     colonia = usua.getColonia() != null ? usua.getColonia() : "";
-                    municipio = usua.getMunicipio() != null ? usua.getMunicipio() : "";
-                    estado = usua.getEstado() != null ? usua.getEstado() : "";
+                    municipio = usua.getMunicipio().getIdCiudad();
+                    estado = usua.getEstado().getIdEstado();
                     postal = usua.getPostal();
                     rfc = usua.getRFC() != null ? usua.getRFC() : "";
                     curp = usua.getCURP() != null ? usua.getCURP() : "";
@@ -143,9 +145,44 @@
                 Calle:<input id="txt"  type="text" name="calle" value="<%= calle%>"><br><br>
                 Numero:<input id="txt"  type="text" name="numero" value="<%= numero%>"><br><br>
                 Colonia:<input id="txt"  type="text" name="colonia" value="<%= colonia%>"><br><br>
-                Ciudad:<input id="txt"  type="text" name="ciudad" value="<%= municipio%>"><br><br>
-                Estado:<input id="txt"  type="text" name="estado" value="<%= estado%>"><br><br>
-                Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal%>"><br><br>
+                Ciudad: <br>
+                 <select name="ciudad">
+                    <option value="0" selected>
+                                            Seleccione una opcion...
+                                        </option>
+                    <%
+                                List<Ciudad> ciu = (List<Ciudad>) request.getAttribute("ciudades");
+                                if (ciu != null) {
+                                    for (Ciudad mun : ciu) {
+                            %>
+                                        <option value="<%= mun.getIdCiudad()%>" <%= usua != null && usua.getMunicipio().getIdCiudad()== mun.getIdCiudad()? "selected" : "" %> >
+                                            <%= mun.getNombreCiudad()%>
+                                        </option>
+                            <%
+                                    }
+                                }
+                            %>
+                </select>
+                
+                <br>  Estado <br>
+                 <select name="estado">
+                    <option value="0" selected>
+                                            Seleccione una opcion...
+                                        </option>
+                    <%
+                                List<Estado> est = (List<Estado>) request.getAttribute("estados");
+                                if (est != null) {
+                                    for (Estado es : est) {
+                            %>
+                                        <option value="<%= es.getIdEstado()%>" <%= usua != null && usua.getEstado().getIdEstado()== es.getIdEstado()? "selected" : "" %>>
+                                            <%= es.getNombreEstado()%>
+                                        </option>
+                            <%
+                                    }
+                                }
+                            %>
+                </select>
+                            <br><br>Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal%>"><br><br>
                 Nivel academico <br>
                 <select name="estudios">
                     <option value="0" selected>
@@ -164,7 +201,7 @@
                                 }
                             %>
                 </select>
-                <br><br>Puesto: <input id="txt"  type="text" name="puesto" value="<%= nivelEstudio%>"><br><br>
+                <br><br>Puesto: <input id="txt"  type="text" name="puesto" value="<%= puesto%>"><br><br>
                 RFC: <input id="txt"  type="text" name="rfc" value="<%= rfc%>"><br><br>
                 Numero de nomina: <input id="txt"  type="text" name="nomina" value="<%= nomina%>"><br><br>
 
