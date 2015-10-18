@@ -32,7 +32,7 @@
 
 	<ul>
 	<li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-            <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+            <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
 		
 	</ul>
 
@@ -79,7 +79,7 @@
             %>
 <form method="post" action="sucursalInsertarServlet">
 <h3>Sucursal</h3><br>
-
+<input type="hidden" name="idSucursal" value="<%= id%>">
 Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSucursal%>"><br><br>
 
 <table id="grid" border="1" align="left">

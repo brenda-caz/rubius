@@ -147,7 +147,7 @@
                 Colonia:<input id="txt"  type="text" name="colonia" value="<%= colonia%>"><br><br>
                 Ciudad: <br>
                  <select name="ciudad">
-                    <option value="0" selected>
+                    <option value="0"  <%= usua == null ? "selected" : "" %>>
                                             Seleccione una opcion...
                                         </option>
                     <%
@@ -166,7 +166,7 @@
                 
                 <br>  Estado <br>
                  <select name="estado">
-                    <option value="0" selected>
+                    <option value="0"  <%= usua == null ? "selected" : "" %>>
                                             Seleccione una opcion...
                                         </option>
                     <%
@@ -185,7 +185,7 @@
                             <br><br>Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal%>"><br><br>
                 Nivel academico <br>
                 <select name="estudios">
-                    <option value="0" selected>
+                    <option value="0"  <%= usua == null ? "selected" : "" %>>
                                             Seleccione una opcion...
                                         </option>
                     <%

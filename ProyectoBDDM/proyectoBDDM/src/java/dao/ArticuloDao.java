@@ -110,16 +110,17 @@ public class ArticuloDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call insertArticulo(?, ?, ?, ?, ?, ?, ?, ?, ?) }");
-            cs.setString(1, a.getCodigoArticulo());
-            cs.setInt(2, a.getDepartamento().getIdDepartamento());
-            cs.setString(3, a.getDescripcionCorta());
-            cs.setString(4, a.getDescripcionLarga());
-            cs.setDouble(5, a.getPrecioPublico());
-            cs.setString(6, a.getMedida());
-            cs.setInt(7, a.getExistencia());
-            cs.setInt(8, a.getImpuesto());
-            cs.setInt(9, a.getDescuento());
+            cs = connection.prepareCall("{ call actualizarArticulo(?, ?, ?, ?, ?, ?, ?, ?, ?,?) }");
+             cs.setInt(1, a.getIdArticulo());
+            cs.setString(2, a.getCodigoArticulo());
+            cs.setInt(3, a.getDepartamento().getIdDepartamento());
+            cs.setString(4, a.getDescripcionCorta());
+            cs.setString(5, a.getDescripcionLarga());
+            cs.setDouble(6, a.getPrecioPublico());
+            cs.setString(7, a.getMedida());
+            cs.setInt(8, a.getExistencia());
+            cs.setInt(9, a.getImpuesto());
+            cs.setInt(10, a.getDescuento());
             cs.execute();
             
         } catch (Exception ex) {

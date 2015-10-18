@@ -36,6 +36,12 @@ public class sucursalInsertarServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String strinicio = request.getParameter("inicio");
+         
+         
+        if(!"no".equals(strinicio))
+        {
         response.setContentType("text/html;charset=UTF-8");
         String strId = request.getParameter("idSucursal");
             int id = 0;
@@ -49,13 +55,19 @@ public class sucursalInsertarServlet extends HttpServlet {
 
             if (id > 0) {
                 s.setIdSucursal(id);
-               // EmpleadoDao.actualizar(e);
+                SucursalDao.actualizarSucursal(s);
             } else {
                 SucursalDao.insertarSucursal(s);
             }
 
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/sucursalConsultaServlet");
             disp.forward(request, response);     
+    }
+         else
+        {
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionSucursal.jsp");
+            disp.forward(request, response);  
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -36,6 +36,12 @@ public class departamentoInsertarServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+ String strinicio = request.getParameter("inicio");
+         
+         
+        if(!"no".equals(strinicio))
+        {
         response.setContentType("text/html;charset=UTF-8");
           String strId = request.getParameter("idDepartamento");
             int id = 0;
@@ -49,7 +55,7 @@ public class departamentoInsertarServlet extends HttpServlet {
 
             if (id > 0) {
                 d.setIdDepartamento(id);
-               // EmpleadoDao.actualizar(e);
+                DepartamentoDao.actualizarDepartamento(d);
             } else {
                 DepartamentoDao.insertarDepartamento(d);
             }
@@ -57,7 +63,13 @@ public class departamentoInsertarServlet extends HttpServlet {
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/departamentoConsultaServlet");
             disp.forward(request, response); 
     }
-
+          else
+        {
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamentos.jsp");
+            disp.forward(request, response);  
+        }
+    
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

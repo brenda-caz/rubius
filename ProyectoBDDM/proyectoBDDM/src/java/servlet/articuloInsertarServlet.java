@@ -7,8 +7,11 @@ package servlet;
 
 
 import dao.ArticuloDao;
+import dao.DepartamentoDao;
+import dao.UsuarioDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import model.Articulo;
 import model.Departamento;
+import model.Estado;
 
 
 /**
@@ -53,12 +57,20 @@ public class articuloInsertarServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-      String strId = request.getParameter("idArticulo");
+        List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
+            request.setAttribute("departamentos", dep);
+            
+            String strinicio = request.getParameter("inicio");
+             String strId = request.getParameter("id");
             int id = 0;
             if (strId != null && !strId.equals("")) {
                 id = Integer.parseInt(strId);
             }
+            
+        if(!"no".equals(strinicio))
+        {
+        response.setContentType("text/html;charset=UTF-8");
+     
             String strcodigoArticulo = request.getParameter("codigoArticulo");
             String strprecioArticulo = request.getParameter("precioArticulo");
              double preshio = 0;
@@ -67,7 +79,7 @@ public class articuloInsertarServlet extends HttpServlet {
             }
             String strdescriCorta = request.getParameter("descriCorta");
             String strdescriLarga = request.getParameter("descriLarga");
-            String strDepartamento = request.getParameter("Departamento");   
+            String strDepartamento = request.getParameter("departamento");   
             int departamentosh = 0;
             if (strDepartamento != null && !strDepartamento.equals("")) {
                 departamentosh = Integer.parseInt(strDepartamento);
@@ -95,13 +107,19 @@ public class articuloInsertarServlet extends HttpServlet {
 
             if (id > 0) {
                 a.setIdArticulo(id);
-               // EmpleadoDao.actualizar(e);
+               ArticuloDao.actualizarArticulo(a);
             } else {
                 ArticuloDao.insertarArticulo(a);
             }
 
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/articuloConsultaServlet");
             disp.forward(request, response);        
+        }
+         else
+        {
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionArticulos.jsp");
+            disp.forward(request, response);  
+        }
     
 
     }

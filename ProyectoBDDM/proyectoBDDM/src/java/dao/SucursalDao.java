@@ -88,8 +88,9 @@ public class SucursalDao {//busqueda general
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call actualizarSucursal(?) }");
-            cs.setString(1, s.getNombreSucursal());
+            cs = connection.prepareCall("{ call actualizarSucursal(?,?) }");
+            cs.setInt(1, s.getIdSucursal());
+            cs.setString(2, s.getNombreSucursal());
             cs.execute();
             
         } catch (Exception ex) {

@@ -21,7 +21,7 @@
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
-	<li><a href="consuUsuario.jsp" align="left">Gestion Empleados</a></li>	
+	<li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
             <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
  
                 <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
@@ -31,8 +31,8 @@
   <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
 
 	<ul>
-	<li><a href="consultaArticulos.jsp" align="left">Gestion Articulos</a></li>	
-            <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+	<li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
+             <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
         </ul>
 
 </li>
@@ -79,7 +79,7 @@
             %>
 <form method="post" action="departamentoInsertarServlet">
 <h3>Departamento</h3><br>
-
+<input type="hidden" name="idDepartamento" value="<%= id%>">
 Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombreDepa%>"><br><br>
 
 <table id="grid" border="1" align="left">
@@ -113,6 +113,7 @@ Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombr
                 }
             %>
              </table>
+             
 <input id="botones" type="submit" value="Agregar" />
 <input id="botones" type="reset" value="Cancelar"/>
 </form>

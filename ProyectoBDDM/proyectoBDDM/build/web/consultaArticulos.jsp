@@ -31,7 +31,7 @@
 
 	<ul>
 	<li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-            <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+            <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
 		
 	</ul>
 
@@ -87,6 +87,7 @@
                             <td>
                              <a href="<%= request.getServletContext().getContextPath()%>/articuloConsultaServlet?accion=editar&id=<%= artis.getIdArticulo()%>">
                                     <img src="Css/pencil-1.png" alt="Editar"/>
+                                    </a>
                             </td>
                             <td>
                               <a href="<%= request.getServletContext().getContextPath()%>/articuloConsultaServlet?accion=borrar&id=<%= artis.getIdArticulo()%>">

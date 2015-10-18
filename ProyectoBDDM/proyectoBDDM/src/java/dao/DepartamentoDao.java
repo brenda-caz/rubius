@@ -87,8 +87,9 @@ public class DepartamentoDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call insertDepartamento(?) }");
-            cs.setString(1, d.getNombreDepartamento());
+            cs = connection.prepareCall("{ call actualizarDepartamento(?,?) }");
+            cs.setInt(1, d.getIdDepartamento());
+            cs.setString(2, d.getNombreDepartamento());
             cs.execute();
             
         } catch (Exception ex) {

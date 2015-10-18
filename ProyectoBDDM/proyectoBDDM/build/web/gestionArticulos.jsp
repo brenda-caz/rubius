@@ -4,6 +4,13 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Departamento"%>
+<%@page import="model.Estado"%>
+<%@page import="model.Ciudad"%>
+<%@page import="java.util.List"%>
+<%@page import="model.NivelEstudios"%>
+<%@page import="java.io.InputStream"%>
+<%@page import="model.Usuario"%>
 <%@page import="model.Articulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,7 +38,7 @@
 
 	<ul>
 	<li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-            <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+            <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
 		
 	</ul>
 
@@ -74,7 +81,7 @@
                 int existencia = 0;
                 int impuesto = 0;
                 int descuento = 0;
-                int deptoId = 0;
+                int departamento = 0;
 
                 if (artis != null) {
                     id = artis.getIdArticulo();
@@ -86,7 +93,7 @@
                     existencia = artis.getExistencia();
                     impuesto = artis.getImpuesto();
                     descuento = artis.getDescuento();
-                    deptoId = artis.getDepartamento() != null ? artis.getDepartamento().getIdDepartamento(): 0;
+                    departamento = artis.getDepartamento().getIdDepartamento();
 
                 }
             %>
@@ -95,13 +102,31 @@
         <br> <fieldset id="f1"><br>
 <legend>Introduce la siguiente informaci&oacuten</legend> 
 
-
+<input type="hidden" name="id" value="<%= id %>">
 Codigo del articulo: <input id="txt"  type="text" name="codigoArticulo" value="<%= codigoArticulo%>" ><br><br>
 Precio: <input id="txt"  type="text" name="precioArticulo" value="<%= precio%>" ><br><br>
 Descripcion corta: <input id="txt"  type="text" name="descriCorta" value="<%= descriCorta%>"><br><br>
 Descripcion larga: <input id="txt"  type="text" name="descriLarga" value="<%= descriLarga%>"><br><br>
-Departamento: <input id="txt"  type="text"  name="Departamento" value="<%= deptoId%>" ><br><br>
-Unidad de medida: <input id="txt"  type="text"  name="medida" value="<%= medida%>"><br><br>
+Departamento: <br>
+                 <select name="departamento">
+                    <option value="0" <%= artis == null ? "selected" : "" %>>
+                                            Seleccione una opcion...
+                                        </option>
+                    <%
+                                List<Departamento> dep = (List<Departamento>) request.getAttribute("departamentos");
+                                if (dep != null) {
+                                    for (Departamento depi : dep) {
+                            %>
+                                        <option value="<%= depi.getIdDepartamento()%>" <%= artis != null && artis.getDepartamento().getIdDepartamento()== depi.getIdDepartamento()? "selected" : "" %> >
+                                            <%= depi.getNombreDepartamento()%>
+                                        </option>
+                            <%
+                                    }
+                                }
+                            %>
+                 </select><br>
+                
+<br>Unidad de medida: <input id="txt"  type="text"  name="medida" value="<%= medida%>"><br><br>
 Existencia: <input id="txt"  type="text"  name="existencia" value="<%= existencia%>"><br><br>
 
 <caption>¿Aplica impuesto? &nbsp;</caption><br>
@@ -110,6 +135,7 @@ Existencia: <input id="txt"  type="text"  name="existencia" value="<%= existenci
 
 Impuesto: <input id="txt"  type="text"  name="impuesto" value="<%= impuesto%>"><br><br>
 Descuento: <input id="txt"  type="text"  name="descuento" value="<%= descuento%>"><br><br>
+
 
 <input id="botones" type="submit" value="Agregar" />
 
