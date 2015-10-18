@@ -161,11 +161,10 @@ public class usuarioInsertarServlet extends HttpServlet {
             u.setMunicipio(ci);
             Estado es = new Estado(idEstado);
             u.setEstado(es);
-              u.setId(id);
 
             if (id > 0) {
                  u.setId(id);
-               // EmpleadoDao.actualizar(e);
+              UsuarioDao.actualizarUsuario(u);
             } else {
                 UsuarioDao.insertarUsuario(u);
             }

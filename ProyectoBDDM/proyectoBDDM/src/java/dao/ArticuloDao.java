@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Articulo;
 import model.Departamento;
+import model.NivelEstudios;
 
 
 /**
@@ -151,6 +152,8 @@ public class ArticuloDao {
                         rs.getInt("impuestos"), 
                         rs.getInt("descuento")        
                 );
+                Departamento de = new Departamento(rs.getInt("idDepartamento"));
+                art.setDepartamento(de);
                 return art;
             }
             return null;

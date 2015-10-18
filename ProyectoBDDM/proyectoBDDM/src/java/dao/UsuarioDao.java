@@ -56,9 +56,21 @@ public class UsuarioDao {
                 NivelEstudios ne = new NivelEstudios(
                         rs.getInt("idNivelEstudio"),
                         rs.getString("nombreNivelEstudio")
+                        
+                );
+                        Ciudad ci = new Ciudad(
+                        rs.getInt("idCiudad"),
+                        rs.getString("nombreCiudad")
+                );
+                        
+                         Estado es = new Estado(
+                        rs.getInt("idEstado"),
+                        rs.getString("nombreEstado")
                 );
 
                 emp.setNivelEstudio(ne);
+                emp.setMunicipio(ci);
+                emp.setEstado(es);
 
                 empleados.add(emp);
             }
@@ -130,25 +142,26 @@ public class UsuarioDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call insertUsuario(?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?) }");
-            cs.setString(1, u.getNombre());
-            cs.setString(2, u.getApellidoPaterno());
-            cs.setString(3, u.getApellidoMaterno());
-            cs.setString(4, u.getPuesto());
-            cs.setString(5, u.getSexo());
-            cs.setString(6, u.getFechaNacimiento());
-            cs.setInt(7, u.getNivelEstudio().getId());
-            cs.setString(8, u.getCalle());
-            cs.setInt(9, u.getNumero());
-            cs.setString(10, u.getColonia());
-            cs.setInt(11, u.getMunicipio().getIdCiudad());
-            cs.setInt(12, u.getEstado().getIdEstado());
-            cs.setInt(13, u.getPostal());
-            cs.setString(14, u.getRFC());
-            cs.setString(15, u.getCURP());
-            cs.setInt(16, u.getNomina());
-            cs.setBinaryStream(17, u.getFoto());
-            cs.setString(18, u.getEmail());
+            cs = connection.prepareCall("{ call actualizarUsuario(?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?,?) }");
+            cs.setInt(1, u.getId());
+            cs.setString(2, u.getNombre());
+            cs.setString(3, u.getApellidoPaterno());
+            cs.setString(4, u.getApellidoMaterno());
+            cs.setString(5, u.getPuesto());
+            cs.setString(6, u.getSexo());
+            cs.setString(7, u.getFechaNacimiento());
+            cs.setInt(8, u.getNivelEstudio().getId());
+            cs.setString(9, u.getCalle());
+            cs.setInt(10, u.getNumero());
+            cs.setString(11, u.getColonia());
+            cs.setInt(12, u.getMunicipio().getIdCiudad());
+            cs.setInt(13, u.getEstado().getIdEstado());
+            cs.setInt(14, u.getPostal());
+            cs.setString(15, u.getRFC());
+            cs.setString(16, u.getCURP());
+            cs.setInt(17, u.getNomina());
+            cs.setBinaryStream(18, u.getFoto());
+            cs.setString(19, u.getEmail());
             cs.execute();
 
         } catch (Exception ex) {

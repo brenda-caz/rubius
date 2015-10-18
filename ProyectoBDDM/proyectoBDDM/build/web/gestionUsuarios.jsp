@@ -127,7 +127,7 @@
                 Apellido Materno: <input id="txt"  type="text" name="apeMaterno" value="<%= apeMaterno%>"><br><br>
 
                 <caption>Sexo: &nbsp;</caption><br>
-                <% if (sexo == "M") { %>
+                <% if ("H".equals(sexo)) { %>
                 <input type="radio" value="H" name="sexo" checked/>Hombre
                 <input type="radio" value="M" name="sexo"/>Mujer
                 <% } else { %>
@@ -193,7 +193,7 @@
                                 if (nes != null) {
                                     for (NivelEstudios level : nes) {
                             %>
-                                        <option value="<%= level.getId() %>">
+                                        <option value="<%= level.getId() %>" <%= usua != null && usua.getNivelEstudio().getId()== level.getId()? "selected" : "" %>>
                                             <%= level.getNombreNivelEstudios()%>
                                         </option>
                             <%
@@ -204,7 +204,7 @@
                 <br><br>Puesto: <input id="txt"  type="text" name="puesto" value="<%= puesto%>"><br><br>
                 RFC: <input id="txt"  type="text" name="rfc" value="<%= rfc%>"><br><br>
                 Numero de nomina: <input id="txt"  type="text" name="nomina" value="<%= nomina%>"><br><br>
-
+<input type="hidden" name="id" value="<%= id%>">
                 <input id="botones" type="submit" value="Agregar" />
 
                 <input id="botones" type="reset" value="Cancelar"/>
