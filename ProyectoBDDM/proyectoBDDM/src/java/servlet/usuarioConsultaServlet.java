@@ -48,6 +48,11 @@ public class usuarioConsultaServlet extends HttpServlet {
 
         if ("borrar".equals(accion) && strIdUsuario != "") {
             UsuarioDao.borrar(id);
+            List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
+            request.setAttribute("usuarios", usuarios);
+
+            RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
+            disp.forward(request, response);
         } else if ("editar".equals(accion) && strIdUsuario != "") {
             Usuario usua = UsuarioDao.buscarUsuario(id);
             request.setAttribute("usuario", usua);

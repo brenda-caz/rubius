@@ -17,6 +17,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Usuarios</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
     </head>
     <body>
         <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
@@ -120,8 +121,8 @@
             %>
 
             <form method="post" enctype="multipart/form-data" action="usuarioInsertarServlet">
-                <img align="right" title="Fotografia empledo" alt="Agregar foto usuario" src = "Css/foto.jpg"/>
-                Foto: <input type="file" name="archivo" id="txt" required><br><br>
+                <img align="right" id="blah" title="Fotografia empledo" style="width: 150px; height: 150px;" alt="Agregar foto usuario" src = "<%= request.getServletContext().getContextPath() + "/imagenUsuario?id="+id %>"/>
+                Foto: <input type="file" name="archivo" id="txt" <%= usua == null ? "required" : "" %> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id="+id %>"><br><br>
                 Nombre: <input id="txt"  type="text" name="E2" value="<%= nombre%>"><br><br>
                 Apellido Paterno: <input id="txt"  type="text" name="apePaterno" value="<%= apePaterno%>"><br><br>
                 Apellido Materno: <input id="txt"  type="text" name="apeMaterno" value="<%= apeMaterno%>"><br><br>
@@ -211,7 +212,22 @@
             </form>
         </fieldset>
 
+<script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
 
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#txt").change(function () {
+                readURL(this);
+            });
+        </script>
 
     </body>
 </html>

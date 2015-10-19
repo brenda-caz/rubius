@@ -11,9 +11,10 @@ import javax.print.DocFlavor;
 
 /**
  *
- * @author 
+ * @author
  */
 public class Usuario {
+
     private int id;
     private String nombre;
     private String apellidoPaterno;
@@ -71,15 +72,19 @@ public class Usuario {
         this.email = email;
     }
 
+    public Usuario(InputStream foto) {
+        this.foto = foto;
+    }
+
     public Usuario(int id) {
         this.id = id;
     }
-    
+
     public Usuario(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
-   
+
     public int getId() {
         return id;
     }
@@ -232,6 +237,4 @@ public class Usuario {
         this.estado = estado;
     }
 
-    
-    
 }

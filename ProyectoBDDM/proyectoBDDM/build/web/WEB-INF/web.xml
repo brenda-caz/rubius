@@ -46,6 +46,10 @@
         <servlet-class>servlet.departamentoInsertarServlet</servlet-class>
     </servlet>
 
+<servlet>
+        <servlet-name>imagenUsuario</servlet-name>
+        <servlet-class>servlet.imagenUsuario</servlet-class>
+    </servlet>
 
 
 
@@ -92,6 +96,11 @@
      <servlet-mapping>
         <servlet-name>departamentoInsertarServlet</servlet-name>
         <url-pattern>/departamentoInsertarServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>imagenUsuario</servlet-name>
+        <url-pattern>/imagenUsuario</url-pattern>
     </servlet-mapping>
 
     <session-config>

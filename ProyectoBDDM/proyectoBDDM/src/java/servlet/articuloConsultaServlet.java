@@ -52,6 +52,11 @@ public class articuloConsultaServlet extends HttpServlet {
 
         if ("borrar".equals(accion) && strIdArticulo != "") {
             ArticuloDao.borrarArticulo(id);
+            List<Articulo> articulos = ArticuloDao.buscarArticulos();
+                request.setAttribute("articulos", articulos);
+
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/consultaArticulos.jsp");
+                disp.forward(request, response);
         }
         else if("editar".equals(accion) && strIdArticulo != "")
         {

@@ -5,25 +5,23 @@
  */
 package servlet;
 
-import dao.SucursalDao;
 import dao.UsuarioDao;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Sucursal;
-import model.Usuario;
 
 /**
  *
  * @author BrendaCázares
  */
-public class sucursalConsultaServlet extends HttpServlet {
+
+public class imagenUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,34 +34,25 @@ public class sucursalConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String accion = request.getParameter("accion");
-        String strIdSucursal = request.getParameter("id");
+        response.setContentType("text/html;charset=UTF-8");
+        String strId = request.getParameter("id");
             int id = 0;
-            if (strIdSucursal != null && !strIdSucursal.equals("")) {
-                id = Integer.parseInt(strIdSucursal);
+            if (strId != null && !strId.equals("")) {
+                id = Integer.parseInt(strId);
             }
+             try {  
+                InputStream archivo = UsuarioDao.imagenUsuario(id);
+                OutputStream out = response.getOutputStream();
+            byte[] byteArray = new byte[1000000];
+            int tamanio = 0;
 
-        if ("borrar".equals(accion) && strIdSucursal != "") {
-            SucursalDao.borrarSucursal(id);
-               List<Sucursal> sucursales = SucursalDao.buscarSucursales();
-                request.setAttribute("sucursales", sucursales);
-
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionsucursal.jsp");
-                disp.forward(request, response);
-        }
-        else if("editar".equals(accion) && strIdSucursal != "")
-        {
-            Sucursal sucu = SucursalDao.buscarSucursal(id);
-            request.setAttribute("sucursal", sucu);
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionsucursal.jsp");
-            disp.forward(request, response);
-        }
-        else {
-          List<Sucursal> sucursales = SucursalDao.buscarSucursales();
-                request.setAttribute("sucursales", sucursales);
-
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionsucursal.jsp");
-                disp.forward(request, response);
+            while ((tamanio = archivo.read(byteArray)) != -1) {
+                out.write(byteArray, 0, tamanio);
+            }
+            out.flush();
+            out.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

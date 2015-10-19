@@ -48,6 +48,11 @@ public class departamentoConsultaServlet extends HttpServlet {
 
         if ("borrar".equals(accion) && strIdDepartamento != "") {
             DepartamentoDao.borrarDepartamento(id);
+            List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
+                request.setAttribute("departamentos", departamentos);
+
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
+                disp.forward(request, response);
         }
          else if("editar".equals(accion) && strIdDepartamento != "")
         {
