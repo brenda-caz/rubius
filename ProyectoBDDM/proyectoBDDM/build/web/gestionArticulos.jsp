@@ -18,8 +18,113 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Articulos</title>
+        <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
+        <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="jquery.js" type="text/javascript"></script>
+        <script src="jquery.datetimepicker.js" type="text/javascript"></script>
+        
+         <script>
+            function validarNum(e) {
+                var key;
+                if (window.event) // IE
+                {
+                    key = e.keyCode;
+                }
+                else if (e.which) // Netscape/Firefox/Opera
+                {
+                    key = e.which;
+                }
+                if (key < 48 || key > 57)
+                {
+                    if (key == 8) // Detectar backspace (retroceso)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function validacion() {
+                var codigoArticulo = document.forms["addUser"]["codigoArticulo"].value;
+                var descriCorta = document.forms["addUser"]["descriCorta"].value;
+                var descriLarga = document.forms["addUser"]["descriLarga"].value;
+                var precio = document.forms["addUser"]["precioArticulo"].value;
+                var medida = document.forms["addUser"]["medida"].value;
+                var existencia = document.forms["addUser"]["existencia"].value;
+                var impuesto = document.forms["addUser"]["impuesto"].value;
+                var descuento = document.forms["addUser"]["descuento"].value;
+                var departamento = document.forms["addUser"]["departamento"].value;
+                var msj = "";
+                
+              //  valor = new Date(fechaNacimiento);
+ 
+//if( !isNaN(valor) ) {
+  //return false;
+//}
+                
+                if (codigoArticulo == null || codigoArticulo.length == 0 || /^\s+$/.test(codigoArticulo) || codigoArticulo == "" || codigoArticulo == "0" || codigoArticulo == 0) {
+                   // msj += "\nIngrese numero";
+                    document.forms["addUser"]["codigoArticulo"].style.borderColor = "red";
+                }
+                if (descriCorta == null || descriCorta.length == 0 || /^\s+$/.test(descriCorta) || descriCorta == "") {
+                    //msj += "\nIngrese su Apellido Paterno";
+                     document.forms["addUser"]["descriCorta"].style.borderColor = "red";
+                }
+                if (descriLarga == null || descriLarga.length == 0 || /^\s+$/.test(descriLarga) || descriLarga == "") {
+                   // msj += "\nIngrese su Apellido Materno";
+                   document.forms["addUser"]["descriLarga"].style.borderColor = "red";
+                }
+                
+                if (precio == null || precio.length == 0 || /^\s+$/.test(precio) || precio == "" || precio == "0" || precio == 0) {
+                   // msj += "\nIngrese numero";
+                    document.forms["addUser"]["precioArticulo"].style.borderColor = "red";
+                }
+                
+                if (medida == null || medida.length == 0 || /^\s+$/.test(medida) || medida == "") {
+                    //msj += "\nIngrese fecha de nacimiento";
+                     document.forms["addUser"]["precioArticulo"].style.borderColor = "red";
+                }
+                
+                 if (existencia == null || existencia.length == 0 || /^\s+$/.test(existencia) || existencia == "" || existencia == "0" || existencia == 0) {
+                   // msj += "\nIngrese numero";
+                    document.forms["addUser"]["existencia"].style.borderColor = "red";
+                }
+               
+                 if (impuesto == null || impuesto.length == 0 || /^\s+$/.test(impuesto) || impuesto == "" || impuesto == "0" || impuesto == 0) {
+                   // msj += "\nIngrese numero";
+                    document.forms["addUser"]["impuesto"].style.borderColor = "red";
+                }
+                
+                if (descuento == null || descuento.length == 0 || /^\s+$/.test(descuento) || descuento == "" || descuento == "0" || descuento == 0) {
+                   // msj += "\nIngrese numero";
+                    document.forms["addUser"]["descuento"].style.borderColor = "red";
+                }
+                
+                 if (departamento == null || departamento.length == 0 || /^\s+$/.test(departamento) || departamento == "" || departamento == "0" || departamento == 0) {
+                   // msj += "\nIngrese el municipio";
+                    document.forms["addUser"]["departamento"].style.borderColor = "red";
+                }
+                
+                
+                
+       
+                if (msj == null || msj == "") {
+                    alert("Articulo guardado exitosamente.");
+                    return true;
+                }
+                else {
+                    alert(msj);
+                    return false;
+                }
+            }
 
-    <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
+
+        </script>
+        
     </head>
     <body>
 <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>

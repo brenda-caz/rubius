@@ -13,6 +13,66 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Departamento</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
+        <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="jquery.js" type="text/javascript"></script>
+        <script src="jquery.datetimepicker.js" type="text/javascript"></script>
+        
+         <script>
+            function validarNum(e) {
+                var key;
+                if (window.event) // IE
+                {
+                    key = e.keyCode;
+                }
+                else if (e.which) // Netscape/Firefox/Opera
+                {
+                    key = e.which;
+                }
+                if (key < 48 || key > 57)
+                {
+                    if (key == 8) // Detectar backspace (retroceso)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function validacion() {
+                var nombreDepartamento = document.forms["addUser"]["agregarDepartamento"].value;
+                var msj = "";
+                
+              //  valor = new Date(fechaNacimiento);
+ 
+//if( !isNaN(valor) ) {
+  //return false;
+//}
+                
+                
+                if (nombreDepartamento == null || nombreDepartamento.length == 0 || /^\s+$/.test(nombreDepartamento) || nombreDepartamento == "") {
+                    //msj += "\nIngrese su Apellido Paterno";
+                     document.forms["addUser"]["agregarDepartamento"].style.borderColor = "red";
+                     
+                }
+              
+       
+                if (msj == null || msj == "") {
+                    alert("Departamento guardado exitosamente.");
+                    return true;
+                }
+                else {
+                    alert(msj);
+                    return false;
+                }
+            }
+
+
+        </script>
+        
     </head>
     <body>
     <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>

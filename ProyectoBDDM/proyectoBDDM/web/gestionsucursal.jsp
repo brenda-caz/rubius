@@ -13,6 +13,65 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sucursal</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
+        <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="jquery.js" type="text/javascript"></script>
+        <script src="jquery.datetimepicker.js" type="text/javascript"></script>
+        
+         <script>
+            function validarNum(e) {
+                var key;
+                if (window.event) // IE
+                {
+                    key = e.keyCode;
+                }
+                else if (e.which) // Netscape/Firefox/Opera
+                {
+                    key = e.which;
+                }
+                if (key < 48 || key > 57)
+                {
+                    if (key == 8) // Detectar backspace (retroceso)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function validacion() {
+                var nombreSucursal = document.forms["addUser"]["agregarSucursal"].value;
+                var msj = "";
+                
+              //  valor = new Date(fechaNacimiento);
+ 
+//if( !isNaN(valor) ) {
+  //return false;
+//}
+                
+                
+                if (nombreSucursal == null || nombreSucursal.length == 0 || /^\s+$/.test(nombreSucursal) || nombreSucursal == "") {
+                    //msj += "\nIngrese su Apellido Paterno";
+                     document.forms["addUser"]["agregarSucursal"].style.borderColor = "red";
+                }
+              
+       
+                if (msj == null || msj == "") {
+                    alert("Sucursal guardada exitosamente.");
+                    return true;
+                }
+                else {
+                    alert(msj);
+                    return false;
+                }
+            }
+
+
+        </script>
+        
     </head>
     <body>
     <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
