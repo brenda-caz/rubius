@@ -144,7 +144,7 @@
 <form method="post" action="sucursalInsertarServlet" onsubmit="return validacion()" name="addUser">
 <h3>Sucursal</h3><br>
 <input type="hidden" name="idSucursal" value="<%= id%>">
-Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSucursal%>"><br><br>
+Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSucursal%>" maxlength="75" ><br><br>
 
 <table id="grid" border="1" align="left">
             <caption>Sucursal</caption>

@@ -145,7 +145,7 @@
 <form method="post" action="departamentoInsertarServlet" onsubmit="return validacion()" name="addUser">
 <h3>Departamento</h3><br>
 <input type="hidden" name="idDepartamento" value="<%= id%>">
-Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombreDepa%>"><br><br>
+Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombreDepa%>" maxlength="75" ><br><br>
 
 <table id="grid" border="1" align="left">
             <caption>Departamento</caption>

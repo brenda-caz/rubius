@@ -60,11 +60,7 @@
                 var msj = "";
                 var booleana = 0;
 
-                //  valor = new Date(fechaNacimiento);
 
-//if( !isNaN(valor) ) {
-                //return false;
-//}
 
                 if (codigoArticulo == null || codigoArticulo.length == 0 || /^\s+$/.test(codigoArticulo) || codigoArticulo == "" || codigoArticulo == "0" || codigoArticulo == 0) {
                     booleana = 1;
@@ -253,10 +249,10 @@
                 <legend>Introduce la siguiente informaci&oacuten</legend><br>
 
                 <input type="hidden" name="id" value="<%= id%>">
-                Codigo del articulo: <input id="txt"  type="text" name="codigoArticulo" value="<%= codigoArticulo%>" onkeypress="javascript:return validarNum(event)" ><br><br>
-                Precio: <input id="txt"  type="text" name="precioArticulo" value="<%= precio%>" onkeypress="javascript:return validarNum(event)"><br><br>
-                Descripcion corta: <input id="txt"  type="text" name="descriCorta" value="<%= descriCorta%>"><br><br>
-                Descripcion larga: <input id="txt"  type="text" name="descriLarga" value="<%= descriLarga%>"><br><br>
+                Codigo del articulo: <input id="txt"  type="text" name="codigoArticulo" value="<%= codigoArticulo%>" onkeypress="javascript:return validarNum(event)" maxlength="10"  ><br><br>
+                Precio: <input id="txt"  type="text" name="precioArticulo" value="<%= precio == 0 ? "" : precio%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
+                Descripcion corta: <input id="txt"  type="text" name="descriCorta" value="<%= descriCorta%>" maxlength="150"><br><br>
+                Descripcion larga: <input id="txt"  type="text" name="descriLarga" value="<%= descriLarga%>" maxlength="500"><br><br>
                 Departamento: <br>
                 <select name="departamento">
                     <option value="0" <%= artis == null ? "selected" : ""%>>
@@ -276,15 +272,15 @@
                     %>
                 </select><br>
 
-                <br>Unidad de medida: <input id="txt"  type="text"  name="medida" value="<%= medida%>"><br><br>
-                Existencia: <input id="txt"  type="text"  name="existencia" value="<%= existencia%>" onkeypress="javascript:return validarNum(event)"><br><br>
+                <br>Unidad de medida: <input id="txt"  type="text"  name="medida" value="<%= medida%>" maxlength="145"><br><br>
+                Existencia: <input id="txt"  type="text"  name="existencia" value="<%= existencia == 0 ? "" : existencia%>" onkeypress="javascript:return validarNum(event)" maxlength="10" ><br><br>
 
                 <caption>¿Aplica impuesto? &nbsp;</caption><br>
                 <input type="radio" name="Impuestos" value="siI" checked>SI &nbsp;
                 <input type= "radio" name= "Impuestos"  value="noI"  >NO<br><br>
 
-                Impuesto: <input id="txt"  type="text"  name="impuesto" value="<%= impuesto%>" onkeypress="javascript:return validarNum(event)"><br><br>
-                Descuento: <input id="txt"  type="text"  name="descuento" value="<%= descuento%>" onkeypress="javascript:return validarNum(event)"><br><br>
+                Impuesto: <input id="txt"  type="text"  name="impuesto" value="<%= impuesto == 0 ? "" : impuesto%>"onkeypress="javascript:return validarNum(event)" maxlength="10" ><br><br>
+                Descuento: <input id="txt"  type="text"  name="descuento" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" ><br><br>
 
                
                 <input id="botones" type="submit" value="Agregar" />

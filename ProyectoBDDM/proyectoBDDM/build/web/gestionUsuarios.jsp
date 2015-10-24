@@ -70,11 +70,10 @@
                 var msj = "";
                 var booleana = 0;
 
-                //  valor = new Date(fechaNacimiento);
 
-//if( !isNaN(valor) ) {
-                //return false;
-//}
+
+
+
 
                 if (nom == null || nom.length == 0 || /^\s+$/.test(nom) || nom == "") {
                     booleana = 1;
@@ -82,7 +81,14 @@
                 }
                 else
                 {
-                    document.forms["addUser"]["E2"].style.borderColor = "black";
+                    var reg = /^([a-z ñáéíóú]{2,60})$/i;
+                    if (!reg.test(nom))
+                    {
+                        booleana = 1;
+                        document.forms["addUser"]["E2"].style.borderColor = "red";
+                    }
+                    else
+                        document.forms["addUser"]["E2"].style.borderColor = "black";
                 }
 
                 if (apePaterno == null || apePaterno.length == 0 || /^\s+$/.test(apePaterno) || apePaterno == "") {
@@ -91,7 +97,14 @@
                 }
                 else
                 {
-                    document.forms["addUser"]["apePaterno"].style.borderColor = "black";
+                    var reg = /^([a-z ñáéíóú]{2,60})$/i;
+                    if (!reg.test(nom))
+                    {
+                        booleana = 1;
+                        document.forms["addUser"]["apePaterno"].style.borderColor = "red";
+                    }
+                    else
+                        document.forms["addUser"]["apePaterno"].style.borderColor = "black";
                 }
 
                 if (apeMaterno == null || apeMaterno.length == 0 || /^\s+$/.test(apeMaterno) || apeMaterno == "") {
@@ -100,7 +113,14 @@
                 }
                 else
                 {
-                    document.forms["addUser"]["apeMaterno"].style.borderColor = "black";
+                     var reg = /^([a-z ñáéíóú]{2,60})$/i;
+                    if (!reg.test(nom))
+                    {
+                        booleana = 1;
+                        document.forms["addUser"]["apeMaterno"].style.borderColor = "red";
+                    }
+                    else
+                        document.forms["addUser"]["apeMaterno"].style.borderColor = "black";
                 }
 
 
@@ -344,9 +364,9 @@
             <form name="addUser" method="post" enctype="multipart/form-data" action="usuarioInsertarServlet" onsubmit="return validacion()">
                 <img align="right" id="blah" title="Fotografia empledo" style="width: 150px; height: 150px;" alt="Agregar foto usuario" src = "<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"/>
                 Foto: <input type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"><br><br>
-                Nombre: <input id="txt"  type="text" name="E2" value="<%= nombre%>" ><br><br>
-                Apellido Paterno: <input id="txt"  type="text" name="apePaterno" value="<%= apePaterno%>"><br><br>
-                Apellido Materno: <input id="txt"  type="text" name="apeMaterno" value="<%= apeMaterno%>"><br><br>
+                Nombre: <input id="txt"  type="text" name="E2" value="<%= nombre%>" maxlength="70" > <br><br>
+                Apellido Paterno: <input id="txt"  type="text" name="apePaterno" value="<%= apePaterno%>" maxlength="70"><br><br>
+                Apellido Materno: <input id="txt"  type="text" name="apeMaterno" value="<%= apeMaterno%>" maxlength="70"><br><br>
 
                 <caption>Sexo: &nbsp;</caption><br>
                 <% if ("H".equals(sexo)) { %>
@@ -360,13 +380,13 @@
                 <caption>Fecha de nacimiento: &nbsp;</caption>
                 <input id="txt" class="dateN" name="fechaNacimiento" type="text" value="<%= fechaNacimiento%>"><br><br>
 
-                CURP:<input id="txt" type="text" name="curp" value="<%= curp%>"><br><br>
-                Correo Electronico: <input id="txt"  type="text" name="emails" value="<%= emails%>"><br><br>
+                CURP:<input id="txt" type="text" name="curp" value="<%= curp%>" maxlength="70"><br><br>
+                Correo Electronico: <input id="txt"  type="text" name="emails" value="<%= emails%>" maxlength="145"><br><br>
 
                 <legend>Domicilio </legend>
-                Calle:<input id="txt"  type="text" name="calle" value="<%= calle%>"><br><br>
-                Numero:<input id="txt"  type="text" name="numero" value="<%= numero == 0 ? "" : numero%>" onkeypress="javascript:return validarNum(event)"><br><br>
-                Colonia:<input id="txt"  type="text" name="colonia" value="<%= colonia%>"><br><br>
+                Calle:<input id="txt"  type="text" name="calle" value="<%= calle%>" maxlength="70"><br><br>
+                Numero:<input id="txt"  type="text" name="numero" value="<%= numero == 0 ? "" : numero%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
+                Colonia:<input id="txt"  type="text" name="colonia" value="<%= colonia%>" maxlength="140"><br><br>
                 Ciudad: <br>
                 <select name="ciudad">
                     <option value="0"  <%= usua == null ? "selected" : ""%>>
@@ -404,7 +424,7 @@
                         }
                     %>
                 </select>
-                <br><br>Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal == 0 ? "" : postal%>" onkeypress="javascript:return validarNum(event)"><br><br>
+                <br><br>Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal == 0 ? "" : postal%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
                 Nivel academico <br>
                 <select name="estudios">
                     <option value="0"  <%= usua == null ? "selected" : ""%>>
@@ -433,8 +453,8 @@
                 <input type="radio" value="C" name="puesto" checked/>Cajero
                 <%}%>
                 <br><br>
-                RFC: <input id="txt"  type="text" name="rfc" value="<%= rfc%>"><br><br>
-                Numero de nomina: <input id="txt"  type="text" name="nomina" value="<%= nomina == 0 ? "" : nomina%>" onkeypress="javascript:return validarNum(event)"><br><br>
+                RFC: <input id="txt"  type="text" name="rfc" value="<%= rfc%>" maxlength="15"><br><br>
+                Numero de nomina: <input id="txt"  type="text" name="nomina" value="<%= nomina == 0 ? "" : nomina%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
                 <input type="hidden" name="id" value="<%= id%>">
                 <input id="botones" type="submit" value="Agregar" />
 
@@ -444,7 +464,11 @@
 
         <script type="text/javascript">
 
-            $(".dateN").datetimepicker();
+            $(".dateN").datetimepicker({
+                format: 'Y/m/d',
+                timepicker: false,
+                lang: 'es'
+            });
 
             function readURL(input) {
                 if (input.files && input.files[0]) {

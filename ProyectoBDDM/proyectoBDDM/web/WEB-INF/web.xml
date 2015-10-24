@@ -51,7 +51,10 @@
         <servlet-class>servlet.imagenUsuario</servlet-class>
     </servlet>
 
-
+<servlet>
+        <servlet-name>imagenesVideosServlet</servlet-name>
+        <servlet-class>servlet.imagenesVideosServlet</servlet-class>
+    </servlet>
 
 
 
@@ -101,6 +104,11 @@
     <servlet-mapping>
         <servlet-name>imagenUsuario</servlet-name>
         <url-pattern>/imagenUsuario</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>imagenesVideosServlet</servlet-name>
+        <url-pattern>/imagenesVideosServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>

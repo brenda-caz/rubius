@@ -36,24 +36,74 @@ public class EmpresaDao {
                         rs.getBinaryStream(1)        
                 );
                 
-                Imagen img = new Imagen(
-                       rs.getInt("idImagen"),
-                       rs.getString("pathImagen"),
-                       rs.getDate("fechaImagen"),
-                       rs.getDate("horaImagen")
-                );
-                        
-                Video vid = new Video(
-                       rs.getInt("idVideo"),
-                       rs.getString("pathVideo"),
-                       rs.getDate("fechaVideo"),
-                       rs.getDate("horaVideo")
-                );
-                    emp.setImagenEmpresa(img);
-                    emp.setVideoEmpresa(vid);
+              
                     empresas.add(emp);
             }
             return empresas;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+    
+     public static List<Imagen> ImagenEmpresa() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<Imagen> imagenes = new ArrayList();
+            cs = connection.prepareCall("{ call listaImagen(?,?) }");
+             cs.setInt(1, 1);
+             cs.setInt(2, 0);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Imagen img = new Imagen(
+                        rs.getInt("idImagen"), 
+                        rs.getString("pathImagen"),  
+                        rs.getDate("fechaImagen"),
+                        rs.getDate("horaImagen")
+                );
+                    imagenes.add(img);
+            }
+            return imagenes;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+    
+     public static List<Video> VideoEmpresa() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<Video> Videos = new ArrayList();
+            cs = connection.prepareCall("{ call listaVideo(?,?) }");
+             cs.setInt(1, 1);
+             cs.setInt(2, 0);
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Video vid = new Video(
+                        rs.getInt("idVideo"), 
+                        rs.getString("pathVideo"),  
+                        rs.getDate("fechaVideo"),
+                        rs.getDate("horaVideo")
+                );
+                    Videos.add(vid);
+            }
+            return Videos;
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

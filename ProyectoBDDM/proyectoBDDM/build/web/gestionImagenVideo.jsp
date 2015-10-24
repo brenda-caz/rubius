@@ -4,6 +4,8 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.Imagen"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +38,7 @@
                 <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
 
                     <ul>
-                        <li><a href="gestionImagenVideo.jsp" align="left">Videos e imagenes</a></li>
+                        <li><a href="imagenesVideosServlet" align="left">Videos e imagenes</a></li>
                     </ul>
 
                 </li>
@@ -66,21 +68,62 @@
 <fieldset id="f2">
 <legend>Imagenes</legend> 
 
+
+
+ <table id="grid" border="1" align="left">
+            <caption>Empleados</caption>
+            <tr> 
+            <th>Editar</th>
+            <th>Path</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            </tr>
+            
+             <%
+                List<Imagen> imagenes = (List<Imagen>) request.getAttribute("imagenes");
+                if (imagenes != null) {
+                    for (Imagen img : imagenes) {  
+            %>            
+                        <tr>
+                            <td>
+                            
+                            </td>
+                           
+                            
+                            <td><%= img.getPath()%></td>
+                            <td><%= img.getFechaImagen() == null ? "Sin Programar" : img.getFechaImagen()%></td>
+                            <td><%= img.getHoraImagen() == null ? "Sin Programar" : img.getHoraImagen()%></td>                       
+                        </tr>
+            <%      }
+                }
+            %>
+             
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+<!--
 Fecha: <input id="txt"  type="text" name="E2"><br><br>
-Hora: <input id="txt"  type="text" name="E3">
 
 <input id="botones" type="submit" value="Agregar" />
 
-<input id="botones" type="reset" value="Cancelar"/>
+<input id="botones" type="reset" value="Cancelar"/> -->
 </fieldset><br><br>
 <fieldset id="f3">
 <legend>Videos</legend> 
-
+<!--
 Fecha: <input id="txt"  type="text" name="E4"><br><br>
-Hora: <input id="txt"  type="text" name="E5">
 <input id="botones" type="submit" value="Agregar" />
 
-<input id="botones" type="reset" value="Cancelar"/>
+<input id="botones" type="reset" value="Cancelar"/> -->
 </fieldset><br><br>
 </fieldset>
     </body>
