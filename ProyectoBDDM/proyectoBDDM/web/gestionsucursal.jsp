@@ -45,7 +45,7 @@
             function validacion() {
                 var nombreSucursal = document.forms["addUser"]["agregarSucursal"].value;
                 var msj = "";
-                
+                 var booleana = 0;
               //  valor = new Date(fechaNacimiento);
  
 //if( !isNaN(valor) ) {
@@ -54,17 +54,22 @@
                 
                 
                 if (nombreSucursal == null || nombreSucursal.length == 0 || /^\s+$/.test(nombreSucursal) || nombreSucursal == "") {
-                    //msj += "\nIngrese su Apellido Paterno";
+                     booleana = 1;
                      document.forms["addUser"]["agregarSucursal"].style.borderColor = "red";
                 }
+                else
+                {
+                    document.forms["addUser"]["agregarSucursal"].style.borderColor = "black";
+                }
+              
               
        
-                if (msj == null || msj == "") {
+              
+                if (booleana == 0) {
                     alert("Sucursal guardada exitosamente.");
                     return true;
                 }
                 else {
-                    alert(msj);
                     return false;
                 }
             }
@@ -136,7 +141,7 @@
                     nombreSucursal = sucus.getNombreSucursal()!= null ? sucus.getNombreSucursal(): "";
                 }
             %>
-<form method="post" action="sucursalInsertarServlet">
+<form method="post" action="sucursalInsertarServlet" onsubmit="return validacion()" name="addUser">
 <h3>Sucursal</h3><br>
 <input type="hidden" name="idSucursal" value="<%= id%>">
 Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSucursal%>"><br><br>

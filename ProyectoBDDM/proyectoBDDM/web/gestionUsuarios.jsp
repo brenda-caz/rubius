@@ -21,7 +21,7 @@
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="jquery.js" type="text/javascript"></script>
         <script src="jquery.datetimepicker.js" type="text/javascript"></script>
-        
+
 
         <script>
             function validarNum(e) {
@@ -49,7 +49,7 @@
             }
 
 
-           
+
 
             function validacion() {
                 var nom = document.forms["addUser"]["E2"].value;
@@ -68,92 +68,167 @@
                 var nomina = document.forms["addUser"]["nomina"].value;
                 var emails = document.forms["addUser"]["emails"].value;
                 var msj = "";
-                
-              //  valor = new Date(fechaNacimiento);
- 
+                var booleana = 0;
+
+                //  valor = new Date(fechaNacimiento);
+
 //if( !isNaN(valor) ) {
-  //return false;
+                //return false;
 //}
-                
+
                 if (nom == null || nom.length == 0 || /^\s+$/.test(nom) || nom == "") {
-                    //msj += "Ingrese su Nombre";
+                    booleana = 1;
                     document.forms["addUser"]["E2"].style.borderColor = "red";
                 }
+                else
+                {
+                    document.forms["addUser"]["E2"].style.borderColor = "black";
+                }
+
                 if (apePaterno == null || apePaterno.length == 0 || /^\s+$/.test(apePaterno) || apePaterno == "") {
-                    //msj += "\nIngrese su Apellido Paterno";
-                     document.forms["addUser"]["apePaterno"].style.borderColor = "red";
+                    booleana = 1;
+                    document.forms["addUser"]["apePaterno"].style.borderColor = "red";
                 }
+                else
+                {
+                    document.forms["addUser"]["apePaterno"].style.borderColor = "black";
+                }
+
                 if (apeMaterno == null || apeMaterno.length == 0 || /^\s+$/.test(apeMaterno) || apeMaterno == "") {
-                   // msj += "\nIngrese su Apellido Materno";
-                   document.forms["addUser"]["apeMaterno"].style.borderColor = "red";
+                    booleana = 1;
+                    document.forms["addUser"]["apeMaterno"].style.borderColor = "red";
                 }
-                
+                else
+                {
+                    document.forms["addUser"]["apeMaterno"].style.borderColor = "black";
+                }
+
+
                 if (fechaNacimiento == null || fechaNacimiento.length == 0 || /^\s+$/.test(fechaNacimiento) || fechaNacimiento == "") {
-                    //msj += "\nIngrese fecha de nacimiento";
-                     document.forms["addUser"]["fechaNacimiento"].style.borderColor = "red";
+                    booleana = 1;
+                    document.forms["addUser"]["fechaNacimiento"].style.borderColor = "red";
                 }
-                
+                else
+                {
+                    document.forms["addUser"]["fechaNacimiento"].style.borderColor = "black";
+                }
+
+
                 if (nivelEstudio == null || nivelEstudio.length == 0 || /^\s+$/.test(nivelEstudio) || nivelEstudio == "" || nivelEstudio == "0" || nivelEstudio == 0) {
-                   // msj += "\nIngrese el nivel de estudios";
-                     document.forms["addUser"]["estudios"].style.borderColor = "red";
+                    booleana = 1;
+                    document.forms["addUser"]["estudios"].style.borderColor = "red";
                 }
-                
+                else
+                {
+                    document.forms["addUser"]["estudios"].style.borderColor = "black";
+                }
+
+
+
                 if (calle == null || calle.length == 0 || /^\s+$/.test(calle) || calle == "") {
-                    //msj += "\nIngrese la calle";
+                    booleana = 1;
                     document.forms["addUser"]["calle"].style.borderColor = "red";
                 }
-               
-                 if (numero == null || numero.length == 0 || /^\s+$/.test(numero) || numero == "" || numero == "0" || numero == 0) {
-                   // msj += "\nIngrese numero";
+                else
+                {
+                    document.forms["addUser"]["calle"].style.borderColor = "black";
+                }
+
+
+                if (numero == null || numero.length == 0 || /^\s+$/.test(numero) || numero == "" || numero == "0" || numero == 0) {
+                    booleana = 1;
                     document.forms["addUser"]["numero"].style.borderColor = "red";
                 }
-                
+                else
+                {
+                    document.forms["addUser"]["numero"].style.borderColor = "black";
+                }
+
+
                 if (colonia == null || colonia.length == 0 || /^\s+$/.test(colonia) || colonia == "") {
-                   // msj += "\nIngrese la colonia";
+                    booleana = 1;
                     document.forms["addUser"]["colonia"].style.borderColor = "red";
                 }
-                
-                 if (municipio == null || municipio.length == 0 || /^\s+$/.test(municipio) || municipio == "" || municipio == "0" || municipio == 0) {
-                   // msj += "\nIngrese el municipio";
+                else
+                {
+                    document.forms["addUser"]["colonia"].style.borderColor = "black";
+                }
+
+
+                if (municipio == null || municipio.length == 0 || /^\s+$/.test(municipio) || municipio == "" || municipio == "0" || municipio == 0) {
+                    booleana = 1;
                     document.forms["addUser"]["ciudad"].style.borderColor = "red";
                 }
-                
-                 if (estado == null || estado.length == 0 || /^\s+$/.test(estado) || estado == "" || estado == "0" || estado == 0) {
-                   // msj += "\nIngrese el estado";
-                     document.forms["addUser"]["estado"].style.borderColor = "red";
+                else
+                {
+                    document.forms["addUser"]["ciudad"].style.borderColor = "black";
                 }
-             
+
+
+                if (estado == null || estado.length == 0 || /^\s+$/.test(estado) || estado == "" || estado == "0" || estado == 0) {
+                    booleana = 1;
+                    document.forms["addUser"]["estado"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["estado"].style.borderColor = "black";
+                }
+
+
                 if (postal == null || postal.length == 0 || /^\s+$/.test(postal) || postal == "" || postal == "0" || postal == 0) {
-                  //  msj += "\nIngrese la postal";
-                     document.forms["addUser"]["postal"].style.borderColor = "red";
+                    booleana = 1;
+                    document.forms["addUser"]["postal"].style.borderColor = "red";
                 }
-                
+                else
+                {
+                    document.forms["addUser"]["postal"].style.borderColor = "black";
+                }
+
+
                 if (rfc == null || rfc.length == 0 || /^\s+$/.test(rfc) || rfc == "") {
-                   // msj += "\nIngrese su RFC";
-                     document.forms["addUser"]["rfc"].style.borderColor = "red";
+                    booleana = 1;
+                    document.forms["addUser"]["rfc"].style.borderColor = "red";
                 }
-                
+                else
+                {
+                    document.forms["addUser"]["rfc"].style.borderColor = "black";
+                }
+
+
                 if (curp == null || curp.length == 0 || /^\s+$/.test(curp) || curp == "") {
-                  //  msj += "\nIngrese su CURP";
-                     document.forms["addUser"]["curp"].style.borderColor = "red";
+                    booleana = 1;
+                    document.forms["addUser"]["curp"].style.borderColor = "red";
                 }
-                
+                else
+                {
+                    document.forms["addUser"]["curp"].style.borderColor = "black";
+                }
+
+
                 if (nomina == null || nomina.length == 0 || /^\s+$/.test(nomina) || nomina == "" || nomina == "0" || nomina == 0) {
-                  //  msj += "\nIngrese la nomina";
+                    booleana = 1;
                     document.forms["addUser"]["nomina"].style.borderColor = "red";
                 }
-                
-        expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-                if (!expr.test(emails)) {
-                   // msj += "\nIngrese su Correo Electronico";
-                   document.forms["addUser"]["emails"].style.borderColor = "red";
+                else
+                {
+                    document.forms["addUser"]["nomina"].style.borderColor = "black";
                 }
-                if (msj == null || msj == "") {
+
+                expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if (!expr.test(emails)) {
+                    booleana = 1;
+                    document.forms["addUser"]["emails"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["emails"].style.borderColor = "black";
+                }
+
+                if (booleana == 0) {
                     alert("Usuario guardado exitosamente.");
                     return true;
                 }
                 else {
-                    alert(msj);
                     return false;
                 }
             }
@@ -368,9 +443,9 @@
         </fieldset>
 
         <script type="text/javascript">
-            
+
             $(".dateN").datetimepicker();
-            
+
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();

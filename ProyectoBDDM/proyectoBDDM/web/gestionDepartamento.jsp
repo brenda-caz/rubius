@@ -45,6 +45,7 @@
             function validacion() {
                 var nombreDepartamento = document.forms["addUser"]["agregarDepartamento"].value;
                 var msj = "";
+                var booleana = 0;
                 
               //  valor = new Date(fechaNacimiento);
  
@@ -54,18 +55,22 @@
                 
                 
                 if (nombreDepartamento == null || nombreDepartamento.length == 0 || /^\s+$/.test(nombreDepartamento) || nombreDepartamento == "") {
-                    //msj += "\nIngrese su Apellido Paterno";
+                    booleana = 1;
                      document.forms["addUser"]["agregarDepartamento"].style.borderColor = "red";
                      
                 }
+                else
+                {
+                    document.forms["addUser"]["agregarDepartamento"].style.borderColor = "black";
+                }
               
        
-                if (msj == null || msj == "") {
+                
+                if (booleana == 0) {
                     alert("Departamento guardado exitosamente.");
                     return true;
                 }
                 else {
-                    alert(msj);
                     return false;
                 }
             }
@@ -137,7 +142,7 @@
 
                 }
             %>
-<form method="post" action="departamentoInsertarServlet">
+<form method="post" action="departamentoInsertarServlet" onsubmit="return validacion()" name="addUser">
 <h3>Departamento</h3><br>
 <input type="hidden" name="idDepartamento" value="<%= id%>">
 Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombreDepa%>"><br><br>
