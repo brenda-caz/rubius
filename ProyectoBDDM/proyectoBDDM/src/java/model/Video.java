@@ -14,17 +14,25 @@ import java.sql.Date;
 public class Video {
     private int idVideo;
     private String pathVideo;
-    private Date fechaVideo;
-    private Date horaVideo;
+    private String fechaVideo;
+    private String horaVideo;
     private Articulo articuloVideo;
     private Empresa empresaVideo;
 
-    public Video(int idVideo, String pathVideo, Date fechaVideo, Date horaVideo) {
+    public Video(int idVideo, String pathVideo, String fechaVideo, String horaVideo) {
         this.idVideo = idVideo;
         this.pathVideo = pathVideo;
         this.fechaVideo = fechaVideo;
         this.horaVideo = horaVideo;
     }
+
+    public Video(int idVideo, String fechaVideo, String horaVideo) {
+        this.idVideo = idVideo;
+        this.fechaVideo = fechaVideo;
+        this.horaVideo = horaVideo;
+    }
+    
+    
 
     public int getIdVideo() {
         return idVideo;
@@ -42,19 +50,19 @@ public class Video {
         this.pathVideo = pathVideo;
     }
 
-    public Date getFechaVideo() {
+    public String getFechaVideo() {
         return fechaVideo;
     }
 
-    public void setFechaVideo(Date fechaVideo) {
+    public void setFechaVideo(String fechaVideo) {
         this.fechaVideo = fechaVideo;
     }
 
-    public Date getHoraVideo() {
+    public String getHoraVideo() {
         return horaVideo;
     }
 
-    public void setHoraVideo(Date horaVideo) {
+    public void setHoraVideo(String horaVideo) {
         this.horaVideo = horaVideo;
     }
 

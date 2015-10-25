@@ -9,7 +9,9 @@ import dao.EmpresaDao;
 import dao.SucursalDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
+import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,13 +41,35 @@ public class imagenesVideosServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
-         List<Imagen> imagenes = EmpresaDao.ImagenEmpresa();
+       
+                
+                String accion = request.getParameter("accion");
+                String fech = request.getParameter("fech");
+                String hora = request.getParameter("hora");
+                
+               String strId = request.getParameter("id");
+            int id = 0;
+            if (strId != null && !strId.equals("")) {
+                id = Integer.parseInt(strId);
+            }
+                
+                if("editarImagen".equals(accion))
+                {
+                    Imagen im = new Imagen(id, fech, hora);
+                    EmpresaDao.actualizarImagen(im);
+                }
+                else if ("editarVideo".equals(accion))
+                {
+                    Video vid = new Video(id, fech, hora);
+                    EmpresaDao.actualizarVideo(vid);
+                }
+                
+                List<Imagen> imagenes = EmpresaDao.ImagenEmpresa();
                 request.setAttribute("imagenes", imagenes);
                 
                  List<Video> videos = EmpresaDao.VideoEmpresa();
                 request.setAttribute("videos", videos);
+                
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionImagenVideo.jsp");
                 disp.forward(request, response);

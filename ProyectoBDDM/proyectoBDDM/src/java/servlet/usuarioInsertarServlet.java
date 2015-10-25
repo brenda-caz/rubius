@@ -113,6 +113,7 @@ public class usuarioInsertarServlet extends HttpServlet {
             String strSexo = request.getParameter("sexo");            
             String strcurp = request.getParameter("curp");
             String stremails = request.getParameter("emails");
+            String strcontra = request.getParameter("contra");
             String strcalle = request.getParameter("calle");
             String strnumero = request.getParameter("numero");
             int numero = 0;
@@ -154,7 +155,7 @@ public class usuarioInsertarServlet extends HttpServlet {
 
             Usuario u = new Usuario(strnombre, strapePaterno, strapeMaterno, strpuesto, strSexo, strfechaNacimiento, 
                     strcalle, numero, strcolonia, postal, strrfc, strcurp, 
-                    nominap, inputStream, stremails);
+                    nominap, inputStream, stremails,strcontra);
             NivelEstudios ne = new NivelEstudios(idEstudios);
             u.setNivelEstudio(ne);
             Ciudad ci = new Ciudad(idCiudad);

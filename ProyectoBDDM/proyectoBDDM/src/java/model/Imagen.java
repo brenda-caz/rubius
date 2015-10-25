@@ -14,17 +14,25 @@ import java.sql.Date;
 public class Imagen {
     private int idImagen;
     private String path;
-    private Date fechaImagen;
-    private Date horaImagen;
+    private String fechaImagen;
+    private String horaImagen;
     private Articulo articuloImagen;
     private Empresa empresaImagen;
 
-    public Imagen(int idImagen, String path, Date fechaImagen, Date horaImagen) {
+    public Imagen(int idImagen, String path, String fechaImagen, String horaImagen) {
         this.idImagen = idImagen;
         this.path = path;
         this.fechaImagen = fechaImagen;
         this.horaImagen = horaImagen;
     }
+
+    public Imagen(int idImagen, String fechaImagen, String horaImagen) {
+        this.idImagen = idImagen;
+        this.fechaImagen = fechaImagen;
+        this.horaImagen = horaImagen;
+    }
+    
+    
 
     public int getIdImagen() {
         return idImagen;
@@ -34,19 +42,19 @@ public class Imagen {
         return path;
     }
 
-    public Date getFechaImagen() {
+    public String getFechaImagen() {
         return fechaImagen;
     }
 
-    public Date getHoraImagen() {
+    public String getHoraImagen() {
         return horaImagen;
     }
 
-    public void setFechaImagen(Date fechaImagen) {
+    public void setFechaImagen(String fechaImagen) {
         this.fechaImagen = fechaImagen;
     }
 
-    public void setHoraImagen(Date horaImagen) {
+    public void setHoraImagen(String horaImagen) {
         this.horaImagen = horaImagen;
     }
 

@@ -4,6 +4,7 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Video"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Imagen"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,6 +14,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Imagenes y Videos</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+     <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="jquery.js" type="text/javascript"></script>
+        <script src="jquery.datetimepicker.js" type="text/javascript"></script>
+      <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
+      <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
+       
+        
+        
     </head>
     <body> <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
           <div id="menu">
@@ -63,6 +77,7 @@
 
        <br><br><br><br> <h2>Programaci&oacuten de video e imagenes</h2>
         
+       
        <fieldset id="f1">
 <legend>Introduce la siguiente informaci&oacuten</legend> 
 <fieldset id="f2">
@@ -70,14 +85,24 @@
 
 
 
- <table id="grid" border="1" align="left">
-            <caption>Empleados</caption>
+ <table class="example" class="display" cellspacing="0"  width="100%">
+          <thead>
             <tr> 
+            <th style="width: 0.1px;" >Editar</th>
+            <th>Path</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            </tr>
+          </thead>
+          <tfoot>
+              <tr> 
             <th>Editar</th>
             <th>Path</th>
             <th>Fecha</th>
             <th>Hora</th>
             </tr>
+          </tfoot>
+          <tbody>
             
              <%
                 List<Imagen> imagenes = (List<Imagen>) request.getAttribute("imagenes");
@@ -86,18 +111,18 @@
             %>            
                         <tr>
                             <td>
-                            
+                                <a data-toggle="modal" href="#stack1" onclick="pasarImg(<%= img.getIdImagen() %>)"><img src="Css/pencil-1.png" alt="Editar"/></a>
                             </td>
                            
                             
-                            <td><%= img.getPath()%></td>
+                            <td> <img src="<%= img.getPath()%>" width="100px" height="100px"></td>
                             <td><%= img.getFechaImagen() == null ? "Sin Programar" : img.getFechaImagen()%></td>
                             <td><%= img.getHoraImagen() == null ? "Sin Programar" : img.getHoraImagen()%></td>                       
                         </tr>
             <%      }
                 }
             %>
-             
+             </tbody>
         </table>
 
 
@@ -119,6 +144,47 @@ Fecha: <input id="txt"  type="text" name="E2"><br><br>
 </fieldset><br><br>
 <fieldset id="f3">
 <legend>Videos</legend> 
+
+ <table class="example" class="display" cellspacing="0"  width="100%">
+         <thead>
+            <tr> 
+            <th style="width: 0.1px;">Editar</th>
+            <th>Path</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            </tr>
+          </thead>
+          <tfoot>
+              <tr> 
+            <th>Editar</th>
+            <th>Path</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            </tr>
+          </tfoot>
+          <tbody>
+             <%
+                List<Video> videos = (List<Video>) request.getAttribute("videos");
+                if (videos != null) {
+                    for (Video vid : videos) {  
+            %>            
+                        <tr>
+                            <td>
+                                
+                            <a data-toggle="modal" href="#stack1" onclick="pasarVid(<%= vid.getIdVideo() %>)"><img src="Css/pencil-1.png" alt="Editar"/></a>
+                            </td>
+                           
+                            
+                            <td> <video src="<%= vid.getPathVideo()%>" width="100px" height="100px"  muted loop></video></td>
+                            <td><%= vid.getFechaVideo()== null ? "Sin Programar" : vid.getFechaVideo()%></td>
+                            <td><%= vid.getHoraVideo()== null ? "Sin Programar" : vid.getHoraVideo()%></td>                       
+                        </tr>
+            <%      }
+                }
+            %>
+             </tbody>
+        </table>
+
 <!--
 Fecha: <input id="txt"  type="text" name="E4"><br><br>
 <input id="botones" type="submit" value="Agregar" />
@@ -126,5 +192,75 @@ Fecha: <input id="txt"  type="text" name="E4"><br><br>
 <input id="botones" type="reset" value="Cancelar"/> -->
 </fieldset><br><br>
 </fieldset>
+            
+            
+            
+           
+
+        <div id="stack1" class="modal hide fade" tabindex="-1" data-focus-on="input:first">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 style="color:purple;">Programar</h3>
+            </div>
+            <form action="imagenesVideosServlet" method="post">
+                <div class="modal-body">
+                    <p style="color:purple;">Fecha</p>
+                    <input type="text" class="dateN" id="fecha" name="fech" data-tabindex="1" />
+                    <br><p style="color:purple;">Hora</p>
+                    <input type="text" class="hora" id="hora" name="hora" data-tabindex="1" />
+                    <input type="hidden" name="id" id="id"/>
+                    <input type="hidden" name="accion" id="accion"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Programar</button>
+                </div>
+            </form>
+        </div>
+            
+             
+             
+             
+             
+             
+             
+             
+             
+             
+            
+            <script type="text/javascript">
+                
+            $(".dateN").datetimepicker({
+                format: 'Y/m/d',
+                timepicker: false,
+                lang: 'es'
+            });
+            
+ 
+    $('.example').DataTable();
+
+        </script>
+        
+
+            
+            <script src="Css/jquery.min.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modalmanager.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modal.js" type="text/javascript"></script>
+
+            
+            <script > 
+                function pasarImg(a)
+                {
+                    document.getElementById('id').value = a;
+                    document.getElementById('accion').value = 'editarImagen';
+                }
+                
+                function pasarVid(a)
+                {
+                    document.getElementById('id').value = a;
+                    document.getElementById('accion').value = 'editarVideo';
+                }
+            </script>
+            
     </body>
 </html>

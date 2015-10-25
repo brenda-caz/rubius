@@ -66,8 +66,8 @@ public class EmpresaDao {
                 Imagen img = new Imagen(
                         rs.getInt("idImagen"), 
                         rs.getString("pathImagen"),  
-                        rs.getDate("fechaImagen"),
-                        rs.getDate("horaImagen")
+                        rs.getString("fechaImagen"),
+                        rs.getString("horaImagen")
                 );
                     imagenes.add(img);
             }
@@ -98,8 +98,8 @@ public class EmpresaDao {
                 Video vid = new Video(
                         rs.getInt("idVideo"), 
                         rs.getString("pathVideo"),  
-                        rs.getDate("fechaVideo"),
-                        rs.getDate("horaVideo")
+                        rs.getString("fechaVideo"),
+                        rs.getString("horaVideo")
                 );
                     Videos.add(vid);
             }
@@ -114,5 +114,49 @@ public class EmpresaDao {
             pool.freeConnection(connection);
         }
     }
+     
+     
+     
+     public static void actualizarImagen(Imagen i) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        try {
+            cs = connection.prepareCall("{ call actualizarImagen(?, ?, ?) }");
+            cs.setInt(1, i.getIdImagen());
+            cs.setString(2, i.getFechaImagen());
+            cs.setString(3, i.getHoraImagen());   
+            cs.execute();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }        
+    }
+     
+     
+      public static void actualizarVideo(Video v) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        try {
+            cs = connection.prepareCall("{ call actualizarVideo(?, ?, ?) }");
+            cs.setInt(1, v.getIdVideo());
+            cs.setString(2, v.getFechaVideo());
+            cs.setString(3, v.getHoraVideo());   
+            cs.execute();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }        
+    }
+     
     
 }

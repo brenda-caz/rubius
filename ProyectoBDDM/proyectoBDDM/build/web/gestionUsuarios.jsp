@@ -69,6 +69,7 @@
                 var emails = document.forms["addUser"]["emails"].value;
                 var msj = "";
                 var booleana = 0;
+                 var contra = document.forms["addUser"]["contra"].value;
 
 
 
@@ -223,6 +224,15 @@
                 {
                     document.forms["addUser"]["curp"].style.borderColor = "black";
                 }
+                
+                if (contra == null || contra.length == 0 || /^\s+$/.test(contra) || contra == "") {
+                    booleana = 1;
+                    document.forms["addUser"]["contra"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["contra"].style.borderColor = "black";
+                }
 
 
                 if (nomina == null || nomina.length == 0 || /^\s+$/.test(nomina) || nomina == "" || nomina == "0" || nomina == 0) {
@@ -336,6 +346,8 @@
                 int nomina = 0;
                 InputStream foto = null;
                 String emails = "";
+                String contra = "";
+                
 
                 if (usua != null) {
                     id = usua.getId();
@@ -357,6 +369,7 @@
                     nomina = usua.getNomina();
                     foto = usua.getFoto();
                     emails = usua.getEmail() != null ? usua.getEmail() : "";
+                    contra = usua.getContrasenia()!= null ? usua.getContrasenia(): "";
 
                 }
             %>
@@ -382,8 +395,9 @@
 
                 CURP:<input id="txt" type="text" name="curp" value="<%= curp%>" maxlength="70"><br><br>
                 Correo Electronico: <input id="txt"  type="text" name="emails" value="<%= emails%>" maxlength="145"><br><br>
+                Contraseña: <input id="txt"  type="password" name="contra" value="<%= contra%>" maxlength="45"><br><br>
 
-                <legend>Domicilio </legend>
+
                 Calle:<input id="txt"  type="text" name="calle" value="<%= calle%>" maxlength="70"><br><br>
                 Numero:<input id="txt"  type="text" name="numero" value="<%= numero == 0 ? "" : numero%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
                 Colonia:<input id="txt"  type="text" name="colonia" value="<%= colonia%>" maxlength="140"><br><br>

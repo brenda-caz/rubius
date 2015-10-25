@@ -34,6 +34,7 @@ public class Usuario {
     private int nomina;
     private InputStream foto;
     private String email;
+    private String contrasenia;
 
     public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.id = id;
@@ -72,6 +73,49 @@ public class Usuario {
         this.email = email;
     }
 
+    public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, int postal, String RFC, String CURP, int nomina, InputStream foto, String email, String contrasenia) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.puesto = puesto;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.calle = calle;
+        this.numero = numero;
+        this.colonia = colonia;
+        this.postal = postal;
+        this.RFC = RFC;
+        this.CURP = CURP;
+        this.nomina = nomina;
+        this.foto = foto;
+        this.email = email;
+        this.contrasenia = contrasenia;
+    }
+
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, int postal, String RFC, String CURP, int nomina, InputStream foto, String email, String contrasenia) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.puesto = puesto;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.calle = calle;
+        this.numero = numero;
+        this.colonia = colonia;
+        this.postal = postal;
+        this.RFC = RFC;
+        this.CURP = CURP;
+        this.nomina = nomina;
+        this.foto = foto;
+        this.email = email;
+        this.contrasenia = contrasenia;
+    }
+
+   
+
+    
+    
     public Usuario(InputStream foto) {
         this.foto = foto;
     }
@@ -235,6 +279,14 @@ public class Usuario {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
 }

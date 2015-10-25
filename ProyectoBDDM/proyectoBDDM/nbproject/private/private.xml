@@ -5,7 +5,7 @@
             <url>src/java/servlet/usuarioInsertarServlet.java</url>
             <bookmark id="1">
                 <name/>
-                <line>162</line>
+                <line>163</line>
                 <key/>
             </bookmark>
         </file>
@@ -13,13 +13,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/gestionUsuarios.jsp</file>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/servlet/articuloConsultaServlet.java</file>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/model/Articulo.java</file>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/gestionDepartamento.jsp</file>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/gestionArticulos.jsp</file>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/gestionsucursal.jsp</file>
-            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/servlet/articuloInsertarServlet.java</file>
+            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/model/Usuario.java</file>
+            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/dao/UsuarioDao.java</file>
+            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/src/java/servlet/usuarioInsertarServlet.java</file>
+            <file>file:/C:/Users/BrendaCázares/Desktop/rubius/ProyectoBDDM/proyectoBDDM/web/gestionImagenVideo.jsp</file>
         </group>
     </open-files>
 </project-private>

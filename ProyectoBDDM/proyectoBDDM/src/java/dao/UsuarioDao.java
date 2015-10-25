@@ -92,7 +92,7 @@ public class UsuarioDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call insertUsuario(?,?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?) }");
+            cs = connection.prepareCall("{ call insertUsuario(?,?, ?,?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?) }");
             cs.setString(1, e.getNombre());
             cs.setString(2, e.getApellidoPaterno());
             cs.setString(3, e.getApellidoMaterno());
@@ -111,6 +111,7 @@ public class UsuarioDao {
             cs.setInt(16, e.getNomina());
             cs.setBlob(17, e.getFoto());
             cs.setString(18, e.getEmail());
+            cs.setString(19, e.getContrasenia());
             cs.execute();
 
         } catch (Exception ex) {
@@ -143,7 +144,7 @@ public class UsuarioDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call actualizarUsuario(?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?,?) }");
+            cs = connection.prepareCall("{ call actualizarUsuario(?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?,?) }");
             cs.setInt(1, u.getId());
             cs.setString(2, u.getNombre());
             cs.setString(3, u.getApellidoPaterno());
@@ -163,6 +164,7 @@ public class UsuarioDao {
             cs.setInt(17, u.getNomina());
             cs.setBinaryStream(18, u.getFoto());
             cs.setString(19, u.getEmail());
+            cs.setString(20, u.getContrasenia());
             cs.execute();
 
         } catch (Exception ex) {
@@ -200,7 +202,8 @@ public class UsuarioDao {
                         rs.getString("CURP"),
                         rs.getInt("numeroNomina"),
                         rs.getBinaryStream(1),
-                        rs.getString("correoElectronico")
+                        rs.getString("correoElectronico"),
+                        rs.getString("contrasenia")
                 );
                 NivelEstudios ne = new NivelEstudios(rs.getInt("idNivelEstudio"));
                 emp.setNivelEstudio(ne);
