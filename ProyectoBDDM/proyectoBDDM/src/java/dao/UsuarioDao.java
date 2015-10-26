@@ -16,6 +16,7 @@ import model.Ciudad;
 import model.Estado;
 import model.NivelEstudios;
 import model.Usuario;
+import servlet.Utilidades;
 
 /**
  *
@@ -162,7 +163,14 @@ public class UsuarioDao {
             cs.setString(15, u.getRFC());
             cs.setString(16, u.getCURP());
             cs.setInt(17, u.getNomina());
+            if(u.getFoto() == null)
+            {
+                cs.setString(18, "NO");
+            }
+            else
+            {
             cs.setBinaryStream(18, u.getFoto());
+            }
             cs.setString(19, u.getEmail());
             cs.setString(20, u.getContrasenia());
             cs.execute();
@@ -181,6 +189,9 @@ public class UsuarioDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         ResultSet rs = null;
+        
+        String desencriptado = ""; 
+        
         try {
             cs = connection.prepareCall("{ call buscarUsuario(?) }");
             cs.setInt(1, id);
@@ -203,7 +214,7 @@ public class UsuarioDao {
                         rs.getInt("numeroNomina"),
                         rs.getBinaryStream(1),
                         rs.getString("correoElectronico"),
-                        rs.getString("contrasenia")
+                        Utilidades.Desencriptar(rs.getString("contrasenia"))
                 );
                 NivelEstudios ne = new NivelEstudios(rs.getInt("idNivelEstudio"));
                 emp.setNivelEstudio(ne);
@@ -318,6 +329,37 @@ public class UsuarioDao {
             rs = cs.executeQuery();
             if (rs.next()) {
                 return rs.getBinaryStream(1);
+            }
+            return null;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
+     
+     public static Usuario validarLogin(String email, String password) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = connection.prepareCall("{ call inicioSesion(?, ?) }");
+            cs.setString(1, email);
+            cs.setString(2, password);
+            rs = cs.executeQuery();
+            if (rs.next()) {
+                Usuario u = new Usuario(
+                        rs.getInt("idUsuario"),
+                        rs.getString("nombreUsuario"),
+                        rs.getString("puesto")
+                );
+                return u;
             }
             return null;
         } catch (Exception ex) {

@@ -31,6 +31,11 @@ public class Video {
         this.fechaVideo = fechaVideo;
         this.horaVideo = horaVideo;
     }
+
+    public Video(int idVideo, String pathVideo) {
+        this.idVideo = idVideo;
+        this.pathVideo = pathVideo;
+    }
     
     
 

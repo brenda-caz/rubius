@@ -129,7 +129,7 @@ fieldset{
   -webkit-border-radius: 15px; //edit :D 
 }
 
-#txt{
+#txt, #txt2{
   -moz-border-radius: 10px;
         -webkit-border-radius: 10px;
         border-radius: 10px;

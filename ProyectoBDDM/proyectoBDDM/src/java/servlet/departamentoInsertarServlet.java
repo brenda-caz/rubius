@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Departamento;
 import model.Sucursal;
 
@@ -36,10 +37,11 @@ public class departamentoInsertarServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+     
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
         
- String strinicio = request.getParameter("inicio");
-         
-         
+ String strinicio = request.getParameter("inicio");  
         if(!"no".equals(strinicio))
         {
         response.setContentType("text/html;charset=UTF-8");
@@ -67,6 +69,12 @@ public class departamentoInsertarServlet extends HttpServlet {
         {
             RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamentos.jsp");
             disp.forward(request, response);  
+        }
+        
+        } else {
+            RequestDispatcher disp = getServletContext().
+                    getRequestDispatcher("/index.jsp");
+            disp.forward(request, response);
         }
     
     }

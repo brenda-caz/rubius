@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Sucursal;
 import model.Usuario;
 
@@ -36,6 +37,10 @@ public class sucursalConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+        
         String accion = request.getParameter("accion");
         String strIdSucursal = request.getParameter("id");
             int id = 0;
@@ -64,6 +69,12 @@ public class sucursalConsultaServlet extends HttpServlet {
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionsucursal.jsp");
                 disp.forward(request, response);
+        }
+        
+        } else {
+            RequestDispatcher disp = getServletContext().
+                    getRequestDispatcher("/index.jsp");
+            disp.forward(request, response);
         }
     }
 

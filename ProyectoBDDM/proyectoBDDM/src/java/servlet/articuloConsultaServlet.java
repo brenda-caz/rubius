@@ -5,7 +5,6 @@
  */
 package servlet;
 
-
 import dao.ArticuloDao;
 import dao.DepartamentoDao;
 import java.io.IOException;
@@ -17,10 +16,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Articulo;
 import model.Departamento;
-;
 
+;
 
 /**
  *
@@ -39,38 +39,45 @@ public class articuloConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String accion = request.getParameter("accion");
-        String strIdArticulo = request.getParameter("id");
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+
+            String accion = request.getParameter("accion");
+            String strIdArticulo = request.getParameter("id");
             int id = 0;
             if (strIdArticulo != null && !strIdArticulo.equals("")) {
                 id = Integer.parseInt(strIdArticulo);
             }
 
-        if ("borrar".equals(accion) && strIdArticulo != "") {
-            ArticuloDao.borrarArticulo(id);
-            List<Articulo> articulos = ArticuloDao.buscarArticulos();
+            if ("borrar".equals(accion) && strIdArticulo != "") {
+                ArticuloDao.borrarArticulo(id);
+                List<Articulo> articulos = ArticuloDao.buscarArticulos();
                 request.setAttribute("articulos", articulos);
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/consultaArticulos.jsp");
                 disp.forward(request, response);
-        }
-        else if("editar".equals(accion) && strIdArticulo != "")
-        {
-            Articulo arti = ArticuloDao.buscarArticulo(id);
-            request.setAttribute("articulo", arti);
-            List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
-            request.setAttribute("departamentos", dep);
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionArticulos.jsp");
+            } else if ("editar".equals(accion) && strIdArticulo != "") {
+                Articulo arti = ArticuloDao.buscarArticulo(id);
+                request.setAttribute("articulo", arti);
+                List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
+                request.setAttribute("departamentos", dep);
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionArticulos.jsp");
+                disp.forward(request, response);
+            } else {
+                List<Articulo> articulos = ArticuloDao.buscarArticulos();
+                request.setAttribute("articulos", articulos);
+
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/consultaArticulos.jsp");
+                disp.forward(request, response);
+            }
+
+        } else {
+            RequestDispatcher disp = getServletContext().
+                    getRequestDispatcher("/index.jsp");
             disp.forward(request, response);
         }
-       else {
-         List<Articulo> articulos = ArticuloDao.buscarArticulos();
-                request.setAttribute("articulos", articulos);
 
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/consultaArticulos.jsp");
-                disp.forward(request, response);
-        }
-    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

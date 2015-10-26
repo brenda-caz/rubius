@@ -56,9 +56,16 @@
         <servlet-class>servlet.imagenesVideosServlet</servlet-class>
     </servlet>
 
+<servlet>
+        <servlet-name>indexServlet</servlet-name>
+        <servlet-class>servlet.indexServlet</servlet-class>
+    </servlet>
 
-
-
+<servlet>
+        <servlet-name>cajeroServlet</servlet-name>
+        <servlet-class>servlet.cajeroServlet</servlet-class>
+    </servlet>
+    
 
 
     <servlet-mapping>
@@ -109,6 +116,16 @@
      <servlet-mapping>
         <servlet-name>imagenesVideosServlet</servlet-name>
         <url-pattern>/imagenesVideosServlet</url-pattern>
+    </servlet-mapping>
+
+ <servlet-mapping>
+        <servlet-name>indexServlet</servlet-name>
+        <url-pattern>/indexServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>cajeroServlet</servlet-name>
+        <url-pattern>/cajeroServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>

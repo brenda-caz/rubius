@@ -17,15 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Departamento;
 import model.Usuario;
-
 
 /**
  *
  * @author BrendaCázares
  */
-
 public class departamentoConsultaServlet extends HttpServlet {
 
     /**
@@ -39,36 +38,44 @@ public class departamentoConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String accion = request.getParameter("accion");
-        String strIdDepartamento = request.getParameter("id");
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+
+            String accion = request.getParameter("accion");
+            String strIdDepartamento = request.getParameter("id");
             int id = 0;
             if (strIdDepartamento != null && !strIdDepartamento.equals("")) {
                 id = Integer.parseInt(strIdDepartamento);
             }
 
-        if ("borrar".equals(accion) && strIdDepartamento != "") {
-            DepartamentoDao.borrarDepartamento(id);
-            List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
+            if ("borrar".equals(accion) && strIdDepartamento != "") {
+                DepartamentoDao.borrarDepartamento(id);
+                List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
                 request.setAttribute("departamentos", departamentos);
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
                 disp.forward(request, response);
-        }
-         else if("editar".equals(accion) && strIdDepartamento != "")
-        {
-            Departamento depa = DepartamentoDao.buscarDepartamento(id);
-            request.setAttribute("departamento", depa);
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
+            } else if ("editar".equals(accion) && strIdDepartamento != "") {
+                Departamento depa = DepartamentoDao.buscarDepartamento(id);
+                request.setAttribute("departamento", depa);
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
+                disp.forward(request, response);
+            } else {
+                List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
+                request.setAttribute("departamentos", departamentos);
+
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
+                disp.forward(request, response);
+
+            }
+
+        } else {
+            RequestDispatcher disp = getServletContext().
+                    getRequestDispatcher("/index.jsp");
             disp.forward(request, response);
         }
-        else {
-         List<Departamento> departamentos = DepartamentoDao.buscarDepartamentos();
-                request.setAttribute("departamentos", departamentos);
 
-                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionDepartamento.jsp");
-                disp.forward(request, response);
-        
-    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

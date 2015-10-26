@@ -112,9 +112,13 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-   
+    public Usuario(int id, String nombre, String puesto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.puesto = puesto;
+    }
 
-    
+
     
     public Usuario(InputStream foto) {
         this.foto = foto;

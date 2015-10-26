@@ -69,7 +69,7 @@
                 var emails = document.forms["addUser"]["emails"].value;
                 var msj = "";
                 var booleana = 0;
-                 var contra = document.forms["addUser"]["contra"].value;
+                var contra = document.forms["addUser"]["contra"].value;
 
 
 
@@ -114,7 +114,7 @@
                 }
                 else
                 {
-                     var reg = /^([a-z ñáéíóú]{2,60})$/i;
+                    var reg = /^([a-z ñáéíóú]{2,60})$/i;
                     if (!reg.test(nom))
                     {
                         booleana = 1;
@@ -224,7 +224,7 @@
                 {
                     document.forms["addUser"]["curp"].style.borderColor = "black";
                 }
-                
+
                 if (contra == null || contra.length == 0 || /^\s+$/.test(contra) || contra == "") {
                     booleana = 1;
                     document.forms["addUser"]["contra"].style.borderColor = "red";
@@ -347,7 +347,6 @@
                 InputStream foto = null;
                 String emails = "";
                 String contra = "";
-                
 
                 if (usua != null) {
                     id = usua.getId();
@@ -369,7 +368,7 @@
                     nomina = usua.getNomina();
                     foto = usua.getFoto();
                     emails = usua.getEmail() != null ? usua.getEmail() : "";
-                    contra = usua.getContrasenia()!= null ? usua.getContrasenia(): "";
+                    contra = usua.getContrasenia() != null ? usua.getContrasenia() : "";
 
                 }
             %>
@@ -395,8 +394,9 @@
 
                 CURP:<input id="txt" type="text" name="curp" value="<%= curp%>" maxlength="70"><br><br>
                 Correo Electronico: <input id="txt"  type="text" name="emails" value="<%= emails%>" maxlength="145"><br><br>
-                Contraseña: <input id="txt"  type="password" name="contra" value="<%= contra%>" maxlength="45"><br><br>
-
+                Contraseña: <input id="txt2"  type="password" name="contra" value="<%= contra%>" maxlength="45">
+                <input type="checkbox" id="ver" onchange="hideOrShowPassword()" /> Ver Contraseña
+                <br><br>
 
                 Calle:<input id="txt"  type="text" name="calle" value="<%= calle%>" maxlength="70"><br><br>
                 Numero:<input id="txt"  type="text" name="numero" value="<%= numero == 0 ? "" : numero%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
@@ -477,6 +477,19 @@
         </fieldset>
 
         <script type="text/javascript">
+
+            function hideOrShowPassword() { // Si quieres le cambias el nombre xD
+                var checkbox = document.getElementById('ver');
+                var passField = document.getElementById('txt2');
+                if (checkbox.checked == true) // Si la checkbox de mostrar contraseña está activada
+                {
+                    passField.type = "text";
+                }
+                else // Si no está activada
+                {
+                    passField.type = "password"
+                }
+            }
 
             $(".dateN").datetimepicker({
                 format: 'Y/m/d',

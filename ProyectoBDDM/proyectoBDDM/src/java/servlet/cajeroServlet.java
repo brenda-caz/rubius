@@ -5,10 +5,10 @@
  */
 package servlet;
 
-import dao.ArticuloDao;
-import dao.SucursalDao;
+import dao.EmpresaDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,15 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Articulo;
-import model.Departamento;
-import model.Sucursal;
+import model.Video;
 
 /**
  *
- * @author BrendaCázares
+ * @author
  */
-public class sucursalInsertarServlet extends HttpServlet {
+public class cajeroServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,48 +35,25 @@ public class sucursalInsertarServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         HttpSession session = request.getSession();
-        if (session.getAttribute("user") != null) {
-        
-        String strinicio = request.getParameter("inicio");
-         
-         
-        if(!"no".equals(strinicio))
-        {
         response.setContentType("text/html;charset=UTF-8");
-        String strId = request.getParameter("idSucursal");
-            int id = 0;
-            if (strId != null && !strId.equals("")) {
-                id = Integer.parseInt(strId);
-            }
-            String stragregarSucursal = request.getParameter("agregarSucursal");
-           
-            Sucursal s = new Sucursal(stragregarSucursal);
-            s.setIdSucursal(id);
-
-            if (id > 0) {
-                s.setIdSucursal(id);
-                SucursalDao.actualizarSucursal(s);
-            } else {
-                SucursalDao.insertarSucursal(s);
-            }
-
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/sucursalConsultaServlet");
-            disp.forward(request, response);     
-    }
-         else
-        {
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionSucursal.jsp");
-            disp.forward(request, response);  
-        }
         
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            
+            
+            List<Video> vid = EmpresaDao.VideoReproducir();
+            request.setAttribute("vidios", vid);
+            
+            
+            RequestDispatcher disp = getServletContext().
+                    getRequestDispatcher("/cajero.jsp");
+            disp.forward(request, response);
+            
         } else {
             RequestDispatcher disp = getServletContext().
                     getRequestDispatcher("/index.jsp");
             disp.forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

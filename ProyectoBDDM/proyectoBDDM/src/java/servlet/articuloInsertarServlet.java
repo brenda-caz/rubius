@@ -5,7 +5,6 @@
  */
 package servlet;
 
-
 import dao.ArticuloDao;
 import dao.DepartamentoDao;
 import dao.UsuarioDao;
@@ -18,17 +17,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.Articulo;
 import model.Departamento;
 import model.Estado;
 
-
 /**
  *
  * @author BrendaCázares
  */
-
 public class articuloInsertarServlet extends HttpServlet {
 
     /**
@@ -40,9 +38,8 @@ public class articuloInsertarServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-     private final String directorio = "archivos";
-    
+    private final String directorio = "archivos";
+
     private String extractExtension(Part part) {
         String contentDisp = part.getHeader("content-disposition");
         String[] items = contentDisp.split(";");
@@ -54,73 +51,78 @@ public class articuloInsertarServlet extends HttpServlet {
         }
         return "";
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
+
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+
+            List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
             request.setAttribute("departamentos", dep);
-            
+
             String strinicio = request.getParameter("inicio");
-             String strId = request.getParameter("id");
+            String strId = request.getParameter("id");
             int id = 0;
             if (strId != null && !strId.equals("")) {
                 id = Integer.parseInt(strId);
             }
-            
-        if(!"no".equals(strinicio))
-        {
-        response.setContentType("text/html;charset=UTF-8");
-     
-            String strcodigoArticulo = request.getParameter("codigoArticulo");
-            String strprecioArticulo = request.getParameter("precioArticulo");
-             double preshio = 0;
-            if (strprecioArticulo != null && !strprecioArticulo.equals("")) {
-                preshio = Double.parseDouble(strprecioArticulo);
-            }
-            String strdescriCorta = request.getParameter("descriCorta");
-            String strdescriLarga = request.getParameter("descriLarga");
-            String strDepartamento = request.getParameter("departamento");   
-            int departamentosh = 0;
-            if (strDepartamento != null && !strDepartamento.equals("")) {
-                departamentosh = Integer.parseInt(strDepartamento);
-            }
-            String strmedida = request.getParameter("medida");
-            String strexistencia = request.getParameter("existencia");
-            int existenshia = 0;
-            if (strexistencia != null && !strexistencia.equals("")) {
-                existenshia = Integer.parseInt(strexistencia);
-            }
-            String strcalle = request.getParameter("calle");
-            String strimpuesto = request.getParameter("impuesto");
-          int impuestosh = 0;
-            if (strimpuesto != null && !strimpuesto.equals("")) {
-                impuestosh = Integer.parseInt(strimpuesto);
-            }
-            String strdescuento = request.getParameter("descuento");
-             int descuentosh = 0;
-            if (strdescuento != null && !strdescuento.equals("")) {
-                descuentosh = Integer.parseInt(strdescuento);
-            }
-            Articulo a = new Articulo(strcodigoArticulo,strdescriCorta,strdescriLarga,preshio,strmedida,existenshia,impuestosh,descuentosh);
-            Departamento d = new Departamento(departamentosh);
-            a.setDepartamento(d);
 
-            if (id > 0) {
-                a.setIdArticulo(id);
-               ArticuloDao.actualizarArticulo(a);
+            if (!"no".equals(strinicio)) {
+                response.setContentType("text/html;charset=UTF-8");
+
+                String strcodigoArticulo = request.getParameter("codigoArticulo");
+                String strprecioArticulo = request.getParameter("precioArticulo");
+                double preshio = 0;
+                if (strprecioArticulo != null && !strprecioArticulo.equals("")) {
+                    preshio = Double.parseDouble(strprecioArticulo);
+                }
+                String strdescriCorta = request.getParameter("descriCorta");
+                String strdescriLarga = request.getParameter("descriLarga");
+                String strDepartamento = request.getParameter("departamento");
+                int departamentosh = 0;
+                if (strDepartamento != null && !strDepartamento.equals("")) {
+                    departamentosh = Integer.parseInt(strDepartamento);
+                }
+                String strmedida = request.getParameter("medida");
+                String strexistencia = request.getParameter("existencia");
+                int existenshia = 0;
+                if (strexistencia != null && !strexistencia.equals("")) {
+                    existenshia = Integer.parseInt(strexistencia);
+                }
+                String strcalle = request.getParameter("calle");
+                String strimpuesto = request.getParameter("impuesto");
+                int impuestosh = 0;
+                if (strimpuesto != null && !strimpuesto.equals("")) {
+                    impuestosh = Integer.parseInt(strimpuesto);
+                }
+                String strdescuento = request.getParameter("descuento");
+                int descuentosh = 0;
+                if (strdescuento != null && !strdescuento.equals("")) {
+                    descuentosh = Integer.parseInt(strdescuento);
+                }
+                Articulo a = new Articulo(strcodigoArticulo, strdescriCorta, strdescriLarga, preshio, strmedida, existenshia, impuestosh, descuentosh);
+                Departamento d = new Departamento(departamentosh);
+                a.setDepartamento(d);
+
+                if (id > 0) {
+                    a.setIdArticulo(id);
+                    ArticuloDao.actualizarArticulo(a);
+                } else {
+                    ArticuloDao.insertarArticulo(a);
+                }
+
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/articuloConsultaServlet");
+                disp.forward(request, response);
             } else {
-                ArticuloDao.insertarArticulo(a);
+                RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionArticulos.jsp");
+                disp.forward(request, response);
             }
-
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/articuloConsultaServlet");
-            disp.forward(request, response);        
+        } else {
+            RequestDispatcher disp = getServletContext().
+                    getRequestDispatcher("/index.jsp");
+            disp.forward(request, response);
         }
-         else
-        {
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionArticulos.jsp");
-            disp.forward(request, response);  
-        }
-    
 
     }
 

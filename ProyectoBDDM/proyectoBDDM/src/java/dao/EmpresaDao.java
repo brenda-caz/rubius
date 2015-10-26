@@ -116,6 +116,35 @@ public class EmpresaDao {
     }
      
      
+     public static List<Video> VideoReproducir() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<Video> Videos = new ArrayList();
+            cs = connection.prepareCall("{ call videoReproducir() }");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Video vid = new Video(
+                        rs.getInt("idVideo"), 
+                        rs.getString("pathVideo").replace(".mp4","")
+                );
+                    Videos.add(vid);
+            }
+            return Videos;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
+     
      
      public static void actualizarImagen(Imagen i) {
         ConnectionPool pool = ConnectionPool.getInstance();

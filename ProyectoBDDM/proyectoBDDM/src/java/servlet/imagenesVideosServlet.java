@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Imagen;
 import model.Video;
 
@@ -42,7 +43,9 @@ public class imagenesVideosServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
        
-                
+                HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            
                 String accion = request.getParameter("accion");
                 String fech = request.getParameter("fech");
                 String hora = request.getParameter("hora");
@@ -73,6 +76,13 @@ public class imagenesVideosServlet extends HttpServlet {
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionImagenVideo.jsp");
                 disp.forward(request, response);
+                
+                
+                } else {
+            RequestDispatcher disp = getServletContext().
+                    getRequestDispatcher("/index.jsp");
+            disp.forward(request, response);
+        }
         
     }
 

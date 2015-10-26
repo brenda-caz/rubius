@@ -5,10 +5,11 @@
  */
 package servlet;
 
-import dao.ArticuloDao;
-import dao.SucursalDao;
+import dao.UsuarioDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,15 +17,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Articulo;
-import model.Departamento;
-import model.Sucursal;
+import model.Usuario;
 
 /**
  *
- * @author BrendaCázares
+ * @author 
  */
-public class sucursalInsertarServlet extends HttpServlet {
+public class indexServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,46 +36,46 @@ public class sucursalInsertarServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         HttpSession session = request.getSession();
-        if (session.getAttribute("user") != null) {
-        
-        String strinicio = request.getParameter("inicio");
-         
-         
-        if(!"no".equals(strinicio))
-        {
         response.setContentType("text/html;charset=UTF-8");
-        String strId = request.getParameter("idSucursal");
-            int id = 0;
-            if (strId != null && !strId.equals("")) {
-                id = Integer.parseInt(strId);
-            }
-            String stragregarSucursal = request.getParameter("agregarSucursal");
-           
-            Sucursal s = new Sucursal(stragregarSucursal);
-            s.setIdSucursal(id);
-
-            if (id > 0) {
-                s.setIdSucursal(id);
-                SucursalDao.actualizarSucursal(s);
-            } else {
-                SucursalDao.insertarSucursal(s);
-            }
-
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/sucursalConsultaServlet");
-            disp.forward(request, response);     
-    }
-         else
-        {
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionSucursal.jsp");
-            disp.forward(request, response);  
-        }
         
-        } else {
+        String accion = request.getParameter("accion");
+        if ("borrar".equals(accion)) {
+            HttpSession session = request.getSession();
+            session.removeAttribute("user");
+            session.invalidate();
             RequestDispatcher disp = getServletContext().
-                    getRequestDispatcher("/index.jsp");
+                        getRequestDispatcher("/index.jsp");
             disp.forward(request, response);
+            
+        } else {
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            
+            
+            String encriptado = "";
+            encriptado = Utilidades.Encriptar(password);      
+            
+            Usuario user = UsuarioDao.validarLogin(email, encriptado);
+            if (user != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+                if("A".equals(user.getPuesto()))
+                {
+                RequestDispatcher disp = getServletContext().
+                        getRequestDispatcher("/usuarioConsultaServlet");
+                disp.forward(request, response);
+                }
+                else
+                {
+                    RequestDispatcher disp = getServletContext().
+                        getRequestDispatcher("/cajeroServlet");
+                disp.forward(request, response);
+                }
+            } else {
+                RequestDispatcher disp = getServletContext().
+                        getRequestDispatcher("/index.jsp");
+                disp.forward(request, response);
+            }
         }
         
     }
