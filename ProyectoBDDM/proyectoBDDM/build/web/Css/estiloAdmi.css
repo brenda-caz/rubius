@@ -13,7 +13,7 @@ padding: 0px;
 outline: 0;
 }
 
-html, body { /* width: 100%; */}
+html, body { width: 100%;}
 
 body {
 /*  padding-top:0px;
@@ -28,10 +28,10 @@ body {
   text-align: center;*/
 padding-top: 0px;
   background-image: url('fondoInicio.jpg');
-  background-color: black;
+  background-color: #DE1515;
   background-size: cover;
   font-family:'Roboto Condensed', sans-serif;
-  /* color: white; */
+       color: white; 
   font-size: 14px;
   line-height: 20px;
   text-align: center;
