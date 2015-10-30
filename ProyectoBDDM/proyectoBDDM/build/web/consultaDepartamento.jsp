@@ -17,7 +17,8 @@
     <body>
 
         <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
-        <div id="menu">
+     <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
+ <div id="menu">
             <ul>
                 <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
                     <ul>
@@ -33,13 +34,13 @@
                     <ul>
                         <li><a href="consultaArticulos.jsp" align="left">Gestion Articulos</a></li>	
                         <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
-
+                    </ul>
 
                 </li>
-                <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
+                <li class="nivel1"><a href="#" class="nivel1">Videos </a>
 
                     <ul>
-                        <li><a href="gestionImagenVideo.jsp" align="left">Videos e imagenes</a></li>
+          <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
                     </ul>
 
                 </li>
@@ -57,6 +58,15 @@
                         <li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
 
                     </ul>
+
+                </li>
+                
+                <li class="nivel1"><a href="#" class="nivel1" > Cerrar Sesión</a>
+
+                    <ul>
+                        <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
+                    </ul>
+
 
                 </li>
             </ul>

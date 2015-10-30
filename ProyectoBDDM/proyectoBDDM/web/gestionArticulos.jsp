@@ -168,6 +168,7 @@
     </head>
     <body>
         <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
+        <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
 
         <div id="menu">
             <ul>
@@ -188,10 +189,10 @@
                     </ul>
 
                 </li>
-                <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
+               <li class="nivel1" ><a href="#" class="nivel1"> Videos</a>
 
                     <ul>
-                        <li><a href="gestionImagenVideo.jsp" align="left">Videos e imagenes</a></li>
+                        <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
                     </ul>
 
                 </li>
@@ -211,6 +212,15 @@
                     </ul>
 
                 </li>
+                <li class="nivel1"><a href="#" class="nivel1" > Cerrar Sesión</a>
+
+                    <ul>
+                        <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
+                    </ul>
+
+
+                </li>
+
             </ul>
         </div>
 
@@ -227,6 +237,7 @@
             int impuesto = 0;
             int descuento = 0;
             int departamento = 0;
+            InputStream fotoArticulo = null;
 
             if (artis != null) {
                 id = artis.getIdArticulo();
@@ -246,43 +257,117 @@
 
         <form name="addUser" id="agregarArticulos" method="post" action="articuloInsertarServlet" onsubmit="return validacion()">
             <br> <fieldset id="f1"><br>
-                <legend>Introduce la siguiente informaci&oacuten</legend><br>
+
 
                 <input type="hidden" name="id" value="<%= id%>">
-                Codigo del articulo: <input id="txt"  type="text" name="codigoArticulo" value="<%= codigoArticulo%>" onkeypress="javascript:return validarNum(event)" maxlength="10"  ><br><br>
-                Precio: <input id="txt"  type="text" name="precioArticulo" value="<%= precio == 0 ? "" : precio%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
-                Descripcion corta: <input id="txt"  type="text" name="descriCorta" value="<%= descriCorta%>" maxlength="150"><br><br>
-                Descripcion larga: <input id="txt"  type="text" name="descriLarga" value="<%= descriLarga%>" maxlength="500"><br><br>
-                Departamento: <br>
-                <select name="departamento">
-                    <option value="0" <%= artis == null ? "selected" : ""%>>
-                        Seleccione una opcion...
-                    </option>
-                    <%
-                        List<Departamento> dep = (List<Departamento>) request.getAttribute("departamentos");
-                        if (dep != null) {
-                            for (Departamento depi : dep) {
-                    %>
-                    <option value="<%= depi.getIdDepartamento()%>" <%= artis != null && artis.getDepartamento().getIdDepartamento() == depi.getIdDepartamento() ? "selected" : ""%> >
-                        <%= depi.getNombreDepartamento()%>
-                    </option>
-                    <%
-                            }
-                        }
-                    %>
-                </select><br>
+                <table id="tablones">
+                    <tr>
+                        <td>
+                            Codigo del articulo:
+                        </td>
+                        <td>
+                            <input id="txt"  type="text" name="codigoArticulo" value="<%= codigoArticulo%>" onkeypress="javascript:return validarNum(event)" maxlength="10" >
+                        </td>
+                    </tr>
 
-                <br>Unidad de medida: <input id="txt"  type="text"  name="medida" value="<%= medida%>" maxlength="145"><br><br>
-                Existencia: <input id="txt"  type="text"  name="existencia" value="<%= existencia == 0 ? "" : existencia%>" onkeypress="javascript:return validarNum(event)" maxlength="10" ><br><br>
+                    <tr>
+                        <td>
+                            Precio:
+                        </td>
+                        <td>
+                            <input id="txt"  type="text" name="precioArticulo" value="<%= precio == 0 ? "" : precio%>" onkeypress="javascript:return validarNum(event)" maxlength="10">
+                        </td>
+                    </tr>
 
-                <caption>¿Aplica impuesto? &nbsp;</caption><br>
-                <input type="radio" name="Impuestos" value="siI" checked>SI &nbsp;
-                <input type= "radio" name= "Impuestos"  value="noI"  >NO<br><br>
+                    <tr>
+                        <td>
+                            Descripcion corta:
+                        </td>
+                        <td>
+                            <input id="txt"  type="text" name="descriCorta" value="<%= descriCorta%>" maxlength="150">
+                        </td>
+                    </tr>
 
-                Impuesto: <input id="txt"  type="text"  name="impuesto" value="<%= impuesto == 0 ? "" : impuesto%>"onkeypress="javascript:return validarNum(event)" maxlength="10" ><br><br>
-                Descuento: <input id="txt"  type="text"  name="descuento" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" ><br><br>
+                    <tr>
+                        <td>
+                            Descripcion larga:
+                        </td>
+                        <td>
+                            <input id="txt"  type="text" name="descriLarga" value="<%= descriLarga%>" maxlength="500">
+                        </td>
+                    </tr>
 
-               
+                    <tr>
+                        <td>
+                            Departamento:
+                        </td>
+                        <td>
+                            <select name="departamento">
+                                <option value="0" <%= artis == null ? "selected" : ""%>>
+                                    Seleccione una opcion...
+                                </option>
+                                <%
+                                    List<Departamento> dep = (List<Departamento>) request.getAttribute("departamentos");
+                                    if (dep != null) {
+                                        for (Departamento depi : dep) {
+                                %>
+                                <option value="<%= depi.getIdDepartamento()%>" <%= artis != null && artis.getDepartamento().getIdDepartamento() == depi.getIdDepartamento() ? "selected" : ""%> >
+                                    <%= depi.getNombreDepartamento()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Unidad de medida:
+                        </td>
+                        <td>
+                            <input id="txt"  type="text"  name="medida" value="<%= medida%>" maxlength="145">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Existencia: 
+                        </td>
+                        <td>
+                            <input id="txt"  type="text"  name="existencia" value="<%= existencia == 0 ? "" : existencia%>" onkeypress="javascript:return validarNum(event)" maxlength="10" >
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            ¿Aplica impuesto?
+                            <input type="radio" name="Impuestos" value="siI" checked>SI &nbsp;
+                            <input type= "radio" name= "Impuestos"  value="noI"  >NO
+                        </td>
+                        <td>
+                            <input type="radio" name="Impuestos" value="siI" checked>10% &nbsp;
+                            <input type= "radio" name= "Impuestos"  value="noI"  >15%
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            Descuento: 
+                        </td>
+                        <td>
+                            <input id="txt"  type="text"  name="descuento" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" >
+                        </td>
+                    </tr>
+
+                </table>
+
+<!-- Impuesto: <input id="txt"  type="text"  name="impuesto" value="<%= impuesto == 0 ? "" : impuesto%>"onkeypress="javascript:return validarNum(event)" maxlength="10" ><br><br>-->
+
+
+
                 <input id="botones" type="submit" value="Agregar" />
 
                 <input id="botones" type="reset" value="Cancelar"/>

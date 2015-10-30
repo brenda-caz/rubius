@@ -32,7 +32,9 @@ public class Imagen {
         this.horaImagen = horaImagen;
     }
     
-    
+    public Imagen(String path) {
+        this.path = path;
+    }
 
     public int getIdImagen() {
         return idImagen;

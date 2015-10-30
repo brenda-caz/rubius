@@ -13,8 +13,7 @@ padding: 0px;
 outline: 0;
 }
 
-html, body { width: 100%;}
-
+html, body { /* width: 100%; */}
 body {
 /*  padding-top:0px;
   background-color:#DCC2CE;
@@ -28,39 +27,43 @@ body {
   text-align: center;*/
 padding-top: 0px;
   background-image: url('fondoInicio.jpg');
-  background-color: #DE1515;
+  background-color: black;
   background-size: cover;
   font-family:'Roboto Condensed', sans-serif;
-       color: white; 
+  /* color: white; */
   font-size: 14px;
   line-height: 20px;
   text-align: center;
 }
 
 
-#menu {  text-align: center;
+#menu { 
+    text-align: center;
 font-size: 1em;
-width: 1100px;
+width: 998px;
 margin: 10px auto;
+position: absolute;
+left:350px;
+top:0px;
 }
 #menu ul { list-style-type: none;}
 
 #menu ul li.nivel1 { 
-    float: left;
-width: 162px;
+float: left;
+width: 164px;
 margin-right: 2px;
 }
 #menu ul li a {display: block;
 text-decoration: none;
 color: #fff;
-background-color: #F39E1F;
+background-color: #C44781;
 border: solid 1px #fff;
 padding: 8px;
 position: relative;
 }
 #menu ul li:hover {position: relative;
 }
-#menu ul li a:hover, #menu ul li:hover a.nivel1 {background-color: #C44781;
+#menu ul li a:hover, #menu ul li:hover a.nivel1 {background-color:  #F39E1F;
 color: #FFF;
 position: relative;
 }
@@ -127,6 +130,7 @@ fieldset{
     -moz-border-radius:15px;  
   border-radius: 15px;  
   -webkit-border-radius: 15px; //edit :D 
+
 }
 
 #txt, #txt2{
@@ -137,6 +141,34 @@ fieldset{
         padding: 0 4px 0 4px;
         }
 
+        #cabezita{
+            position:absolute;
+            left:0px;
+            top:0px;
+            width: 349px;
+         margin: 10px auto;
+         background-color: #C44781;
+border: solid 1px #fff;
+height: 36px;
 
-
-
+            
+        }
+        
+        #imagen{
+            position: relative;
+            left:0px;
+            top: 70px;
+        }
+        
+        h2{
+            color: #FFF;
+      
+        }
+        
+        #tablones{
+            position: relative;
+            top: 5px;
+            content: initial;
+            padding:0px;
+            
+        }

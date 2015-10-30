@@ -15,9 +15,21 @@
 <link href="Css/chosen.css" rel="stylesheet" type="text/css"/>
 <script src="Css/chosen.jquery.min.js" type="text/javascript"></script>
 <script src="Css/chosen.proto.min.js" type="text/javascript"></script>
+
+<!-- Copiar estos dos para el estilo tablas -->
+        <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Copiar estos dos para el estilo tablas -->
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="jquery.js" type="text/javascript"></script>
+        
+         <!-- Copiar estos dos estilo tabla en este orden -->
+        <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
     </head>
     <body>  <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
-            <div id="menu">
+        <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
+        <div id="menu">
             <ul>
                 <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
                     <ul>
@@ -37,10 +49,10 @@
                     </ul>
 
                 </li>
-                <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
+                <li class="nivel1"><a href="#" class="nivel1">Videos</a>
 
                     <ul>
-                        <li><a href="gestionImagenVideo.jsp" align="left">Videos e imagenes</a></li>
+            <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
                     </ul>
 
                 </li>
@@ -60,54 +72,124 @@
                     </ul>
 
                 </li>
+                
+                <li class="nivel1"><a href="#" class="nivel1" > Cerrar Sesión</a>
+
+                    <ul>
+                        <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
+                    </ul>
+
+
+                </li>
             </ul>
         </div>
         <br><br><br><br>   <h2>Reportes</h2>
         <fieldset id="f1">
             <legend>Buscar Reporte por:</legend> <br>
             <fieldset id="f2">
-                <legend>Rango de fechas</legend> 
-                <br>
-                Fecha Inicial: <input type="text" id="date_timepicker_start" name="E1">
-                Fecha Final: <input type="text" id="date_timepicker_end" name="E2"> <br>
-             
-                
-                 Sucursal: 
-                 <select class="chosen-select">
+                <table>
+                     <tr>
+                        <td>
+                         Fecha Inicial:
+                        </td>
+                        <td>
+                            <input type="text" id="date_timepicker_start" name="E1">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                         Fecha Final:
+                        </td>
+                        <td>
+                           <input type="text" id="date_timepicker_end" name="E2"> <br>
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                       Sucursal:
+                        </td>
+                        <td>
+                             <select class="chosen-select">
                     <option value="1">Monterrey</option>
                     <option value="2">San Nicolas</option>
                     <option value="3">Santa Catarina</option>
-                </select><br><br>
-                
-                
-                 Departamento:  
-                <select>
+                </select>
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                       Departamento:
+                        </td>
+                        <td>
+                            <select>
                     <option value="1">Perfumeria</option>
                     <option value="2">Niñas</option>
                     <option value="3">Lenceria</option>
-                </select><br><br>
-                
-                Cajero 
-                <select>
-                    <option value="1">Juan Martinez</option>
-                    <option value="2">Raul Chapa</option>
+                </select>
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                     Cajero:
+                        </td>
+                        <td>
+                           <select>
                     <option value="3">Francisquina Melendez</option>
                 </select><br><br>
-
-                 Metodo de Pago 
-                <select>
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                     Metodo pago:
+                        </td>
+                        <td>
+                          <select>
                     <option value="1">Efectivo</option>
                     <option value="2">Tarjeta Credito</option>
                     <option value="3">Tarjeta Debito</option><br><br>
-<input id="botones" type="reset" value="Cancelar"/>
-<br><input id="botones" type="submit" value="Agregar" />
+                </select>
+                        </td>
+                    </tr>
+                    
+                    
+                </table>
+              
+                    
+                    <table class="example" id="grid" border="1" align="left">
+                <thead>
+                <tr>
+                    <th style="width: 0.1px;">Editar</th>
+                    <th style="width: 0.1px;">Borrar</th>
+                    <th>Fecha</th>
+                    <th>Sucursal</th>
+                    <th>Departamento</th>
+                    <th>Cajero</th>
+                    <th>Metodo de Pago</th>
+             
+                </tr>
+                   </thead>
+                   
+                   <tbody>
+                       
+                   </tbody>
+                    </table>
+       
             </fieldset><br>
            
            
             
             
         </fieldset>
+ <script type="text/javascript">
 
+            $('.example').DataTable();
+
+        </script>
     </body>
 <script src="./jquery.js"></script>
 <script src="./jquery.datetimepicker.js"></script>

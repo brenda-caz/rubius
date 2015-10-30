@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.io.InputStream;
+
 /**
  *
  * @author BrendaCázares
@@ -21,6 +23,8 @@ public class Articulo {
     private int existencia;
     private int impuesto;
     private int descuento;
+    private Imagen imagen;
+
   
     private Departamento departamento;
 
@@ -33,6 +37,7 @@ public class Articulo {
         this.existencia = existencia;
         this.impuesto = impuesto;
         this.descuento = descuento;
+        
     }
 
     public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, int impuesto, int descuento) {
@@ -48,6 +53,25 @@ public class Articulo {
    
     }
 
+    
+     public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, double precioPublico, int existencia, int impuesto, int descuento) {
+        this.idArticulo = idArticulo;
+        this.codigoArticulo = codigoArticulo;
+        this.descripcionCorta = descripcionCorta;
+        this.precioPublico = precioPublico;
+        this.existencia = existencia;
+        this.impuesto = impuesto;
+        this.descuento = descuento;
+    }
+     
+      public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
+    
     public Articulo(int idArticulo, String descripcionCorta) {
         this.idArticulo = idArticulo;
         this.descripcionCorta = descripcionCorta;

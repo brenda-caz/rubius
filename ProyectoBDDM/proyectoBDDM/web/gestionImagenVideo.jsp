@@ -16,20 +16,24 @@
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
         <link href="Css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link href="Css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+        
         <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
-     <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        
         <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="jquery.js" type="text/javascript"></script>
         <script src="jquery.datetimepicker.js" type="text/javascript"></script>
-      <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
+      
+        <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
       <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
        
         
         
     </head>
     <body> <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
-          <div id="menu">
+    <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
+        <div id="menu">
             <ul>
                 <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
                     <ul>
@@ -49,10 +53,9 @@
                     </ul>
 
                 </li>
-                <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
-
+             <li class="nivel1"><a href="#" class="nivel1">Videos</a>
                     <ul>
-                        <li><a href="imagenesVideosServlet" align="left">Videos e imagenes</a></li>
+                        <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
                     </ul>
 
                 </li>
@@ -72,78 +75,25 @@
                     </ul>
 
                 </li>
+                <li class="nivel1"><a href="#" class="nivel1" > Cerrar Sesión</a>
+
+                    <ul>
+                        <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
+                    </ul>
+
+
+                </li>
+                
             </ul>
         </div>
 
-       <br><br><br><br> <h2>Programaci&oacuten de video e imagenes</h2>
-        
        
+        
+       <br><br><br><br> <h2 style="color: white">Programaci&oacuten de videos</h2>
        <fieldset id="f1">
-<legend>Introduce la siguiente informaci&oacuten</legend> 
-<fieldset id="f2">
-<legend>Imagenes</legend> 
 
-
-
- <table class="example" class="display" cellspacing="0"  width="100%">
-          <thead>
-            <tr> 
-            <th style="width: 0.1px;" >Editar</th>
-            <th>Path</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            </tr>
-          </thead>
-          <tfoot>
-              <tr> 
-            <th>Editar</th>
-            <th>Path</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            </tr>
-          </tfoot>
-          <tbody>
-            
-             <%
-                List<Imagen> imagenes = (List<Imagen>) request.getAttribute("imagenes");
-                if (imagenes != null) {
-                    for (Imagen img : imagenes) {  
-            %>            
-                        <tr>
-                            <td>
-                                <a data-toggle="modal" href="#stack1" onclick="pasarImg(<%= img.getIdImagen() %>)"><img src="Css/pencil-1.png" alt="Editar"/></a>
-                            </td>
-                           
-                            
-                            <td> <img src="<%= img.getPath()%>" width="100px" height="100px"></td>
-                            <td><%= img.getFechaImagen() == null ? "Sin Programar" : img.getFechaImagen()%></td>
-                            <td><%= img.getHoraImagen() == null ? "Sin Programar" : img.getHoraImagen()%></td>                       
-                        </tr>
-            <%      }
-                }
-            %>
-             </tbody>
-        </table>
-
-
-
-
-
-
-
-
-
-
-
-<!--
-Fecha: <input id="txt"  type="text" name="E2"><br><br>
-
-<input id="botones" type="submit" value="Agregar" />
-
-<input id="botones" type="reset" value="Cancelar"/> -->
-</fieldset><br><br>
 <fieldset id="f3">
-<legend>Videos</legend> 
+
 
  <table class="example" class="display" cellspacing="0"  width="100%">
          <thead>
@@ -154,14 +104,6 @@ Fecha: <input id="txt"  type="text" name="E2"><br><br>
             <th>Hora</th>
             </tr>
           </thead>
-          <tfoot>
-              <tr> 
-            <th>Editar</th>
-            <th>Path</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            </tr>
-          </tfoot>
           <tbody>
              <%
                 List<Video> videos = (List<Video>) request.getAttribute("videos");
@@ -171,7 +113,7 @@ Fecha: <input id="txt"  type="text" name="E2"><br><br>
                         <tr>
                             <td>
                                 
-                            <a data-toggle="modal" href="#stack1" onclick="pasarVid(<%= vid.getIdVideo() %>)"><img src="Css/pencil-1.png" alt="Editar"/></a>
+                            <a data-toggle="modal" href="#stack1" onclick="pasarVid(<%= vid.getIdVideo() %>)"><img src="Css/relog.png" alt="Editar"/></a>
                             </td>
                            
                             

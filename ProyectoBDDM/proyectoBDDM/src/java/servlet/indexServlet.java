@@ -8,6 +8,8 @@ package servlet;
 import dao.UsuarioDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -67,6 +69,10 @@ public class indexServlet extends HttpServlet {
                 }
                 else
                 {
+                        List<Double> totales = new ArrayList<Double>();;
+                    HttpSession sessionC = request.getSession();
+                    sessionC.setAttribute("total", totales);
+                    
                     RequestDispatcher disp = getServletContext().
                         getRequestDispatcher("/cajeroServlet");
                 disp.forward(request, response);

@@ -14,7 +14,7 @@
     </head>
     <body>
         < <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
-              
+            <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
                   <div id="menu">
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
@@ -40,7 +40,7 @@
   <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
 
 	<ul>
-		<li><a href="gestionImagenVideo.jsp" align="left">Videos e imagenes</a></li>
+	  <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
 	</ul>
 
 </li>

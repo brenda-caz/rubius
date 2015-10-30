@@ -18,6 +18,17 @@
         <script src="jquery.js" type="text/javascript"></script>
         <script src="jquery.datetimepicker.js" type="text/javascript"></script>
         
+        <!-- Copiar estos dos para el estilo tablas -->
+        <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Copiar estos dos para el estilo tablas -->
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="jquery.js" type="text/javascript"></script>
+        
+         <!-- Copiar estos dos estilo tabla en este orden -->
+        <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
+        
          <script>
             function validarNum(e) {
                 var key;
@@ -81,8 +92,8 @@
     </head>
     <body>
     <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
-    
-        <div id="menu">
+    <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
+ <div id="menu">
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
@@ -101,10 +112,10 @@
         </ul>
 
 </li>
-  <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
+  <li class="nivel1"><a href="#" class="nivel1">Videos </a>
 
 	<ul>
-		<li><a href="gestionImagenVideo.jsp" align="left">Videos e imagenes</a></li>
+	  <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
 	</ul>
 
 </li>
@@ -124,13 +135,22 @@
 	</ul>
 
 </li>
+
+<li class="nivel1"><a href="#" class="nivel1" > Cerrar Sesión</a>
+
+                    <ul>
+                        <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
+                    </ul>
+
+
+                </li>
 </ul>
 </div>
 
       <br><br><br><br><h2>Agregar Departamento</h2>
        
 <fieldset id="f1">
-<legend>Introduce la siguiente informaci&oacuten</legend> 
+
    <%
                 Departamento depas = (Departamento) request.getAttribute("departamento");
                 int id = 0;
@@ -143,17 +163,19 @@
                 }
             %>
 <form method="post" action="departamentoInsertarServlet" onsubmit="return validacion()" name="addUser">
-<h3>Departamento</h3><br>
+
 <input type="hidden" name="idDepartamento" value="<%= id%>">
 Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombreDepa%>" maxlength="75" ><br><br>
 
-<table id="grid" border="1" align="left">
-            <caption>Departamento</caption>
-            <tr> 
-                <th>Editar</th>
-                <th>Borrar</th>
+<table class="example" id="grid" border="1" align="left">
+             <thead>
+                <tr>
+                    <th style="width: 0.1px;">Editar</th>
+                    <th style="width: 0.1px;">Borrar</th>
             <th>Nombre</th>
-            </tr>
+             </tr>
+                   </thead>
+                   <tbody>
             
              <%
                 List<Departamento> departamentos = (List<Departamento>) request.getAttribute("departamentos");
@@ -177,12 +199,17 @@ Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombr
             <%      }
                 }
             %>
+             </tbody>
              </table>
              
-<input id="botones" type="submit" value="Agregar" />
-<input id="botones" type="reset" value="Cancelar"/>
+
 </form>
 </fieldset>
-       
+            <!-- Todo la etiqueta script -->
+        <script type="text/javascript">
+
+            $('.example').DataTable();
+
+        </script>
     </body>
 </html>

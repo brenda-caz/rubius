@@ -27,6 +27,8 @@ table{
 }
 
 .TICKET{
+    position: absolute;
+    top:80px;
      width: 99%;
  padding-bottom: 0px;
 
@@ -92,79 +94,65 @@ html, body {
 }
 
 #menu { 
-    font-size: 0.7em;
+    font-size: 1em;
          margin: 0px;
-         position: fixed;
+         position: absolute;
+         top: 0px;
+         left: 1250px;
          border-color: aqua;
          background-image: url("Css/menuDes.png");
         
 }
-#menu ul { 
-    list-style-type: none;
-    border-color: aqua;
-       
+#menu ul { list-style-type: none;}
+
+#menu ul li.nivel1 { 
+float: left;
+width: 164px;
+margin-right: 2px;
+}
+#menu ul li a {display: block;
+text-decoration: none;
+color: #fff;
+background-color: #C44781;
+border: solid 1px #fff;
+padding: 8px;
+position: relative;
+}
+#menu ul li:hover {position: relative;
+}
+#menu ul li a:hover, #menu ul li:hover a.nivel1 {background-color:  #F39E1F;
+color: #FFF;
+position: relative;
+}
+#menu ul li a.nivel1 {display: block!important;display: none;
+position: relative;
+}
+#menu ul li ul {display: none;
+}
+#menu ul li a:hover ul, #menu ul li:hover ul {display: block;
+position: absolute;left: 0px;
+}
+#menu ul li ul li a {width: 160px;
+padding: 6px 0px 8px 0px;
+border-top-color: #000;
 }
 
-#menu ul li a.primera { 
-    border-top: solid 1px #FFF;
+
+table.falsa {border-collapse:collapse;
+border:0px;
+float: left;
+position: relative;
 }
-
-#menu ul li a.nivel1, #menu ul li a.nivel1ie { 
-    width: 24px;
-    height: 23px;
-    background: #F39E1F;
-}
-#menu ul li a {
-    display: block;
-    text-decoration: none;
-    color: #fff;
-    position: relative;
-    text-align: center;
-}
-#menu ul li a:hover, #menu ul li:hover a.nivel1 {
-    background-color: #F39E1F;
-    color: #000;
-    position: relative;
-}
-#menu ul li a.nivel1 {
-    display: block!important;
-    display: none;
-    position: relative;}
-
-#menu ul li ul {
-    display: none;}
-
-#menu ul li a:hover ul, #menu ul li:hover ul {
-    display: block;
-    position: absolute;
-    top:23px;
-    left:0;}
-
-#menu ul li ul li a {
-    width: 120px;
-    background-color: #F39E1F;
-    color: #fff;
-    border: solid 1px #fff;
-    border-top: none;
-    padding: 8px;}
-
-#menu ul li ul li a:hover {
-    position: relative;
-    background-color: #C34881;
-    color: #FFF;}
-
-table.falsa {
-    border-collapse:collapse;
-    border:0px;
-    float: left;
-    position: relative;}
 
 #IMG{
-    background-image: url('promo10.jpg');   
+  
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 20px;
+    border-radius: 10px;
+    position:absolute;
+    top:20px;
+    left:0px;
  
 }
 
@@ -174,6 +162,8 @@ table.falsa {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+      top:240px;
+                 left: 0px;
 }
 
 #Products
@@ -233,6 +223,24 @@ fieldset{
 }
 
 #logito{
-        height: 150px;
-    width: 300px;
+    position: absolute;
+    top:0px;
+    left: 0px;
+        height: 88px;
+    width: 120px;
+}
+
+#respuesta1{
+        background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+                 position: absolute;
+                 top:10px;
+                 left: 945px;
+                  width: 390px;
+                 height: 320px;
+                 
+                 
+
 }

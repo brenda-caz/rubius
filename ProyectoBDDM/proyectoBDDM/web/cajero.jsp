@@ -17,8 +17,35 @@ cajero
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="Css/otroEstilo.css" rel="stylesheet" type="text/css"/>
 
+        <!-- Copiar estos dos para el estilo tablas -->
+        <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Copiar estos dos para el estilo tablas -->
+        <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="jquery.js" type="text/javascript"></script>
+        
+         <!-- Copiar estos dos estilo tabla en este orden -->
+        <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
+
     </head>
     <body>
+         <div id="menu" class="menuCaja">
+                <ul>
+                    
+                   
+
+                    <ul>
+                        <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
+                    </ul>
+
+
+               
+                   
+
+  
+                </ul>
+            </div>
         <div style="
 
              width: 950px;
@@ -26,75 +53,57 @@ cajero
              float: left;
 
              ">
-            <div id="menu" class="menuCaja">
-                <ul>
-                    <li class="nivel1"><a href="#" class="nivel1"></a>
-
-                        <ul>
-                            <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
-                        </ul>
-
-                    </li>
-                </ul>
-            </div>
+           
             <img id="logito"align="left" title="Logo Happy ShopShop"  alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
             <img id="corpo1" align="rigth" title="Imagen Corporativa" style="
-                 position: relative;
-                 left: 175px;
-                 " alt="Imagen Corporativa" src = "Css/corporativo2.jpg"/> <br><br>
+                 position: absolute;
+                 left: 750px;
+                  height: 88px;
+    width: 120px;
+                 
+                 " alt="Imagen Corporativa" src = "Css/corporativa1.jpg"/> <br><br>
 
 
 
 
 
-            <div clas="TICKET">  
+            <div class="TICKET">  
 
                 <fieldset class="fieldset" id="fiTicket">
-                    <legend align="left">Productos</legend>
-                    <table  border="2" align="left" id="Products">
 
-                        <tr>
-                            <th scope="col">CODIGO</th>
-                            <th scope="col">DESCRIPCION</th>
-                            <th scope="col">CANTIDAD</th>
-                            <th scope="col">SUBTOTAL</th>
-                            <th scope="col">TOTAL</th>
-                            <th scope="col">BORRAR</th>
-                        </tr>
+                    <table  class="example" border="2" align="left" id="Products">
+                        <thead>
+                            <tr>
+                                <th >ID</th>
+                                <th >CODIGO</th>
+                                <th >DESCRIPCION</th>
+                                <th >CANTIDAD</th>
+                                <th >SUBTOTAL</th>
+                                <th >TOTAL</th>
+                                <th style="width: 0.1px;">Editar</th>
+                                <th style="width: 0.1px;">Borrar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        <tr>
-                            <td>1234</td>
-                            <td>Ipad Mini</td>
-                            <td>1</td>
-                            <td>192.02</td>
-                            <td>192.02</td>
-                        </tr>
-
-                        <tr>
-                            <td>5467</td>
-                            <td>LG L90</td>
-                            <td>3</td>
-                            <td>500.00</td>
-                            <td>1500.00</td>
-                        </tr>
-
-                        <tr>
-                            <td>9578</td>
-                            <td>Laptop HP</td>
-                            <td>2</td>
-                            <td>3,000.00</td>
-                            <td>6,000.00</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">TOTAL</th>
-                            <td>-</td>
-                            <td>6</td>
-                            <td>-</td>
-                            <td><strong>7,692.51</strong></td>
-                        </tr>
+                        </tbody>
                     </table>
+
+                    <!-- Todo la etiqueta script -->
+        <script type="text/javascript">
+
+            $('.example').DataTable();
+
+        </script>
+         <div id="respuesta1"><img id="respuesta"/></div>
                     <div id="textoBuscar">
+                     
+                        <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Codigo Articulo">
+                        <input id="txt" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad">
+                        <input type="button" id="btn" name="btn" value="enviar"/>
+
+
+
                         <input id="txt" class="Texto" align="center" type="text" name="Buscar" placeholder="Buscar Articulo">
                     </div>
                 </fieldset>
@@ -105,14 +114,44 @@ cajero
                 <div class="contentTotales">
                     <div class="clTotales">
                         <fieldset class="fieldset" id="fiTotales" align="left">
-                            <img id="corpo1" align="left"  title="Imagen Corporativa" alt="Imagen Corporativa" src = "Css/corporativa1.jpg"/>
+                         
+                            <img id="corpo1" align="left"  title="Imagen Corporativa" alt="Imagen Corporativa" src = "Css/corporativo2.jpg"/>
                             <form id="formtotales">
-                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Subtotal:  &nbsp;&nbsp;&nbsp;&nbsp;<input  id="txt" align="center" type="text" name="subtotal"><br><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Descuento:&nbsp;&nbsp;&nbsp;&nbsp; <input id="txt" type="text" name="descuento"><br><br>
-                                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Impuesto Total: &nbsp;&nbsp;&nbsp;&nbsp; <input id="txt" type="text" name="descuento">
+                                <table> 
+                                
+                                 <tr>
+                        <td>
+                        Subtotal:
+                        </td>
+                        <td>
+                           <input id="txt" class="subtotal" align="center" type="text" name="subtotal">
+                        </td>
+                    </tr>
+                    
+                      <tr>
+                        <td>
+                        Descuento:
+                        </td>
+                        <td>
+                          <input id="txt" class="descuento" type="text" name="descuento">
+                        </td>
+                    </tr>
+                    
+                      <tr>
+                        <td>
+                    Impuesto Total:
+                        </td>
+                        <td>
+                           <input id="txt" class="impuesto" type="text" name="impuesto">
+                        </td>
+                    </tr>
+                    
+                       
+                                </table>
+                               
                             </form>
                             <h2 align="right" class="Total">TOTAL</h2>
-                            <h1 align="right" class=numTotal"">23.01.13</h1>
+                            <h1 align="right" class="numTotal"><div id="total1"></div></h1>
                         </fieldset>
                     </div>
 
@@ -128,8 +167,9 @@ cajero
              width: 100px;
 
              ">
+            
             <div id="IMG" style="
-                 width: 410px;
+                 width: 390px;
                  height: 320px;
 
                  ">
@@ -138,15 +178,15 @@ cajero
             <div id="VID" style="
 
 
-                 width: 410px;
+                 width: 390px;
                  height: 320px;
                  "
                  >
-                
-                 <video id="reproductor" muted width="390px" height="320px"></video>
-                
-               <!-- <video src="Css/video1.mp4" width="390px" height="320px"  autoplay muted loop ></video>-->
-            
+
+                <video id="reproductor" muted width="390px" height="320px"></video>
+
+                <!-- <video src="Css/video1.mp4" width="390px" height="320px"  autoplay muted loop ></video>-->
+
             </div>
         </div>
 
@@ -157,7 +197,7 @@ cajero
             int c = 0;
             if (vid != null) {
                 for (Video vidio : vid) {
-                  
+
                     algo += vidio.getPathVideo();
                     if (c < vid.size() - 1) {
                         algo += ",";
@@ -171,7 +211,7 @@ cajero
 
 
         <label id="info" visible="false" style=" color:#DCC2CE;" ></label>
-       
+
 
         <script>
             window.onload = function playlist() {
@@ -179,7 +219,7 @@ cajero
 
                 var reproductor = document.getElementById("reproductor"),
                         videos = algomas.split(","), //document.getElementById("vidios"),
-                info = document.getElementById("info");
+                        info = document.getElementById("info");
 
                 info.innerHTML = "Vídeo: " + videos[0];
                 reproductor.src = videos[0] + ".mp4";
@@ -197,5 +237,52 @@ cajero
         </script>
 
 
+        <script src="Css/jquery-latest.js" type="text/javascript"></script>
+
+        <script>
+            $(document).ready(
+                    function () {
+
+                        $("#btn").click(
+                                function () {
+
+                                    var codigo = $(".nueva").val();
+                                    var cantidad = $(".cantidad").val();
+
+                                    $.get('ajaxServlet', {codigo: codigo, cantidad: cantidad},
+                                    function (responsetext)
+                                    {
+                                        var respuesta = responsetext.split("|");
+
+                                        $("#respuesta").attr("src", respuesta[1]);
+
+                                        $("#Products").append(respuesta[0]);
+
+                                        $(".subtotal").val(respuesta[2]);
+                                        $(".descuento").val(respuesta[3]);
+                                        $(".impuesto").val(respuesta[4]);
+                                        $("#total1").text(respuesta[5]);
+
+                                        $(".nueva").val('');
+                                        $(".cantidad").val('');
+
+                                    }
+
+                                    );
+                                }
+
+                        );
+
+
+                    }
+
+
+            );
+
+
+        </script>
+
+
+        
     </body>
 </html>

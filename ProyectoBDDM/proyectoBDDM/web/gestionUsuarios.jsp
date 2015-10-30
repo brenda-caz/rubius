@@ -271,14 +271,15 @@
 
     </head>
     <body>
-        <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
+          <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" id="imagen" src = "Css/logoHappy.png"/>
 
-        <div id="menu">
-            <ul>
+<div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
+ <div id="menu">
+          <ul>
                 <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
                     <ul>
                         <li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
-                        <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
+                        <li>  <a href="usuarioInsertarServlet?inicio=no&id=0" align="left">Agregar Empleado</a></li>
 
                         <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
                     </ul>
@@ -293,10 +294,10 @@
                     </ul>
 
                 </li>
-                <li class="nivel1"><a href="#" class="nivel1">Videos e imagenes</a>
+                <li class="nivel1"><a href="#" class="nivel1">Videos</a>
 
                     <ul>
-                        <li><a href="gestionImagenVideo.jsp" align="left">Videos e imagenes</a></li>
+                     <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
                     </ul>
 
                 </li>
@@ -316,14 +317,23 @@
                     </ul>
 
                 </li>
+                
+                <li class="nivel1"><a href="#" class="nivel1" > Cerrar Sesión</a>
+
+                    <ul>
+                        <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
+                    </ul>
+
+
+                </li>
+                
             </ul>
         </div>
 
         <br><br><br><br>  <h2>Agregar Empleados</h2>
 
-        <fieldset id="f1">
-            <legend>Introduce la siguiente informaci&oacuten</legend> 
-            <br><h3>Datos Personales</h3><br>
+     
+        
 
             <%
                 Usuario usua = (Usuario) request.getAttribute("usuario");
@@ -374,35 +384,132 @@
             %>
 
             <form name="addUser" method="post" enctype="multipart/form-data" action="usuarioInsertarServlet" onsubmit="return validacion()">
-                <img align="right" id="blah" title="Fotografia empledo" style="width: 150px; height: 150px;" alt="Agregar foto usuario" src = "<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"/>
-                Foto: <input type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"><br><br>
-                Nombre: <input id="txt"  type="text" name="E2" value="<%= nombre%>" maxlength="70" > <br><br>
-                Apellido Paterno: <input id="txt"  type="text" name="apePaterno" value="<%= apePaterno%>" maxlength="70"><br><br>
-                Apellido Materno: <input id="txt"  type="text" name="apeMaterno" value="<%= apeMaterno%>" maxlength="70"><br><br>
-
-                <caption>Sexo: &nbsp;</caption><br>
-                <% if ("H".equals(sexo)) { %>
+                  <fieldset id="f1">
+              
+                      <img align="right" id="blah" title="Fotografia empledo" style="width: 150px; height: 150px;" alt="Agregar foto usuario" src = "<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"/>
+                      <table>
+                          
+                           <tr>
+                        <td>
+                        Foto:
+                        </td>
+                        <td>
+                            <input type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
+                        </td>
+                    </tr>
+                         
+                    
+                     <tr>
+                        <td>
+                         Nombre:
+                        </td>
+                        <td>
+                            <input id="txt"  type="text" name="E2" value="<%= nombre%>" maxlength="70" >
+                        </td>
+                    </tr>
+                           <tr>
+                        <td>
+                       Apellido Paterno: 
+                        </td>
+                        <td>
+                         <input id="txt"  type="text" name="apePaterno" value="<%= apePaterno%>" maxlength="70">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                        Apellido Materno:
+                        </td>
+                        <td>
+                          <input id="txt"  type="text" name="apeMaterno" value="<%= apeMaterno%>" maxlength="70">
+                        </td>
+                    </tr>
+                    
+                      <tr>
+                        <td>
+                       Sexo:
+                        </td>
+                        <td>
+                          <% if ("H".equals(sexo)) { %>
                 <input type="radio" value="H" name="sexo" checked/>Hombre
                 <input type="radio" value="M" name="sexo"/>Mujer
                 <% } else { %>
                 <input type="radio" value="H" name="sexo" />Hombre
                 <input type="radio" value="M" name="sexo" checked/>Mujer
                 <%}%>
-                <br><br>
-                <caption>Fecha de nacimiento: &nbsp;</caption>
-                <input id="txt" class="dateN" name="fechaNacimiento" type="text" value="<%= fechaNacimiento%>"><br><br>
-
-                CURP:<input id="txt" type="text" name="curp" value="<%= curp%>" maxlength="70"><br><br>
-                Correo Electronico: <input id="txt"  type="text" name="emails" value="<%= emails%>" maxlength="145"><br><br>
-                Contraseña: <input id="txt2"  type="password" name="contra" value="<%= contra%>" maxlength="45">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                  Fecha de nacimiento:
+                        </td>
+                        <td>
+    <input id="txt" class="dateN" name="fechaNacimiento" type="text" value="<%= fechaNacimiento%>">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                  CURP:
+                        </td>
+                        <td>
+      <input id="txt" type="text" name="curp" value="<%= curp%>" maxlength="70">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                  Correo Electronico:
+                        </td>
+                        <td>
+ <input id="txt"  type="text" name="emails" value="<%= emails%>" maxlength="145">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                 Contraseña: 
+                        </td>
+                        <td>
+ <input id="txt2"  type="password" name="contra" value="<%= contra%>" maxlength="45">
                 <input type="checkbox" id="ver" onchange="hideOrShowPassword()" /> Ver Contraseña
-                <br><br>
-
-                Calle:<input id="txt"  type="text" name="calle" value="<%= calle%>" maxlength="70"><br><br>
-                Numero:<input id="txt"  type="text" name="numero" value="<%= numero == 0 ? "" : numero%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
-                Colonia:<input id="txt"  type="text" name="colonia" value="<%= colonia%>" maxlength="140"><br><br>
-                Ciudad: <br>
-                <select name="ciudad">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                 Calle:
+                        </td>
+                        <td>
+<input id="txt"  type="text" name="calle" value="<%= calle%>" maxlength="70">
+                        </td>
+                    </tr>
+                    
+                       <tr>
+                        <td>
+                 Numero:
+                        </td>
+                        <td>
+ <input id="txt"  type="text" name="numero" value="<%= numero == 0 ? "" : numero%>" onkeypress="javascript:return validarNum(event)" maxlength="10">
+                        </td>
+                    </tr>
+                    
+                       <tr>
+                        <td>
+                 Colonia:
+                        </td>
+                        <td>
+ <input id="txt"  type="text" name="colonia" value="<%= colonia%>" maxlength="140">
+                        </td>
+                    </tr>
+                    
+                       <tr>
+                        <td>
+                Ciudad:
+                        </td>
+                        <td>
+<select name="ciudad">
                     <option value="0"  <%= usua == null ? "selected" : ""%>>
                         Seleccione una opcion...
                     </option>
@@ -420,8 +527,15 @@
                     %>
                 </select>
 
-                <br>  Estado <br>
-                <select name="estado">
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                Estado:
+                        </td>
+                        <td>
+ <select name="estado">
                     <option value="0"  <%= usua == null ? "selected" : ""%>>
                         Seleccione una opcion...
                     </option>
@@ -438,9 +552,24 @@
                         }
                     %>
                 </select>
-                <br><br>Codigo postal:<input id="txt"  type="text" name="postal" value="<%= postal == 0 ? "" : postal%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
-                Nivel academico <br>
-                <select name="estudios">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+                Codigo postal:
+                        </td>
+                        <td>
+ <input id="txt"  type="text" name="postal" value="<%= postal == 0 ? "" : postal%>" onkeypress="javascript:return validarNum(event)" maxlength="10">
+                        </td>
+                    </tr>
+                    
+                        <tr>
+                        <td>
+                 Nivel academico:
+                        </td>
+                        <td>
+ <select name="estudios">
                     <option value="0"  <%= usua == null ? "selected" : ""%>>
                         Seleccione una opcion...
                     </option>
@@ -457,22 +586,59 @@
                         }
                     %>
                 </select>
-                <br><br>
-                <caption>Puesto: &nbsp;</caption><br>
-                <% if ("A".equals(puesto)) { %>
+                        </td>
+                    </tr>
+                    
+                      <tr>
+                        <td>
+                Codigo postal:
+                        </td>
+                        <td>
+ <input id="txt"  type="text" name="postal" value="<%= postal == 0 ? "" : postal%>" onkeypress="javascript:return validarNum(event)" maxlength="10">
+                        </td>
+                    </tr>
+                    
+                      <tr>
+                        <td>
+     Puesto:
+                        </td>
+                        <td>
+   <% if ("A".equals(puesto)) { %>
                 <input type="radio" value="A" name="puesto" checked/>Administrador
                 <input type="radio" value="C" name="puesto"/>Cajero
                 <% } else { %>
                 <input type="radio" value="A" name="puesto" />Administrador
                 <input type="radio" value="C" name="puesto" checked/>Cajero
                 <%}%>
-                <br><br>
-                RFC: <input id="txt"  type="text" name="rfc" value="<%= rfc%>" maxlength="15"><br><br>
-                Numero de nomina: <input id="txt"  type="text" name="nomina" value="<%= nomina == 0 ? "" : nomina%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
+            
+                        </td>
+                    </tr>
+                    
+                      <tr>
+                        <td>
+             RFC: 
+                        </td>
+                        <td>
+   <input id="txt"  type="text" name="rfc" value="<%= rfc%>" maxlength="15">
+                        </td>
+                    </tr>
+                    
+                     <tr>
+                        <td>
+             Numero de nomina: 
+                        </td>
+                        <td>
+ <input id="txt"  type="text" name="nomina" value="<%= nomina == 0 ? "" : nomina%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
+                        </td>
+                    </tr>
+                    
+                    
+                      </table>
+              
                 <input type="hidden" name="id" value="<%= id%>">
-                <input id="botones" type="submit" value="Agregar" />
+               <input id="botones" type="submit" value="Agregar" />
 
-                <input id="botones" type="reset" value="Cancelar"/>
+<input id="botones" type="reset" value="Cancelar"/>
             </form>
         </fieldset>
 
