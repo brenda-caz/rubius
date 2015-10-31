@@ -201,7 +201,8 @@ Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSuc
             %>
                                </tbody>
         </table>
-
+<input id="botones" type="submit" value="Agregar" />
+<input id="botones" type="submit" value="Cancelar" />
 </form>
 </fieldset>
               <!-- Todo la etiqueta script -->

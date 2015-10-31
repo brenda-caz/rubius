@@ -237,7 +237,7 @@
             int impuesto = 0;
             int descuento = 0;
             int departamento = 0;
-            InputStream fotoArticulo = null;
+            String fotoArticulo = null;
 
             if (artis != null) {
                 id = artis.getIdArticulo();
@@ -250,6 +250,7 @@
                 impuesto = artis.getImpuesto();
                 descuento = artis.getDescuento();
                 departamento = artis.getDepartamento().getIdDepartamento();
+                fotoArticulo = artis.getImagen().getPath();
 
             }
         %>
@@ -261,6 +262,16 @@
 
                 <input type="hidden" name="id" value="<%= id%>">
                 <table id="tablones">
+                    
+                     <tr>
+                        <td>
+                        Foto:
+                        </td>
+                        <td>
+                            <input type="file" name="archivo" id="txt" <%= artis == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
+                        </td>
+                    </tr>
+                    
                     <tr>
                         <td>
                             Codigo del articulo:

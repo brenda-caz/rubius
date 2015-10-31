@@ -98,7 +98,7 @@
  <table class="example" class="display" cellspacing="0"  width="100%">
          <thead>
             <tr> 
-            <th style="width: 0.1px;">Editar</th>
+            <th style="width: 0.1px;">Programar</th>
             <th>Path</th>
             <th>Fecha</th>
             <th>Hora</th>

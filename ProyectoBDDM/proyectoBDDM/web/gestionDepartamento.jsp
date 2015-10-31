@@ -202,7 +202,8 @@ Nombre: <input id="txt"  type="text" name="agregarDepartamento" value="<%= nombr
              </tbody>
              </table>
              
-
+<input id="botones" type="submit" value="Agregar" />
+<input id="botones" type="submit" value="Cancelar" />
 </form>
 </fieldset>
             <!-- Todo la etiqueta script -->

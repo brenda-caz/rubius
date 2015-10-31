@@ -93,7 +93,7 @@
                          Fecha Inicial:
                         </td>
                         <td>
-                            <input type="text" id="date_timepicker_start" name="E1">
+                            <input id="txt" type="text" id="date_timepicker_start" name="E1">
                         </td>
                     </tr>
                     
@@ -102,7 +102,7 @@
                          Fecha Final:
                         </td>
                         <td>
-                           <input type="text" id="date_timepicker_end" name="E2"> <br>
+                           <input id="txt" type="text" id="date_timepicker_end" name="E2"> <br>
                         </td>
                     </tr>
                     
