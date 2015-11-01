@@ -20,8 +20,8 @@
         <title>Articulos</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
-         <link href="chosen.css" rel="stylesheet" type="text/css"/>
-         
+        <link href="chosen.css" rel="stylesheet" type="text/css"/>
+
         <script src="jquery.js" type="text/javascript"></script>
         <script src="jquery.datetimepicker.js" type="text/javascript"></script>
         <script src="chosen.jquery.js" type="text/javascript"></script>
@@ -192,7 +192,7 @@
                     </ul>
 
                 </li>
-               <li class="nivel1" ><a href="#" class="nivel1"> Videos</a>
+                <li class="nivel1" ><a href="#" class="nivel1"> Videos</a>
 
                     <ul>
                         <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
@@ -265,16 +265,16 @@
 
                 <input type="hidden" name="id" value="<%= id%>">
                 <table id="tablones">
-                    
-                     <tr>
+
+                    <tr>
                         <td>
-                        Foto:
+                            Foto:
                         </td>
                         <td>
                             <input type="file" name="archivo" id="txt" <%= artis == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
                         </td>
                     </tr>
-                    
+
                     <tr>
                         <td>
                             Codigo del articulo:
@@ -357,12 +357,15 @@
                     <tr>
                         <td>
                             ¿Aplica impuesto?
-                            <input type="radio" name="Impuestos" value="siI" checked>SI &nbsp;
-                            <input type= "radio" name= "Impuestos"  value="noI"  >NO
                         </td>
                         <td>
-                            <input type="radio" name="Impuestos" value="siI" checked>10% &nbsp;
-                            <input type= "radio" name= "Impuestos"  value="noI"  >15%
+                            <input id="id_radio1" type="radio" name="Impuestosa" value="siI" checked >SI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="id_radio2" type= "radio" name= "Impuestosa"  value="noI"  >NO
+                            <br>
+                            <div id="div1">
+                                <input type="radio" name="Impuestos" value="siI" checked>10% &nbsp;
+                                <input type= "radio" name= "Impuestos"  value="noI"  >15%
+                            </div>
                         </td>
                     </tr>
 
@@ -372,7 +375,11 @@
                             Descuento: 
                         </td>
                         <td>
-                            <input id="txt"  type="text"  name="descuento" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" >
+                            <input id="id_radio3" type="radio" name="descuentoa" value="siI" checked >Por porcentaje &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="id_radio4" type= "radio" name= "descuentoa"  value="noI"  >Por monto
+                            <br>
+                            <div class="div2"><input id="txt" type="text"  name="descuentop" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" >%</div>
+                            <input id="txt" class="div3"  type="text"  name="descuentom" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" >
                         </td>
                     </tr>
 
@@ -391,13 +398,40 @@
             </fieldset>
         </form>
 
- <script>
-                
-    $( document ).ready(function() {
-        $("select").chosen();
+
+<script>
+    $(document).ready(function () {
+        $('.div3').hide();
+    $('#id_radio3').click(function () {
+        $('.div3').hide('fast');
+        $('.div2').show('fast');
     });
-                   
-                   </script>
+    $('#id_radio4').click(function () {
+        $('.div2').hide('fast');
+        $('.div3').show('fast');
+    });
+});
+</script>
+
+
+        <script>
+            $(document).ready(function () {
+                $('#id_radio1').click(function () {
+                    $('#div1').show('fast');
+                });
+                $('#id_radio2').click(function () {
+                    $('#div1').hide('fast');
+                });
+            });
+        </script>
+
+        <script>
+
+            $(document).ready(function () {
+                $("select").chosen();
+            });
+
+        </script>
 
     </body>
 </html>
