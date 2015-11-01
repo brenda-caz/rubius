@@ -282,7 +282,23 @@ cajero
 
         </script>
 
+<script type="text/javascript">
+function quitar(val) {
 
+var id = "#"+val;
+
+  $(id).remove();
+  
+  
+  
+}
+</script>
+
+<script type="text/javascript">
+function editar() {
+alert('val');
+}
+</script>
         
     </body>
 </html>

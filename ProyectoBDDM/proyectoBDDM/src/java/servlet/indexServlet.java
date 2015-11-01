@@ -72,6 +72,9 @@ public class indexServlet extends HttpServlet {
                         List<Double> totales = new ArrayList<Double>();;
                     HttpSession sessionC = request.getSession();
                     sessionC.setAttribute("total", totales);
+                    int idtabla=1;
+                     HttpSession sessiont = request.getSession();
+                    sessiont.setAttribute("idtabla", idtabla);
                     
                     RequestDispatcher disp = getServletContext().
                         getRequestDispatcher("/cajeroServlet");

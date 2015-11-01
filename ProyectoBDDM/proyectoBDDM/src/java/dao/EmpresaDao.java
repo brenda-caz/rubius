@@ -116,14 +116,15 @@ public class EmpresaDao {
     }
      
      
-     public static List<Video> VideoReproducir() {
+     public static List<Video> VideoReproducir(int id) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         ResultSet rs = null;
         try {
             List<Video> Videos = new ArrayList();
-            cs = connection.prepareCall("{ call videoReproducir() }");
+            cs = connection.prepareCall("{ call videoReproducir(?) }");
+             cs.setInt(1, id);
             rs = cs.executeQuery();
             while (rs.next()) {
                 Video vid = new Video(

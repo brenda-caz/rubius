@@ -20,8 +20,11 @@
         <title>Articulos</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
+         <link href="chosen.css" rel="stylesheet" type="text/css"/>
+         
         <script src="jquery.js" type="text/javascript"></script>
         <script src="jquery.datetimepicker.js" type="text/javascript"></script>
+        <script src="chosen.jquery.js" type="text/javascript"></script>
 
         <script>
             function validarNum(e) {
@@ -224,7 +227,7 @@
             </ul>
         </div>
 
-        <br><br><br><br><h2>Agregar Articulos</h2>
+        <br><br><br><br><h2>Gestion Articulos</h2>
         <%
             Articulo artis = (Articulo) request.getAttribute("articulo");
             int id = 0;
@@ -387,5 +390,14 @@
 
             </fieldset>
         </form>
+
+ <script>
+                
+    $( document ).ready(function() {
+        $("select").chosen();
+    });
+                   
+                   </script>
+
     </body>
 </html>

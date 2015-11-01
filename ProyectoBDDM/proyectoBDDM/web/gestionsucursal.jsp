@@ -14,6 +14,8 @@
         <title>Sucursal</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
         <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="jquery.js" type="text/javascript"></script>
         <script src="jquery.datetimepicker.js" type="text/javascript"></script>
@@ -147,7 +149,7 @@
 </ul>
 </div>
 
-       <br><br><br><br><h2>Agregar Sucursal</h2>
+       <br><br><br><br><h2>Gestion Sucursal</h2>
        
 <fieldset id="f1">
  
@@ -164,7 +166,9 @@
 <form method="post" action="sucursalInsertarServlet" onsubmit="return validacion()" name="addUser">
 
 <input type="hidden" name="idSucursal" value="<%= id%>">
-Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSucursal%>" maxlength="75" ><br><br>
+Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSucursal%>" maxlength="75" >
+<input id="botones" type="submit" value="Agregar" />
+<input id="botones" type="reset" value="Cancelar" />
 
 <table class="example" id="grid" border="1" align="left">
            <thead>
@@ -188,9 +192,7 @@ Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSuc
                                     <img src="Css/pencil-1.png" alt="Editar"/>
                             </td>
                             <td>
-                               <a href="<%= request.getServletContext().getContextPath()%>/sucursalConsultaServlet?accion=borrar&id=<%= sucu.getIdSucursal()%>">
-                                    <img src="Css/bote-1.png" alt="Borrar"/>
-                                </a> 
+                              <a data-toggle="modal" href="#stack1" onclick="pasarVid(<%= sucu.getIdSucursal() %>)"><img src="Css/bote-1.png" alt="Editar"/></a>                    
                             </td>
                             
                             <td><%= sucu.getNombreSucursal()%></td>
@@ -201,8 +203,6 @@ Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSuc
             %>
                                </tbody>
         </table>
-<input id="botones" type="submit" value="Agregar" />
-<input id="botones" type="submit" value="Cancelar" />
 </form>
 </fieldset>
               <!-- Todo la etiqueta script -->
@@ -210,6 +210,56 @@ Nombre: <input id="txt"  type="text" name="agregarSucursal" value="<%= nombreSuc
 
             $('.example').DataTable();
 
-        </script>
+        </script>         
+        
+        
+        
+        
+        
+        
+        
+        
+         <div id="stack1" class="modal hide fade" tabindex="-1" data-focus-on="input:first">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 style="color:purple;">Eliminar Sucursal</h3>
+            </div>
+            <form action="sucursalConsultaServlet" method="post">
+                <div class="modal-body">
+                    <p style="color:purple;">Estas seguro que deseas borrar el sucursal?</p>
+                    <input type="hidden" name="id" id="id"/>
+                    <input type="hidden" name="accion" id="accion"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn">No</button>
+                    <button type="submit" class="btn btn-primary">Si</button>
+                </div>
+            </form>
+        </div>
+            
+            <script src="Css/jquery.min.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modalmanager.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modal.js" type="text/javascript"></script>
+
+            
+            <script > 
+               function pasarVid(a)
+                {
+                    document.getElementById('id').value = a;
+                    document.getElementById('accion').value = 'borrar';
+                }
+            </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </body>
 </html>

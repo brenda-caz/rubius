@@ -10,22 +10,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ventas</title>
-<link rel="stylesheet" type="text/css" href="./jquery.datetimepicker.css"/>
-<link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
-<link href="Css/chosen.css" rel="stylesheet" type="text/css"/>
-<script src="Css/chosen.jquery.min.js" type="text/javascript"></script>
-<script src="Css/chosen.proto.min.js" type="text/javascript"></script>
-
-<!-- Copiar estos dos para el estilo tablas -->
-        <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+        
+         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
+        <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <link href="chosen.css" rel="stylesheet" type="text/css"/>
+         <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Copiar estos dos para el estilo tablas -->
+        
+
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="jquery.js" type="text/javascript"></script>
-        
-         <!-- Copiar estos dos estilo tabla en este orden -->
+        <script src="jquery.datetimepicker.js" type="text/javascript"></script>
+        <script src="chosen.jquery.js" type="text/javascript"></script>
         <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
+
     </head>
     <body>  <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"/>
         <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
@@ -93,7 +92,7 @@
                          Fecha Inicial:
                         </td>
                         <td>
-                            <input id="txt" type="text" id="date_timepicker_start" name="E1">
+                            <input id="txt" type="text" class="date_timepicker_start" name="E1">
                         </td>
                     </tr>
                     
@@ -102,7 +101,7 @@
                          Fecha Final:
                         </td>
                         <td>
-                           <input id="txt" type="text" id="date_timepicker_end" name="E2"> <br>
+                           <input id="txt" type="text" class="date_timepicker_end" name="E2"> <br>
                         </td>
                     </tr>
                     
@@ -185,6 +184,15 @@
             
             
         </fieldset>
+        
+         <script>
+                
+
+        $("select").chosen();
+   
+                   
+                   </script>
+        
  <script type="text/javascript">
 
             $('.example').DataTable();
@@ -194,28 +202,24 @@
 <script src="./jquery.js"></script>
 <script src="./jquery.datetimepicker.js"></script>
 <script>
-    $( document ).ready(function() {
-        alert('hola');
-    $(".chosen-select").chosen(); 
-});
-     
+   
 jQuery(function(){
- jQuery('#date_timepicker_start').datetimepicker({
+ jQuery('.date_timepicker_start').datetimepicker({
       lang:'es',
   format:'Y/m/d',
   onShow:function( ct ){
    this.setOptions({
-    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+    maxDate:jQuery('.date_timepicker_end').val()?jQuery('.date_timepicker_end').val():false
    })
   },
   timepicker:false
  });
- jQuery('#date_timepicker_end').datetimepicker({
+ jQuery('.date_timepicker_end').datetimepicker({
   lang:'es',
  format:'Y/m/d',
   onShow:function( ct ){
    this.setOptions({
-    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+    minDate:jQuery('.date_timepicker_start').val()?jQuery('.date_timepicker_start').val():false
    })
   },
   timepicker:false

@@ -18,10 +18,13 @@
         <title>Usuarios</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>
         <link href="jquery.datetimepicker.css" rel="stylesheet" type="text/css"/>
+        <link href="chosen.css" rel="stylesheet" type="text/css"/>
+        
+
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="jquery.js" type="text/javascript"></script>
         <script src="jquery.datetimepicker.js" type="text/javascript"></script>
-
+        <script src="chosen.jquery.js" type="text/javascript"></script>
 
         <script>
             function validarNum(e) {
@@ -330,7 +333,7 @@
             </ul>
         </div>
 
-        <br><br><br><br>  <h2>Agregar Empleados</h2>
+        <br><br><br><br>  <h2>Gestion Empleados</h2>
 
      
         
@@ -535,7 +538,7 @@
                 Estado:
                         </td>
                         <td>
- <select name="estado">
+ <select id="chosen" name="estado">
                     <option value="0"  <%= usua == null ? "selected" : ""%>>
                         Seleccione una opcion...
                     </option>
@@ -641,6 +644,14 @@
 <input id="botones" type="reset" value="Cancelar"/>
             </form>
         </fieldset>
+               
+               <script>
+                
+    $( document ).ready(function() {
+        $("select").chosen();
+    });
+                   
+                   </script>
 
         <script type="text/javascript">
 

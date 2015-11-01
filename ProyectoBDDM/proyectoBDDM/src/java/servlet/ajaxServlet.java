@@ -51,12 +51,16 @@ public class ajaxServlet extends HttpServlet {
         }
 
         String msj = "";
+        
         Articulo arti = ArticuloDao.buscarArticuloC(codigin);
 
         HttpSession sessionC = request.getSession();
+        HttpSession sessiont = request.getSession();
         List<Double> totales = new ArrayList<Double>();
         totales = (List<Double>) sessionC.getAttribute("total");
 
+        int idtabla= (int) sessiont.getAttribute("idtabla");
+        
         Double subtotal = cantidad * arti.getPrecioPublico();
         Double total = 0.0;
         Double descuent = 0.0;
@@ -93,9 +97,35 @@ public class ajaxServlet extends HttpServlet {
             SumaImpuesto = (double) arti.getImpuesto();
             sumaTotal = total;
         }
+        
+        /* 
+        IMPUESTO
+        precioArticulo * 1.16 = precioConIva
+        precioArticulo * 1.10 = precioConIva
+        
+        DESCUENTO
+        1.- %descuento /100 = valorDescuento
+        2.- precioArticulo * valorDescuento = totalDescuento
+        3.-precioArticulo - totalDescuento = precioFinal
+        
+                  15% / 100 =  0.15
+                  1200 * 0.15 = 180
+                  1200 - 180= 1020
+        
+        un solo articulo
+        totalArticulo = precioConIva + preciofinal
+        
+        mas de un arcticulo
+        totalArticulo = precioConIva + preciofinal
+        totalAritculoFinal = totalArticulo * cantidadArticulos
+        
+        
+        */
 
         if (arti != null) {
-            msj = "<tr><td>" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>" + "<td>" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + total + "</td>" + "|" + arti.getImagen().getPath() + "|" + sumaSubTotal + "|" + sumaDescuento + "|" + SumaImpuesto + "|" + sumaTotal;
+            msj = "<tr id=" + idtabla +"><td>" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>" + "<td id="+"e"+ idtabla + ">" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + total + "</td>" + "<td><a href=" + "javascript:editar();" + "><img src=\"Css/pencil-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Editar\"/></a></td>" + "<td><a href=" + "javascript:quitar("+ idtabla +");" + "><img src=\"Css/bote-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Borrar\"/></a></td>"  + "|" + arti.getImagen().getPath() + "|" + sumaSubTotal + "|" + sumaDescuento + "|" + SumaImpuesto + "|" + sumaTotal;
+            idtabla++;
+            sessiont.setAttribute("idtabla", idtabla);
         } else {
             msj = "Producto inexistente";
         }

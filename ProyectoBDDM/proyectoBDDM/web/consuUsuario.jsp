@@ -17,6 +17,8 @@
          <!-- Copiar estos dos para el estilo tablas -->
         <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
         <!-- Copiar estos dos para el estilo tablas -->
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="jquery.js" type="text/javascript"></script>
@@ -24,6 +26,7 @@
          <!-- Copiar estos dos estilo tabla en este orden -->
         <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
+        
         
         <title>Empleados</title>
     </head>
@@ -121,9 +124,7 @@
                         </a> 
                     </td>
                     <td>
-                        <a href="<%= request.getServletContext().getContextPath()%>/usuarioConsultaServlet?accion=borrar&id=<%= usua.getId()%>">
-                            <img src="Css/bote-1.png" alt="Borrar"/>
-                        </a>                     
+                         <a data-toggle="modal" href="#stack1" onclick="pasarVid(<%= usua.getId() %>)"><img src="Css/bote-1.png" alt="Borrar"/></a>                    
                     </td>
 
                     <td><%= usua.getNombre()%></td>
@@ -150,5 +151,56 @@
 
         </script>
                 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         <div id="stack1" class="modal hide fade" tabindex="-1" data-focus-on="input:first">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 style="color:purple;">Eliminar Usuario</h3>
+            </div>
+            <form action="usuarioConsultaServlet" method="post">
+                <div class="modal-body">
+                    <p style="color:purple;">Estas seguro que deseas borrar el usuario?</p>
+                    <input type="hidden" name="id" id="id"/>
+                    <input type="hidden" name="accion" id="accion"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn">No</button>
+                    <button type="submit" class="btn btn-primary">Si</button>
+                </div>
+            </form>
+        </div>
+            
+            <script src="Css/jquery.min.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modalmanager.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modal.js" type="text/javascript"></script>
+
+            
+            <script > 
+               function pasarVid(a)
+                {
+                    document.getElementById('id').value = a;
+                    document.getElementById('accion').value = 'borrar';
+                }
+            </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </body>
 </html>

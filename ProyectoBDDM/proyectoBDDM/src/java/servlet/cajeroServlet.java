@@ -41,8 +41,14 @@ public class cajeroServlet extends HttpServlet {
         if (session.getAttribute("user") != null) {
             
             
-            List<Video> vid = EmpresaDao.VideoReproducir();
+            List<Video> vid = EmpresaDao.VideoReproducir(1);
             request.setAttribute("vidios", vid);
+            
+            if(vid.size()<= 0)
+            {
+                 List<Video> vid2 = EmpresaDao.VideoReproducir(2);
+            request.setAttribute("vidios", vid2);
+            }
             
             
             RequestDispatcher disp = getServletContext().
