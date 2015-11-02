@@ -31,16 +31,14 @@
         <title>Empleados</title>
     </head>
     <body>
-        <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" id="imagen" src = "Css/logoHappy.png"/>
-
-   
-                <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
-        <div id="menu"> <
+         <img align="left" title="Logo Happy ShopShop" alt="Logo Happy ShopShop" src = "Css/logoHappy.png"  />
+      <div id="cabezita"> <img alt="Logo Happy ShopShop" src = "Css/logocabeza.png"/></div>
+        <div id="menu">
             <ul>
                 <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
                     <ul>
                         <li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
-                        <li>  <a href="usuarioInsertarServlet?inicio=no&id=0" align="left">Agregar Empleado</a></li>
+                        <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
 
                         <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
                     </ul>
@@ -50,7 +48,7 @@
 
                     <ul>
                         <li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-                        <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+                      <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
 
                     </ul>
 
@@ -58,14 +56,14 @@
                 <li class="nivel1"><a href="#" class="nivel1">Videos</a>
 
                     <ul>
-                         <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
+                        <li><a href="imagenesVideosServlet" align="left">Videos</a></li>
                     </ul>
 
                 </li>
                 <li class="nivel1"><a href="#" class="nivel1"> Reportes</a>
 
                     <ul>
-                        <li><a href="reporteVentas.jsp" align="left">Generar reportes</a></li>
+                        <li><a href="reporteServlet" align="left">Generar reportes</a></li>
                     </ul>
 
                 </li>
@@ -95,7 +93,7 @@
 
         <br><br>
 
-        <br><br><br><br><h2>Consultar Empleados</h2>
+        <br><br><br><br><h2 id="encabezado">Consultar Empleados</h2>
         <br> <fieldset id="f1"> <br>
             <table class="example" id="grid" border="1" align="left">
                 <thead>

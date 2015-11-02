@@ -292,7 +292,7 @@
 
                     <ul>
                         <li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-                        <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+                       <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
 
                     </ul>
 
@@ -307,7 +307,7 @@
                 <li class="nivel1"><a href="#" class="nivel1"> Reportes</a>
 
                     <ul>
-                        <li><a href="reporteVentas.jsp" align="left">Generar reportes</a></li>
+                      <li><a href="reporteServlet" align="left">Generar reportes</a></li>
                     </ul>
 
                 </li>
@@ -333,7 +333,7 @@
             </ul>
         </div>
 
-        <br><br><br><br>  <h2>Gestion Empleados</h2>
+        <br><br><br><br>  <h2 id="encabezado">Gestion Empleados</h2>
 
      
         
@@ -393,7 +393,7 @@
                       <table>
                           
                            <tr>
-                        <td>
+                        <td class="estilotd">
                         Foto:
                         </td>
                         <td>
@@ -403,7 +403,7 @@
                          
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                          Nombre:
                         </td>
                         <td>
@@ -411,7 +411,7 @@
                         </td>
                     </tr>
                            <tr>
-                        <td>
+                        <td class="estilotd">
                        Apellido Paterno: 
                         </td>
                         <td>
@@ -420,7 +420,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                         Apellido Materno:
                         </td>
                         <td>
@@ -429,7 +429,7 @@
                     </tr>
                     
                       <tr>
-                        <td>
+                        <td class="estilotd">
                        Sexo:
                         </td>
                         <td>
@@ -444,7 +444,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                   Fecha de nacimiento:
                         </td>
                         <td>
@@ -453,7 +453,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                   CURP:
                         </td>
                         <td>
@@ -462,7 +462,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                   Correo Electronico:
                         </td>
                         <td>
@@ -471,7 +471,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                  Contraseña: 
                         </td>
                         <td>
@@ -481,7 +481,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                  Calle:
                         </td>
                         <td>
@@ -490,7 +490,7 @@
                     </tr>
                     
                        <tr>
-                        <td>
+                        <td class="estilotd">
                  Numero:
                         </td>
                         <td>
@@ -499,7 +499,7 @@
                     </tr>
                     
                        <tr>
-                        <td>
+                        <td class="estilotd">
                  Colonia:
                         </td>
                         <td>
@@ -508,7 +508,7 @@
                     </tr>
                     
                        <tr>
-                        <td>
+                        <td class="estilotd">
                 Ciudad:
                         </td>
                         <td>
@@ -534,7 +534,7 @@
                     </tr>
                     
                     <tr>
-                        <td>
+                        <td class="estilotd">
                 Estado:
                         </td>
                         <td>
@@ -559,7 +559,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                 Codigo postal:
                         </td>
                         <td>
@@ -568,7 +568,7 @@
                     </tr>
                     
                         <tr>
-                        <td>
+                        <td class="estilotd">
                  Nivel academico:
                         </td>
                         <td>
@@ -593,7 +593,7 @@
                     </tr>
                     
                       <tr>
-                        <td>
+                        <td class="estilotd">
                 Codigo postal:
                         </td>
                         <td>
@@ -602,7 +602,7 @@
                     </tr>
                     
                       <tr>
-                        <td>
+                        <td class="estilotd">
      Puesto:
                         </td>
                         <td>
@@ -618,7 +618,7 @@
                     </tr>
                     
                       <tr>
-                        <td>
+                        <td class="estilotd">
              RFC: 
                         </td>
                         <td>
@@ -627,7 +627,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
              Numero de nomina: 
                         </td>
                         <td>

@@ -187,7 +187,7 @@
 
                     <ul>
                         <li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-                        <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
+                         <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
 
                     </ul>
 
@@ -202,7 +202,7 @@
                 <li class="nivel1"><a href="#" class="nivel1"> Reportes</a>
 
                     <ul>
-                        <li><a href="reporteVentas.jsp" align="left">Generar reportes</a></li>
+                        <li><a href="reporteServlet" align="left">Generar reportes</a></li>
                     </ul>
 
                 </li>
@@ -227,7 +227,7 @@
             </ul>
         </div>
 
-        <br><br><br><br><h2>Gestion Articulos</h2>
+        <br><br><br><br><h2 id="encabezado">Articulos</h2>
         <%
             Articulo artis = (Articulo) request.getAttribute("articulo");
             int id = 0;
@@ -267,7 +267,7 @@
                 <table id="tablones">
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Foto:
                         </td>
                         <td>
@@ -276,7 +276,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Codigo del articulo:
                         </td>
                         <td>
@@ -285,7 +285,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Precio:
                         </td>
                         <td>
@@ -294,7 +294,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Descripcion corta:
                         </td>
                         <td>
@@ -303,7 +303,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Descripcion larga:
                         </td>
                         <td>
@@ -312,7 +312,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Departamento:
                         </td>
                         <td>
@@ -337,7 +337,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Unidad de medida:
                         </td>
                         <td>
@@ -346,7 +346,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Existencia: 
                         </td>
                         <td>
@@ -355,7 +355,7 @@
                     </tr>
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             ¿Aplica impuesto?
                         </td>
                         <td>
@@ -371,7 +371,7 @@
 
 
                     <tr>
-                        <td>
+                        <td class="estilotd">
                             Descuento: 
                         </td>
                         <td>

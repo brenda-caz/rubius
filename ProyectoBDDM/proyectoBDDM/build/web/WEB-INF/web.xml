@@ -66,6 +66,11 @@
         <servlet-class>servlet.cajeroServlet</servlet-class>
     </servlet>
     
+    
+    <servlet>
+        <servlet-name>reporteServlet</servlet-name>
+        <servlet-class>servlet.reporteServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -126,6 +131,11 @@
     <servlet-mapping>
         <servlet-name>cajeroServlet</servlet-name>
         <url-pattern>/cajeroServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>reporteServlet</servlet-name>
+        <url-pattern>/reporteServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>

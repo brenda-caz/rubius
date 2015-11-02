@@ -61,59 +61,40 @@ public class ajaxServlet extends HttpServlet {
 
         int idtabla= (int) sessiont.getAttribute("idtabla");
         
-        Double subtotal = cantidad * arti.getPrecioPublico();
-        Double total = 0.0;
-        Double descuent = 0.0;
-        Double imp = 0.0;
         
-        descuent = (double) arti.getDescuento() * cantidad;
-        if (arti.getImpuesto() == 0) {
-            total = subtotal - descuent;
-        } else {
-            imp = (double) arti.getImpuesto() * cantidad;
-            total = subtotal - descuent;
-            total = total * imp;
-        }
-
-        Double sumaSubTotal = 0.0;
-        Double sumaDescuento = 0.0;
-        Double SumaImpuesto = 0.0;
-        Double sumaTotal = 0.0;
-        if (totales.size() > 0) {
-            sumaSubTotal = totales.get(0) + subtotal;
-            sumaDescuento = totales.get(1) + descuent;
-            SumaImpuesto = totales.get(2) + imp;
-            if (SumaImpuesto > 0) {
-                sumaTotal = totales.get(3) + total;
-                sumaTotal = sumaTotal - sumaDescuento;
-                sumaTotal = sumaTotal * SumaImpuesto;
-            } else {
-                sumaTotal = totales.get(3) + total;
-                sumaTotal = sumaTotal - sumaDescuento;
-            }
-        } else {
-            sumaSubTotal = subtotal;
-            sumaDescuento = (double) arti.getDescuento();
-            SumaImpuesto = (double) arti.getImpuesto();
-            sumaTotal = total;
-        }
+        //aqui empieza calculo
         
-        /* 
+        double precioPublico = arti.getPrecioPublico();
+        double descuento = arti.getDescuento();
+        double impuesto = arti.getImpuesto();
+        
+        //Calculo del iva
+              /* 
         IMPUESTO
         precioArticulo * 1.16 = precioConIva
-        precioArticulo * 1.10 = precioConIva
+        precioArticulo * 1.10 = precioConIva*/
+        double precioIva = precioPublico * impuesto;
         
-        DESCUENTO
+        //calculo del descuento
+         /* DESCUENTO
         1.- %descuento /100 = valorDescuento
         2.- precioArticulo * valorDescuento = totalDescuento
         3.-precioArticulo - totalDescuento = precioFinal
         
                   15% / 100 =  0.15
                   1200 * 0.15 = 180
-                  1200 - 180= 1020
+                  1200 - 180= 1020*/
+     
+        double valorDescuento = descuento / 100;
+        double totalDescuento = precioPublico * valorDescuento;
+        double precioFinal = precioPublico - totalDescuento;
+                                                                                                                                                                                                 
+           
+      /*  un solo articulo
+        totalArticulo = precioConIva + preciofinal*/
         
-        un solo articulo
-        totalArticulo = precioConIva + preciofinal
+  
+       
         
         mas de un arcticulo
         totalArticulo = precioConIva + preciofinal

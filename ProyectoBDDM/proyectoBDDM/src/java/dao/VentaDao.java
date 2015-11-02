@@ -110,4 +110,129 @@ public class VentaDao {
             pool.freeConnection(connection);
         }
     }
+    
+     public static List<Departamento> buscarDepartamentos() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<Departamento> departamentos = new ArrayList();
+            cs = connection.prepareCall("{ call listaDepartamento() }");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Departamento dpo = new Departamento(
+                        rs.getInt("idDepartamento"), 
+                        rs.getString("nombreDepartamento")       
+                );
+
+                    departamentos.add(dpo);
+            }
+            return departamentos;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+     
+       public static List<Sucursal> buscarSucursales() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<Sucursal> sucursales = new ArrayList();
+            cs = connection.prepareCall("{ call listaSucursal() }");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Sucursal suc = new Sucursal(
+                        rs.getInt("idSucursal"), 
+                        rs.getString("nombreSucursal")
+                );
+
+             
+                            
+                sucursales.add(suc);
+            }
+            return sucursales;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+       
+       public static List<Pago> buscarPagos() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<Pago> pagos = new ArrayList();
+            cs = connection.prepareCall("{ call listaPago() }");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Pago pag = new Pago(
+                        rs.getInt("idMetodoPago"), 
+                        rs.getString("nombreMetodoPago")       
+                );
+
+             
+                            
+                pagos.add(pag);
+            }
+            return pagos;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
+       
+       public static List<Usuario> buscarUsuarios() {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            List<Usuario> usuas = new ArrayList();
+            cs = connection.prepareCall("{ call cajeroReporte() }");
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                Usuario usa = new Usuario(
+                       
+                      rs.getString("nombreUsuario"),
+                        rs.getString("apellidoPaterno"),
+                         rs.getInt("idUsuario")
+                       
+                );
+
+             
+                            
+                usuas.add(usa);
+            }
+            return usuas;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+    }
 }

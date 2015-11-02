@@ -35,7 +35,11 @@ padding-top: 0px;
   line-height: 20px;
   text-align: center;
 }
-
+#encabezado{
+    color:white;
+}
+        
+   
 
 #menu { 
     text-align: center;
@@ -160,15 +164,23 @@ height: 36px;
             top: 70px;
         }
         
-        h2{
-            color: #FFF;
-      
-        }
-        
-        #tablones{
+     h2{
+    color:white;
+}
+
+   h1{
+    color:white;
+}
+
+     #tablones{
             position: relative;
             top: 5px;
             content: initial;
             padding:0px;
          
+        }
+        
+        .estilotd{
+            color: white;
+            font-weight:bold;
         }

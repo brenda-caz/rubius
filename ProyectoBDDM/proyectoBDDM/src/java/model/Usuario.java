@@ -118,6 +118,12 @@ public class Usuario {
         this.puesto = puesto;
     }
 
+    public Usuario( String nombre, String apellidoPaterno, int id) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
 
     
     public Usuario(InputStream foto) {

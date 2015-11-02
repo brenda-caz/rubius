@@ -47,7 +47,7 @@
   <li class="nivel1"><a href="#" class="nivel1"> Reportes</a>
 
 	<ul>
-		<li><a href="reporteVentas.jsp" align="left">Generar reportes</a></li>
+		 <li><a href="reporteServlet" align="left">Generar reportes</a></li>
 	</ul>
 
 </li>
@@ -65,7 +65,7 @@
 </ul>
 </div>
 
-     <br><br><br><br>   <h2>Editar Empleados</h2>
+     <br><br><br><br>   <h2 id="encabezado">Editar Empleados</h2>
        
 <fieldset id="f1">
 <legend>Introduce la siguiente informaci&oacuten</legend> 

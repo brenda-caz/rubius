@@ -4,6 +4,11 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Pago"%>
+<%@page import="model.Usuario"%>
+<%@page import="model.Departamento"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Sucursal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,7 +48,7 @@
 
                     <ul>
                         <li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-                        <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+                       <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
 
                     </ul>
 
@@ -58,7 +63,7 @@
                 <li class="nivel1"><a href="#" class="nivel1"> Reportes</a>
 
                     <ul>
-                        <li><a href="reporteVentas.jsp" align="left">Generar reportes</a></li>
+                        <li><a href="reporteServlet" align="left">Generar reportes</a></li>
                     </ul>
 
                 </li>
@@ -82,13 +87,13 @@
                 </li>
             </ul>
         </div>
-        <br><br><br><br>   <h2>Reportes</h2>
+        <br><br><br><br>   <h2 id="encabezado">Reportes</h2>
         <fieldset id="f1">
             <legend>Buscar Reporte por:</legend> <br>
             <fieldset id="f2">
                 <table>
                      <tr>
-                        <td>
+                        <td class="estilotd">
                          Fecha Inicial:
                         </td>
                         <td>
@@ -97,7 +102,7 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                          Fecha Final:
                         </td>
                         <td>
@@ -106,52 +111,102 @@
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                        Sucursal:
                         </td>
                         <td>
-                             <select class="chosen-select">
-                    <option value="1">Monterrey</option>
-                    <option value="2">San Nicolas</option>
-                    <option value="3">Santa Catarina</option>
-                </select>
+                            <select name="sucursalReporte">
+                                <option value="0" selected>
+                                    Seleccione una opcion...
+                                </option>
+                                <%
+                                    List<Sucursal> suc = (List<Sucursal>) request.getAttribute("sucursales");
+                                    if (suc != null) {
+                                        for (Sucursal sucu : suc) {
+                                %>
+                                <option value="<%= sucu.getIdSucursal()%>"  >
+                                    <%= sucu.getNombreSucursal()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
                         </td>
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                        Departamento:
                         </td>
                         <td>
-                            <select>
-                    <option value="1">Perfumeria</option>
-                    <option value="2">Niñas</option>
-                    <option value="3">Lenceria</option>
-                </select>
+                           <select name="departamentoReporte">
+                                <option value="0" selected>
+                                    Seleccione una opcion...
+                                </option>
+                                <%
+                                    List<Departamento> dep = (List<Departamento>) request.getAttribute("departamentos");
+                                    if (suc != null) {
+                                        for (Departamento depa : dep) {
+                                %>
+                                <option value="<%= depa.getIdDepartamento()%>"  >
+                                    <%= depa.getNombreDepartamento()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
                         </td>
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                      Cajero:
                         </td>
                         <td>
-                           <select>
-                    <option value="3">Francisquina Melendez</option>
-                </select><br><br>
+                            <select name="cajeroReporte">
+                                <option value="0" selected>
+                                    Seleccione una opcion...
+                                </option>
+                                <%
+                                    List<Usuario> usu = (List<Usuario>) request.getAttribute("usuarios");
+                                    if (usu != null) {
+                                        for (Usuario usua : usu) {
+                                %>
+                                <option value="<%= usua.getId()%>"  >
+                                    <%= usua.getNombre() + " " + usua.getApellidoPaterno()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
                         </td>
                     </tr>
                     
                      <tr>
-                        <td>
+                        <td class="estilotd">
                      Metodo pago:
                         </td>
                         <td>
-                          <select>
-                    <option value="1">Efectivo</option>
-                    <option value="2">Tarjeta Credito</option>
-                    <option value="3">Tarjeta Debito</option><br><br>
-                </select>
+                         <select name="pagoReporte">
+                                <option value="0" selected>
+                                    Seleccione una opcion...
+                                </option>
+                                <%
+                                    List<Pago> pag = (List<Pago>) request.getAttribute("pagos");
+                                    if (pag != null) {
+                                        for (Pago pags : pag) {
+                                %>
+                                <option value="<%= pags.getIdPago()%>"  >
+                                    <%= pags.getNombrePago()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
                         </td>
                     </tr>
                     

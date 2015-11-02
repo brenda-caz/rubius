@@ -33,7 +33,7 @@
 
                     <ul>
                         <li><a href="consultaArticulos.jsp" align="left">Gestion Articulos</a></li>	
-                        <li><a href="gestionArticulos.jsp" align="left">Agregar Articulos</a></li>
+                         <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
                     </ul>
 
                 </li>
@@ -47,7 +47,7 @@
                 <li class="nivel1"><a href="#" class="nivel1"> Reportes</a>
 
                     <ul>
-                        <li><a href="reporteVentas.jsp" align="left">Generar reportes</a></li>
+                     <li><a href="reporteServlet" align="left">Generar reportes</a></li>
                     </ul>
 
                 </li>
@@ -71,7 +71,7 @@
                 </li>
             </ul>
         </div>
-        <br><br> <br><br>  <h2> Consulta de Departamentos</h2>
+        <br><br> <br><br>  <h2 id="encabezado"> Consulta de Departamentos</h2>
         <br> <fieldset id="f1"><br>
             <table id="grid" border="1" align="left">
                 <caption>Departamentos</caption>
