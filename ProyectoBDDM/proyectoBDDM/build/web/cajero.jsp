@@ -38,11 +38,6 @@ cajero
                     <ul>
                         <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
                     </ul>
-
-
-               
-                   
-
   
                 </ul>
             </div>
@@ -63,15 +58,11 @@ cajero
                  
                  " alt="Imagen Corporativa" src = "Css/corporativa1.jpg"/> <br><br>
 
-
-
-
-
             <div class="TICKET">  
 
                 <fieldset class="fieldset" id="fiTicket">
 
-                    <table  class="example" border="2" align="left" id="Products">
+                    <table class="example" border="2" align="left" id="Products">
                         <thead>
                             <tr>
                                 <th >ID</th>

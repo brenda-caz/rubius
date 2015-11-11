@@ -4,6 +4,7 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Venta"%>
 <%@page import="model.Pago"%>
 <%@page import="model.Usuario"%>
 <%@page import="model.Departamento"%>
@@ -89,8 +90,9 @@
         </div>
         <br><br><br><br>   <h2 id="encabezado">Reportes</h2>
         <fieldset id="f1">
-            <legend>Buscar Reporte por:</legend> <br>
+            
             <fieldset id="f2">
+                <form method="post" action="">
                 <table>
                      <tr>
                         <td class="estilotd">
@@ -209,26 +211,54 @@
                             </select>
                         </td>
                     </tr>
-                    
-                    
                 </table>
+                            <input type="submit" value="Aceptar"/>
+                            </form>
               
                     
                     <table class="example" id="grid" border="1" align="left">
                 <thead>
                 <tr>
-                    <th style="width: 0.1px;">Editar</th>
-                    <th style="width: 0.1px;">Borrar</th>
                     <th>Fecha</th>
                     <th>Sucursal</th>
                     <th>Departamento</th>
                     <th>Cajero</th>
-                    <th>Metodo de Pago</th>
+                    <th>Descripcion Corta</th>
+                    <th>Descripcion Larga</th>
+                    <th>Cantidad Venta</th>
+                    <th>Precio</th>
+                    <th>Decuento</th>
+                    <th>Impuesto</th>
+                     <th>Subtotal</th>
+                    <th>Tipo de Pago</th>
              
                 </tr>
                    </thead>
                    
                    <tbody>
+                       
+                                     <%
+                    List<Venta> Ventas = (List<Venta>) request.getAttribute("Venta");
+                    if (Ventas != null) {
+                        for (Venta ve : Ventas) {
+                %>            
+                <tr>
+                    <td><%= ve.getFecha()%></td>
+                    <td><%= ve.getSucursalVenta().getNombreSucursal() %></td>
+                    <td><%= ve.getDepartamentoVenta().getNombreDepartamento() %></td>
+                    <td><%= ve.getUsuarioVenta().getNombre() %> </td>
+                    <td><%= ve.getArticuloVenta().getDescripcionCorta() %></td>
+                    <td><%= ve.getArticuloVenta().getDescripcionLarga()%></td>
+                    <td><%= ve.getCantidadVenta() %></td>  
+                    <td><%= ve.getArticuloVenta().getPrecioPublico() %></td>  
+                    <td><%= ve.getArticuloVenta().getDescuento()%></td>  
+                    <td><%= ve.getArticuloVenta().getImpuesto()%></td>  
+                    <td><%= ve.getSubtotal() %></td>
+                    <td><%= ve.getPagoVenta().getNombrePago() %></td>
+                </tr>
+                <%      }
+                    }
+                %>
                        
                    </tbody>
                     </table>

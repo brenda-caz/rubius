@@ -93,8 +93,8 @@ public class ArticuloDao {
             cs.setDouble(5, a.getPrecioPublico());
             cs.setString(6, a.getMedida());
             cs.setInt(7, a.getExistencia());
-            cs.setInt(8, a.getImpuesto());
-            cs.setInt(9, a.getDescuento());
+            cs.setDouble(8, a.getImpuesto());
+            cs.setDouble(9, a.getDescuento());
             cs.execute();
             
         } catch (Exception ex) {
@@ -120,8 +120,8 @@ public class ArticuloDao {
             cs.setDouble(6, a.getPrecioPublico());
             cs.setString(7, a.getMedida());
             cs.setInt(8, a.getExistencia());
-            cs.setInt(9, a.getImpuesto());
-            cs.setInt(10, a.getDescuento());
+            cs.setDouble(9, a.getImpuesto());
+            cs.setDouble(10, a.getDescuento());
             cs.execute();
             
         } catch (Exception ex) {

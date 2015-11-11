@@ -25,30 +25,36 @@ public class VentaDao {
 
     // buscar general
 
-    public static List<Venta> buscaVentas() {
+    public static List<Venta> buscaVentas(String fechaInicial, String fechaFinal, int idPagoV, int idDepartamento, int idSucursalV, int idUsuarioV) {       
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         ResultSet rs = null;
         try {
             List<Venta> ventas = new ArrayList();
-            cs = connection.prepareCall("{ call listaVenta() }");
+            cs = connection.prepareCall("{ call reporteVenta(?,?,?,?,?,?) }");
+            cs.setString(1, fechaInicial);
+            cs.setString(2, fechaFinal);
+            cs.setInt(3, idUsuarioV);
+            cs.setInt(4, idSucursalV);
+            cs.setInt(5, idDepartamento);
+            cs.setInt(6, idPagoV);
             rs = cs.executeQuery();
             while (rs.next()) {
                 Venta ven = new Venta(
                         rs.getInt("idVenta"),
                         rs.getInt("cantidadVenta"),
                         rs.getDouble("subtotal"),
-                        rs.getDate("fechaVenta")
+                        rs.getString("fechaVenta")
                 );
 
                 Sucursal suc = new Sucursal(
-                        rs.getInt("idSucursal"),
+                        rs.getInt("idSucursalVenta"),
                         rs.getString("nombreSucursal")
                 );
 
                 Departamento dep = new Departamento(
-                        rs.getInt("idDepartamento"),
+                        rs.getInt("idDepartamentoVenta"),
                         rs.getString("nombreDepartamento")
                 );
 
@@ -58,13 +64,18 @@ public class VentaDao {
                 );
 
                 Pago pag = new Pago(
-                        rs.getInt("idMetodoPago"),
+                        rs.getInt("idMetodoPagoVenta"),
                         rs.getString("nombreMetodoPago")
                 );
 
                 Articulo art = new Articulo(
-                        rs.getInt("idArticulo"),
-                        rs.getString("descripcionCorta")
+                        rs.getInt("idArticuloVenta"),
+                        rs.getString("descripcionCorta"),
+                        rs.getString("descripcionLarga"),
+                        rs.getString("codigoArticulo"),
+                        rs.getDouble("precioPublico"),
+                        rs.getDouble("descuento"),
+                        rs.getDouble("impuestos")
                 );
                 ven.setSucursalVenta(suc);
                 ven.setDepartamentoVenta(dep);
@@ -98,7 +109,7 @@ public class VentaDao {
             cs.setDouble(5, v.getSubtotal());
             cs.setInt(6, v.getPagoVenta().getIdPago());
             cs.setInt(7, v.getArticuloVenta().getIdArticulo());
-            cs.setDate(8, v.getFechaVenta());
+            cs.setString(8, v.getFecha());
 
             cs.execute();
 

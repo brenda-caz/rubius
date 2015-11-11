@@ -69,7 +69,7 @@ public class indexServlet extends HttpServlet {
                 }
                 else
                 {
-                        List<Double> totales = new ArrayList<Double>();;
+                    List<Double> totales = new ArrayList<Double>();;
                     HttpSession sessionC = request.getSession();
                     sessionC.setAttribute("total", totales);
                     int idtabla=1;

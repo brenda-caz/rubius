@@ -23,6 +23,7 @@ import model.Departamento;
 import model.Pago;
 import model.Sucursal;
 import model.Usuario;
+import model.Venta;
 
 /**
  *
@@ -55,6 +56,40 @@ public class reporteServlet extends HttpServlet {
             
               List<Pago> pag = VentaDao.buscarPagos();
             request.setAttribute("pagos", pag);
+            
+            String fechaInicial = request.getParameter("E1");
+            String fechaFinal = request.getParameter("E2");
+            if(!"".equals(fechaInicial) && !"".equals(fechaFinal))
+            {
+                
+                String stridSucursal = request.getParameter("sucursalReporte");
+                int idSucursal = 0;
+            if (stridSucursal != null && !stridSucursal.equals("")) {
+                idSucursal = Integer.parseInt(stridSucursal);
+            }
+            
+            String stridDepartamento = request.getParameter("departamentoReporte");
+                int idDepartamento = 0;
+            if (stridDepartamento != null && !stridDepartamento.equals("")) {
+                idDepartamento = Integer.parseInt(stridDepartamento);
+            }
+            
+            
+             String stridcajero = request.getParameter("cajeroReporte");
+                int idcajero = 0;
+            if (stridcajero != null && !stridcajero.equals("")) {
+                idcajero = Integer.parseInt(stridcajero);
+            
+            
+            String stridpago = request.getParameter("pagoReporte");
+                int idpago = 0;
+            if (stridpago != null && !stridpago.equals("")) {
+                idpago = Integer.parseInt(stridpago);
+            }
+            List<Venta> venta = VentaDao.buscaVentas(fechaInicial,fechaFinal,idpago,idDepartamento,idSucursal,idcajero);
+            request.setAttribute("Venta", venta);
+            }
+            }
             
              RequestDispatcher disp = getServletContext().
                     getRequestDispatcher("/reporteVentas.jsp");

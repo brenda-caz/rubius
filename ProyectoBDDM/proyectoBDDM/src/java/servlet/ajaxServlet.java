@@ -92,11 +92,12 @@ public class ajaxServlet extends HttpServlet {
            
       /*  un solo articulo
         totalArticulo = precioConIva + preciofinal*/
+
         
   
        
         
-        mas de un arcticulo
+      /*  mas de un arcticulo
         totalArticulo = precioConIva + preciofinal
         totalAritculoFinal = totalArticulo * cantidadArticulos
         
@@ -104,18 +105,18 @@ public class ajaxServlet extends HttpServlet {
         */
 
         if (arti != null) {
-            msj = "<tr id=" + idtabla +"><td>" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>" + "<td id="+"e"+ idtabla + ">" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + total + "</td>" + "<td><a href=" + "javascript:editar();" + "><img src=\"Css/pencil-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Editar\"/></a></td>" + "<td><a href=" + "javascript:quitar("+ idtabla +");" + "><img src=\"Css/bote-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Borrar\"/></a></td>"  + "|" + arti.getImagen().getPath() + "|" + sumaSubTotal + "|" + sumaDescuento + "|" + SumaImpuesto + "|" + sumaTotal;
-            idtabla++;
-            sessiont.setAttribute("idtabla", idtabla);
+         //   msj = "<tr id=" + idtabla +"><td>" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>" + "<td id="+"e"+ idtabla + ">" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + total + "</td>" + "<td><a href=" + "javascript:editar();" + "><img src=\"Css/pencil-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Editar\"/></a></td>" + "<td><a href=" + "javascript:quitar("+ idtabla +");" + "><img src=\"Css/bote-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Borrar\"/></a></td>"  + "|" + arti.getImagen().getPath() + "|" + sumaSubTotal + "|" + sumaDescuento + "|" + SumaImpuesto + "|" + sumaTotal;
+           idtabla++;
+           sessiont.setAttribute("idtabla", idtabla);
         } else {
             msj = "Producto inexistente";
         }
 
         List<Double> nuevo = new ArrayList<Double>();
-        nuevo.add(sumaSubTotal);
-        nuevo.add(sumaDescuento);
-        nuevo.add(SumaImpuesto);
-        nuevo.add(sumaTotal);
+//        nuevo.add(sumaSubTotal);
+//        nuevo.add(sumaDescuento);
+//        nuevo.add(SumaImpuesto);
+//        nuevo.add(sumaTotal);
 
         sessionC.setAttribute("total", nuevo);
 
@@ -161,5 +162,6 @@ public class ajaxServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 
 }

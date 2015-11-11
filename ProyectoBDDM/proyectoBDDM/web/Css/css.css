@@ -68,7 +68,7 @@ h1 {
   width: 30%;
   height: 1px;
   float: left;
-  background-color: rgba(255, 255, 255, 0.36);
+  background-color:rgba(255, 255, 255, 0.36);
 }
 @media (max-width: 991px) {
   .subtitle {
@@ -244,7 +244,7 @@ form input:hover {
 form input:focus {
   background-color: white;
   width: 300px;
-  color: #53e3a6;
+  color: #ff8000;//#53e3a6;
 }
 
 form button {
@@ -253,7 +253,7 @@ form button {
   background-color: white;
   border: 0;
   padding: 10px 15px;
-  color: #53e3a6;
+  color:#ff8000;// #53e3a6;
   border-radius: 25px;
   width: 250px;
   cursor: pointer;

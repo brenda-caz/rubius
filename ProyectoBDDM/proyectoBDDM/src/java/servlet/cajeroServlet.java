@@ -44,7 +44,7 @@ public class cajeroServlet extends HttpServlet {
             List<Video> vid = EmpresaDao.VideoReproducir(1);
             request.setAttribute("vidios", vid);
             
-            if(vid.size()<= 0)
+            if(vid== null || vid.size()<= 0)
             {
                  List<Video> vid2 = EmpresaDao.VideoReproducir(2);
             request.setAttribute("vidios", vid2);

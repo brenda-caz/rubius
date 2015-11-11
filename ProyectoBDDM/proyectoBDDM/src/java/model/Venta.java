@@ -20,16 +20,15 @@ public class Venta {
     private double subtotal;
     private Pago pagoVenta;
     private Articulo articuloVenta;
+    private String fecha;
 
-    public Venta(Sucursal sucursalVenta, Departamento departamentoVenta, Usuario usuarioVenta, Pago pagoVenta, Articulo articuloVenta) {
-        this.sucursalVenta = sucursalVenta;
-        this.departamentoVenta = departamentoVenta;
-        this.usuarioVenta = usuarioVenta;
-        this.pagoVenta = pagoVenta;
-        this.articuloVenta = articuloVenta;
+    public String getFecha() {
+        return fecha;
     }
 
-    
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
     
     public Sucursal getSucursalVenta() {
         return sucursalVenta;
@@ -70,13 +69,12 @@ public class Venta {
     public void setArticuloVenta(Articulo articuloVenta) {
         this.articuloVenta = articuloVenta;
     }
-    private Date fechaVenta;
 
-    public Venta(int idVenta, int cantidadVenta, double subtotal, Date fechaVenta) {
+    public Venta(int idVenta, int cantidadVenta, double subtotal, String fecha) {
         this.idVenta = idVenta;
         this.cantidadVenta = cantidadVenta;
         this.subtotal = subtotal;
-        this.fechaVenta = fechaVenta;
+        this.fecha = fecha;
     }
 
     public int getIdVenta() {
@@ -101,16 +99,7 @@ public class Venta {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
-    }
-
-    public Date getFechaVenta() {
-        return fechaVenta;
-    }
-
-    public void setFechaVenta(Date fechaVenta) {
-        this.fechaVenta = fechaVenta;
-    }
-    
+    }  
     
     
 }
