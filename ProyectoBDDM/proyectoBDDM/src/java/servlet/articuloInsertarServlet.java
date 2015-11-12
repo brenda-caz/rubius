@@ -8,6 +8,7 @@ package servlet;
 import dao.ArticuloDao;
 import dao.DepartamentoDao;
 import dao.UsuarioDao;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.servlet.http.Part;
 import model.Articulo;
 import model.Departamento;
 import model.Estado;
+import model.Imagen;
 
 /**
  *
@@ -57,6 +59,7 @@ public class articuloInsertarServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
+            
 
             List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
             request.setAttribute("departamentos", dep);
@@ -70,6 +73,36 @@ public class articuloInsertarServlet extends HttpServlet {
 
             if (!"no".equals(strinicio)) {
                 response.setContentType("text/html;charset=UTF-8");
+                
+                
+                     String path="";
+        
+         String uploadPath = getServletContext().getRealPath("/" + directorio + "/");
+       
+        
+        File fdir = new File(uploadPath);
+        if (!fdir.exists()) {
+            fdir.mkdir();
+        }
+        
+        Part img = request.getPart("archivo");
+ 
+        
+        if (img != null && img.getSize() > 0) {
+            String contentType = img.getContentType();
+            
+                String nombreArchivo = String.valueOf(System.currentTimeMillis());
+                nombreArchivo += extractExtension(img);
+                
+                if (contentType.equals("image/jpeg")) {
+                    path = directorio + "/" + nombreArchivo;
+                    Imagen arti = new Imagen(path);
+                    img.write(uploadPath + "/" + nombreArchivo);
+                    request.setAttribute("path", path);                   
+                }
+        }
+           
+                
 
                 String strcodigoArticulo = request.getParameter("codigoArticulo");
                 String strprecioArticulo = request.getParameter("precioArticulo");
@@ -92,14 +125,14 @@ public class articuloInsertarServlet extends HttpServlet {
                 }
                 String strcalle = request.getParameter("calle");
                 String strimpuesto = request.getParameter("impuesto");
-                int impuestosh = 0;
+                double impuestosh = 0;
                 if (strimpuesto != null && !strimpuesto.equals("")) {
-                    impuestosh = Integer.parseInt(strimpuesto);
+                    impuestosh = Double.parseDouble(strimpuesto);
                 }
                 String strdescuento = request.getParameter("descuento");
-                int descuentosh = 0;
+                double descuentosh = 0;
                 if (strdescuento != null && !strdescuento.equals("")) {
-                    descuentosh = Integer.parseInt(strdescuento);
+                    descuentosh = Double.parseDouble(strdescuento);
                 }
                 Articulo a = new Articulo(strcodigoArticulo, strdescriCorta, strdescriLarga, preshio, strmedida, existenshia, impuestosh, descuentosh);
                 Departamento d = new Departamento(departamentosh);

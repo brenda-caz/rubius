@@ -90,8 +90,7 @@
         </div>
         <br><br><br><br>   <h2 id="encabezado">Reportes</h2>
         <fieldset id="f1">
-            
-            <fieldset id="f2">
+           
                 <form method="post" action="">
                 <table>
                      <tr>
@@ -263,12 +262,7 @@
                    </tbody>
                     </table>
        
-            </fieldset><br>
-           
-           
-            
-            
-        </fieldset>
+            </fieldset>
         
          <script>
                 

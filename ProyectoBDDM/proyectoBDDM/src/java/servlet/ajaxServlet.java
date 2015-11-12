@@ -67,14 +67,36 @@ public class ajaxServlet extends HttpServlet {
         double precioPublico = arti.getPrecioPublico();
         double descuento = arti.getDescuento();
         double impuesto = arti.getImpuesto();
-        
+        double precioIva = 0;
+        double valorDescuento = 0;
+        double totalDescuento = 0;
+        double precioFinalDescuento = 0;
+        double precioFinal = 0;
+        double precioFinalMaster = 0;
+        double sumaImpuesto = 0;
+        double sumaDescuento = 0;
+        double sumaSubtotal = 0;
+        double sumaTotal = 0;
+        double subtotal = 0;
         //Calculo del iva
               /* 
         IMPUESTO
         precioArticulo * 1.16 = precioConIva
         precioArticulo * 1.10 = precioConIva*/
-        double precioIva = precioPublico * impuesto;
         
+        if(impuesto > 0) {
+            precioIva = precioPublico * impuesto;
+            
+            if(impuesto == 1.10)
+            {
+               sumaImpuesto = precioPublico * 0.10;
+            }
+            else
+            {
+                sumaImpuesto = precioPublico * 0.16;
+            }
+            
+        }
         //calculo del descuento
          /* DESCUENTO
         1.- %descuento /100 = valorDescuento
@@ -84,12 +106,64 @@ public class ajaxServlet extends HttpServlet {
                   15% / 100 =  0.15
                   1200 * 0.15 = 180
                   1200 - 180= 1020*/
-     
-        double valorDescuento = descuento / 100;
-        double totalDescuento = precioPublico * valorDescuento;
-        double precioFinal = precioPublico - totalDescuento;
-                                                                                                                                                                                                 
+        
+       
+        if("P".contains(arti.getTipoDescuento()) && descuento > 0 && cantidad > 0)
+        {
+             valorDescuento = descuento / 100;
+             totalDescuento = precioPublico * valorDescuento;
+             precioFinalDescuento = precioPublico - totalDescuento;
+             sumaDescuento = totalDescuento;
+        }         
+        
+        if("M".contains(arti.getTipoDescuento()) && descuento > 0 && cantidad > 0)
+        {
+            totalDescuento = descuento;
+            precioFinalDescuento = precioPublico - descuento;
+            sumaDescuento = descuento;
+        }
+        
+        if(descuento > 0 && impuesto > 0 && cantidad > 0)
+        {
+            precioFinal = precioIva - totalDescuento;
+        }
+        
+        
+        
+        if(cantidad > 1 && cantidad > 0 && impuesto > 0 && descuento > 0)
+        {
+            precioFinalMaster = precioFinal * cantidad;
+        }
+        else if(cantidad > 1 && cantidad > 0 && impuesto > 0 && descuento == 0) 
+        {
+            precioFinalMaster = precioIva * cantidad;
+        }
+        else if(cantidad > 1 && cantidad > 0 && impuesto == 0 && descuento > 0) 
+        {
+            precioFinalMaster = precioFinalDescuento * cantidad;
+        }
+        else if(cantidad > 1 && cantidad > 0 && impuesto == 0 && descuento == 0) 
+        {
+            precioFinalMaster = precioPublico * cantidad;
+        }
            
+        
+        subtotal = precioPublico * cantidad;
+        
+        if(totales.size()>0)
+        {
+        sumaSubtotal = totales.get(0) + subtotal;
+        sumaDescuento = totales.get(1) + sumaDescuento;
+        sumaImpuesto = totales.get(2) + sumaImpuesto;
+        sumaTotal = totales.get(3) + precioFinalMaster;
+        }
+        else
+        {
+            sumaTotal = precioFinalMaster;
+            sumaSubtotal = subtotal;
+        }
+        
+        
       /*  un solo articulo
         totalArticulo = precioConIva + preciofinal*/
 
@@ -105,18 +179,21 @@ public class ajaxServlet extends HttpServlet {
         */
 
         if (arti != null) {
-         //   msj = "<tr id=" + idtabla +"><td>" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>" + "<td id="+"e"+ idtabla + ">" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + total + "</td>" + "<td><a href=" + "javascript:editar();" + "><img src=\"Css/pencil-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Editar\"/></a></td>" + "<td><a href=" + "javascript:quitar("+ idtabla +");" + "><img src=\"Css/bote-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Borrar\"/></a></td>"  + "|" + arti.getImagen().getPath() + "|" + sumaSubTotal + "|" + sumaDescuento + "|" + SumaImpuesto + "|" + sumaTotal;
+            msj = "<tr id=" + idtabla +"><td>" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>" + "<td id="+"e"+ idtabla + ">" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + precioFinalMaster + "</td>" + "<td><a href=" + "javascript:editar();" + "><img src=\"Css/pencil-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Editar\"/></a></td>" + "<td><a href=" + "javascript:quitar("+ idtabla +");" + "><img src=\"Css/bote-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Borrar\"/></a></td>"  + "|" + arti.getImagen().getPath() + "|" + sumaSubtotal + "|" + sumaDescuento + "|" + sumaImpuesto + "|" + sumaTotal;
            idtabla++;
            sessiont.setAttribute("idtabla", idtabla);
         } else {
             msj = "Producto inexistente";
         }
+        
+        
+        //sumas de todo
 
         List<Double> nuevo = new ArrayList<Double>();
-//        nuevo.add(sumaSubTotal);
-//        nuevo.add(sumaDescuento);
-//        nuevo.add(SumaImpuesto);
-//        nuevo.add(sumaTotal);
+        nuevo.add(sumaSubtotal);
+         nuevo.add(sumaDescuento);
+       nuevo.add(sumaImpuesto);
+       nuevo.add(sumaTotal);
 
         sessionC.setAttribute("total", nuevo);
 

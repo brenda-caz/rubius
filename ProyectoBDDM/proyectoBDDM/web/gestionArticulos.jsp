@@ -237,8 +237,8 @@
             double precio = 0;
             String medida = "";
             int existencia = 0;
-            int impuesto = 0;
-            int descuento = 0;
+            double impuesto = 0;
+            double descuento = 0;
             int departamento = 0;
             String fotoArticulo = null;
 
@@ -253,13 +253,13 @@
                 impuesto = artis.getImpuesto();
                 descuento = artis.getDescuento();
                 departamento = artis.getDepartamento().getIdDepartamento();
-                fotoArticulo = artis.getImagen().getPath();
+                fotoArticulo = artis.getImagen().getPath() != null ? artis.getImagen().getPath() : "";
 
             }
         %>
 
 
-        <form name="addUser" id="agregarArticulos" method="post" action="articuloInsertarServlet" onsubmit="return validacion()">
+        <form name="addUser" id="agregarArticulos" enctype="multipart/form-data" method="post" action="articuloInsertarServlet" onsubmit="return validacion()">
             <br> <fieldset id="f1"><br>
 
 
@@ -271,7 +271,8 @@
                             Foto:
                         </td>
                         <td>
-                            <input type="file" name="archivo" id="txt" <%= artis == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
+                            <input type="file" name="archivo" id="txt" accept="image/jpeg" <%= artis == null ? "required" : ""%> value="<%= fotoArticulo %>">
+                            <img align="right" id="blah" title="Fotografia articulo" style="width: 150px; height: 150px;" alt="Agregar foto articulo" src = "<%= fotoArticulo %>"/>
                         </td>
                     </tr>
 
@@ -364,7 +365,7 @@
                             <br>
                             <div id="div1">
                                 <input type="radio" name="Impuestos" value="siI" checked>10% &nbsp;
-                                <input type= "radio" name= "Impuestos"  value="noI"  >15%
+                                <input type= "radio" name= "Impuestos"  value="noI"  >16%
                             </div>
                         </td>
                     </tr>
@@ -433,5 +434,24 @@
 
         </script>
 
+        
+         <script type="text/javascript">
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#txt").change(function () {
+                readURL(this);
+            });
+        </script>
+        
+        
     </body>
 </html>

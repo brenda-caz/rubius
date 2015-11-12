@@ -73,9 +73,9 @@ public class VentaDao {
                         rs.getString("descripcionCorta"),
                         rs.getString("descripcionLarga"),
                         rs.getString("codigoArticulo"),
-                        rs.getDouble("precioPublico"),
-                        rs.getDouble("descuento"),
-                        rs.getDouble("impuestos")
+                        rs.getFloat("precioPublico"),
+                        rs.getFloat("descuento"),
+                        rs.getFloat("impuestos")
                 );
                 ven.setSucursalVenta(suc);
                 ven.setDepartamentoVenta(dep);

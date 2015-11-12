@@ -61,7 +61,7 @@ cajero
             <div class="TICKET">  
 
                 <fieldset class="fieldset" id="fiTicket">
-
+                        <div style="width: 100%; overflow:scroll; height: 360px;">
                     <table class="example" border="2" align="left" id="Products">
                         <thead>
                             <tr>
@@ -79,13 +79,8 @@ cajero
 
                         </tbody>
                     </table>
-
+</div>
                     <!-- Todo la etiqueta script -->
-        <script type="text/javascript">
-
-            $('.example').DataTable();
-
-        </script>
          <div id="respuesta1"><img id="respuesta"/></div>
                     <div id="textoBuscar">
                      

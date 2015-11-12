@@ -186,8 +186,9 @@ public class ArticuloDao {
                         rs.getString("descripcionCorta"),
                         rs.getDouble("precioPublico"),
                         rs.getInt("existencia"),
-                        rs.getInt("impuestos"), 
-                        rs.getInt("descuento")        
+                        rs.getDouble("impuestos"), 
+                        rs.getDouble("descuento"),
+                        rs.getString("tipoDescuento")
                 );
                 Imagen img = new Imagen(rs.getString("pathImagen"));
                 art.setImagen(img);

@@ -33,6 +33,11 @@
 <servlet>
         <servlet-name>articuloInsertarServlet</servlet-name>
         <servlet-class>servlet.articuloInsertarServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>-1</max-file-size>
+            <max-request-size>-1</max-request-size>
+            <file-size-threshold>52428800</file-size-threshold>
+        </multipart-config>
     </servlet>
 
 
@@ -64,6 +69,11 @@
 <servlet>
         <servlet-name>cajeroServlet</servlet-name>
         <servlet-class>servlet.cajeroServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>ajaxServlet</servlet-name>
+        <servlet-class>servlet.ajaxServlet</servlet-class>
     </servlet>
     
    
@@ -138,6 +148,11 @@
      <servlet-mapping>
         <servlet-name>reporteServlet</servlet-name>
         <url-pattern>/reporteServlet</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>ajaxServlet</servlet-name>
+        <url-pattern>/ajaxServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>

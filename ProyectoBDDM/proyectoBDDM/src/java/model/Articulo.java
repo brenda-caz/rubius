@@ -24,6 +24,7 @@ public class Articulo {
     private double impuesto;
     private double descuento;
     private Imagen imagen;
+    private String tipoDescuento;
 
   
     private Departamento departamento;
@@ -64,6 +65,18 @@ public class Articulo {
         this.descuento = descuento;
    
     }
+
+    public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, double precioPublico, int existencia, double impuesto, double descuento, String tipoDescuento) {
+        this.idArticulo = idArticulo;
+        this.codigoArticulo = codigoArticulo;
+        this.descripcionCorta = descripcionCorta;
+        this.precioPublico = precioPublico;
+        this.existencia = existencia;
+        this.impuesto = impuesto;
+        this.descuento = descuento;
+        this.tipoDescuento = tipoDescuento;
+    }
+
 
     
      public Articulo(int idArticulo, String codigoArticulo, String descripcionCorta, double precioPublico, int existencia, double impuesto, double descuento) {
@@ -168,6 +181,14 @@ public class Articulo {
 
     public void setDescuento(double descuento) {
         this.descuento = descuento;
+    }
+
+    public String getTipoDescuento() {
+        return tipoDescuento;
+    }
+
+    public void setTipoDescuento(String tipoDescuento) {
+        this.tipoDescuento = tipoDescuento;
     }
    
 }
