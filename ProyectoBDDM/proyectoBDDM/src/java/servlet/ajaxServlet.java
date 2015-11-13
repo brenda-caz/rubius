@@ -20,7 +20,7 @@ import model.Articulo;
 
 /**
  *
- * @author ErickAlejandro
+ * @author 
  */
 @WebServlet(name = "ajaxServlet", urlPatterns = {"/ajaxServlet"})
 public class ajaxServlet extends HttpServlet {

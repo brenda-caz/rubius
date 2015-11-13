@@ -13,8 +13,7 @@ cajero
     <head>
         <title>Happy ShopShop </title>
         <meta charset="UTF-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="icon" type="image/png" href="Css/icono.png" /> 
         <link href="Css/otroEstilo.css" rel="stylesheet" type="text/css"/>
 
         <!-- Copiar estos dos para el estilo tablas -->
@@ -29,11 +28,11 @@ cajero
         <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
 
     </head>
-    <body>
+    <body onLoad="setInterval('contador()',1000);">
          <div id="menu" class="menuCaja">
                 <ul>
                     
-                   
+                   <label for="contador">Contador:</label><input type="text" id="contador">
 
                     <ul>
                         <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
@@ -65,14 +64,14 @@ cajero
                     <table class="example" border="2" align="left" id="Products">
                         <thead>
                             <tr>
-                                <th >ID</th>
-                                <th >CODIGO</th>
-                                <th >DESCRIPCION</th>
-                                <th >CANTIDAD</th>
-                                <th >SUBTOTAL</th>
-                                <th >TOTAL</th>
-                                <th style="width: 0.1px;">Editar</th>
-                                <th style="width: 0.1px;">Borrar</th>
+                                <th id="productin" >ID</th>
+                                <th id="productin">CODIGO</th>
+                                <th id="productin">DESCRIPCION</th>
+                                <th id="productin">CANTIDAD</th>
+                                <th id="productin" >SUBTOTAL</th>
+                                <th id="productin">TOTAL</th>
+                                <th style="width: 0.1px;" id="productin">Editar</th>
+                                <th style="width: 0.1px;" id="productin">Borrar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -87,7 +86,7 @@ cajero
                         <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Codigo Articulo">
                         <input id="txt" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad">
                         <input type="button" id="btn" name="btn" value="enviar"/>
-
+<input type="button" id="btn1" name="btn1" value="finalizar" onclick="accions();"/>
 
 
                         <input id="txt" class="Texto" align="center" type="text" name="Buscar" placeholder="Buscar Articulo">
@@ -103,10 +102,10 @@ cajero
                          
                             <img id="corpo1" align="left"  title="Imagen Corporativa" alt="Imagen Corporativa" src = "Css/corporativo2.jpg"/>
                             <form id="formtotales">
-                                <table> 
+                                <table  id="totalines2"> 
                                 
                                  <tr>
-                        <td>
+                        <td id="totalines">
                         Subtotal:
                         </td>
                         <td>
@@ -115,7 +114,7 @@ cajero
                     </tr>
                     
                       <tr>
-                        <td>
+                        <td id="totalines">
                         Descuento:
                         </td>
                         <td>
@@ -124,7 +123,7 @@ cajero
                     </tr>
                     
                       <tr>
-                        <td>
+                        <td id="totalines">
                     Impuesto Total:
                         </td>
                         <td>
@@ -196,8 +195,59 @@ cajero
 
 
 
-        <label id="info" visible="false" style=" color:#DCC2CE;" ></label>
+        <label id="info" visible="false" style=" color:whitesmoke;" ></label>
 
+        
+              <script>
+function accions() 
+{ 
+var table = document.getElementById("Products");
+var algo = "";
+for (var i = 0, row; row = table.rows[i]; i++) {
+   //iterate through rows
+   //rows would be accessed using the "row" variable assigned in the for loop
+   if(i > 0)
+   {
+   for (var j = 0, col; col = row.cells[j]; j++) {
+     //iterate through columns
+     //columns would be accessed using the "col" variable assigned in the for loop
+     if(j > -1 && j <6)
+     {
+         if(j != 2)
+             if(j!=5)
+       algo += row.cells[j].innerHTML + ",";
+       else
+            algo += row.cells[j].innerHTML
+   }
+   }
+    algo += "|"
+   }
+    
+   
+}
+
+alert(algo);
+} 
+
+</script>
+        
+
+<script type="text/javascript">
+var cont = 0;
+function contador(){
+
+var f = new Date();
+var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+
+var hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds(); 
+
+	var contador = document.getElementById("contador");
+	contador.value = cont;
+	cont++;
+}
+</script>
+        
+        
 
         <script>
             window.onload = function playlist() {

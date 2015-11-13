@@ -1,7 +1,7 @@
 body {
   padding-top:0px;
-  background-color:#DCC2CE;
-  
+/*  background-color: #dcc2ce;*/
+background-color: whitesmoke;
   background-size: cover;
   font-family:'Roboto Condensed', sans-serif;
   color: #000;
@@ -100,7 +100,7 @@ html, body {
          top: 0px;
          left: 1250px;
          border-color: aqua;
-         background-image: url("Css/menuDes.png");
+       
         
 }
 #menu ul { list-style-type: none;}
@@ -159,19 +159,37 @@ position: relative;
 #VID
 {
     position:absolute;
-    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-      top:240px;
-                 left: 0px;
+    top:240px;
+    left: 25px;
+      background-size: contain;
 }
 
 #Products
 {
     width: 935px;
     height: 280px;
+      font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;    margin: 5px;   text-align: left;    border-collapse: collapse; 
+    font-weight: normal;  }
+
+#productin{
+    font-size: 13px;     font-weight: bold;     padding: 8px;     background: #C44781;
+    border-top: 4px solid #F39E1F;    border-bottom: 1px solid #fff; color: #080808;
 }
 
+
+#totalines{
+    font-weight: bold; 
+     font-size: 20px; 
+}
+
+#totalines2{
+    position: absolute;
+    padding-top: 30px;
+    padding-left: 250px;
+}
 .Texto
 {
     height: 23px;
@@ -213,7 +231,8 @@ cursor:pointer;
 }
 
 fieldset{
-    background-color: #F39E1F; 
+/*    background-color: #F39E1F; */
+background-color: #eed3d7;
     box-shadow: 5px 7px 22px #000;
     border: 4px groove #F39E1F;
     -moz-border-radius:15px;  

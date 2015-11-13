@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+               <link rel="icon" type="image/png" href="Css/icono.png" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Usuarios</title>
         <link href="Css/estiloAdmi.css" rel="stylesheet" type="text/css"/>

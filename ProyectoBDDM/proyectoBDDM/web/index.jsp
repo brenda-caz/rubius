@@ -6,6 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
+          <link rel="icon" type="image/png" href="Css/icono.png" />
         <title>proyecto BDDM</title>
         <meta charset="UTF-8">
         <link href="Css/css.css" rel="stylesheet" type="text/css"/>

@@ -24,7 +24,7 @@ import model.Departamento;
 
 /**
  *
- * @author ErickAlejandro
+ * @author 
  */
 public class articuloConsultaServlet extends HttpServlet {
 
