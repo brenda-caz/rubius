@@ -86,7 +86,7 @@ cajero
                         <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Codigo Articulo">
                         <input id="txt" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad">
                         <input type="button" id="btn" name="btn" value="enviar"/>
-<input type="button" id="btn1" name="btn1" value="finalizar" onclick="accions();"/>
+<input type="button" id="btn1" name="btn1" value="finalizar"/>
 
 
                         <input id="txt" class="Texto" align="center" type="text" name="Buscar" placeholder="Buscar Articulo">
@@ -198,11 +198,15 @@ cajero
         <label id="info" visible="false" style=" color:whitesmoke;" ></label>
 
         
-              <script>
-function accions() 
-{ 
-var table = document.getElementById("Products");
-var algo = "";
+         <script>
+            $(document).ready(
+                    function () {
+
+                        $("#btn1").click(
+                                function () {
+
+                                       var table = document.getElementById("Products");
+var ticket = "";
 for (var i = 0, row; row = table.rows[i]; i++) {
    //iterate through rows
    //rows would be accessed using the "row" variable assigned in the for loop
@@ -215,21 +219,45 @@ for (var i = 0, row; row = table.rows[i]; i++) {
      {
          if(j != 2)
              if(j!=5)
-       algo += row.cells[j].innerHTML + ",";
+       ticket += row.cells[j].innerHTML + ",";
        else
-            algo += row.cells[j].innerHTML
+            ticket += row.cells[j].innerHTML
    }
    }
-    algo += "|"
+    ticket += "¬"
    }
     
    
 }
 
-alert(algo);
-} 
+alert(ticket);
 
-</script>
+
+                                    $.get('guardarVentaServlet', {ticket: ticket},
+                                    function (responsetext)
+                                    {
+                                        var respuesta = responsetext;
+
+                                    }
+
+                                    );
+
+
+
+
+
+                                }
+
+                        );
+
+
+                    }
+
+
+            );
+
+
+        </script>
         
 
 <script type="text/javascript">
