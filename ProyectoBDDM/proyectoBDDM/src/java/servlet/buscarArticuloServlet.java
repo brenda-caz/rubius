@@ -20,7 +20,7 @@ import model.Usuario;
 
 /**
  *
- * @author ErickAlejandro
+ * @author 
  */
 @WebServlet(name = "buscarArticuloServlet", urlPatterns = {"/buscarArticuloServlet"})
 public class buscarArticuloServlet extends HttpServlet {
