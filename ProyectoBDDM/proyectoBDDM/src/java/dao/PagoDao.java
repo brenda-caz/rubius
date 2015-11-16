@@ -26,7 +26,7 @@ public class PagoDao {
         ResultSet rs = null;
         try {
             List<Pago> pagos = new ArrayList();
-            cs = connection.prepareCall("{ call listaCiudadEstado() }");
+            cs = connection.prepareCall("{ call listaPago() }");
             rs = cs.executeQuery();
             while (rs.next()) {
                 Pago pag = new Pago(

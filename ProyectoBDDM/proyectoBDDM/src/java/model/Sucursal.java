@@ -13,6 +13,12 @@ public class Sucursal {
     private int idSucursal;
     private String nombreSucursal;
 
+    public Sucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+    
+    
+
     public Sucursal(String nombreSucursal) {
         this.nombreSucursal = nombreSucursal;
     }

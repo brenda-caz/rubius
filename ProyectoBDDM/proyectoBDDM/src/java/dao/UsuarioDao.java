@@ -15,6 +15,7 @@ import java.util.List;
 import model.Ciudad;
 import model.Estado;
 import model.NivelEstudios;
+import model.Sucursal;
 import model.Usuario;
 import servlet.Utilidades;
 
@@ -93,7 +94,7 @@ public class UsuarioDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call insertUsuario(?,?, ?,?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?) }");
+            cs = connection.prepareCall("{ call insertUsuario(?,?, ?,?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?) }");
             cs.setString(1, e.getNombre());
             cs.setString(2, e.getApellidoPaterno());
             cs.setString(3, e.getApellidoMaterno());
@@ -113,6 +114,7 @@ public class UsuarioDao {
             cs.setBlob(17, e.getFoto());
             cs.setString(18, e.getEmail());
             cs.setString(19, e.getContrasenia());
+            cs.setInt(20, e.getSucursal().getIdSucursal());
             cs.execute();
 
         } catch (Exception ex) {
@@ -145,7 +147,7 @@ public class UsuarioDao {
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         try {
-            cs = connection.prepareCall("{ call actualizarUsuario(?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?,?) }");
+            cs = connection.prepareCall("{ call actualizarUsuario(?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?, ?,?,?, ?, ?,?,?) }");
             cs.setInt(1, u.getId());
             cs.setString(2, u.getNombre());
             cs.setString(3, u.getApellidoPaterno());
@@ -173,6 +175,7 @@ public class UsuarioDao {
             }
             cs.setString(19, u.getEmail());
             cs.setString(20, u.getContrasenia());
+            cs.setInt(21, u.getSucursal().getIdSucursal());
             cs.execute();
 
         } catch (Exception ex) {
@@ -214,7 +217,7 @@ public class UsuarioDao {
                         rs.getInt("numeroNomina"),
                         rs.getBinaryStream(1),
                         rs.getString("correoElectronico"),
-                        Utilidades.Desencriptar(rs.getString("contrasenia"))
+                        Utilidades.Desencriptar(rs.getString("contrasenia"))           
                 );
                 NivelEstudios ne = new NivelEstudios(rs.getInt("idNivelEstudio"));
                 emp.setNivelEstudio(ne);
@@ -222,6 +225,8 @@ public class UsuarioDao {
                 emp.setMunicipio(ci);
                 Estado es = new Estado(rs.getInt("idEstado"));
                 emp.setEstado(es);
+                Sucursal suc = new Sucursal(rs.getInt("idSucursalVe"));
+                emp.setSucursal(suc);
                 return emp;
             }
             return null;
@@ -359,6 +364,10 @@ public class UsuarioDao {
                         rs.getString("nombreUsuario"),
                         rs.getString("puesto")
                 );
+                
+                Sucursal suc = new Sucursal(rs.getInt("idSucursalVe"));
+                u.setSucursal(suc);
+                
                 return u;
             }
             return null;

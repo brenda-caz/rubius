@@ -19,6 +19,10 @@ public class Pago {
         this.idPago = idPago;
         this.nombrePago = nombrePago;
     }
+
+    public Pago(int idPago) {
+        this.idPago = idPago;
+    }
     
 
     public int getIdPago() {

@@ -4,6 +4,7 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Sucursal"%>
 <%@page import="model.Departamento"%>
 <%@page import="model.Estado"%>
 <%@page import="model.Ciudad"%>
@@ -272,8 +273,13 @@
                             Foto:
                         </td>
                         <td>
-                            <input type="file" name="archivo" id="txt" accept="image/jpeg" <%= artis == null ? "required" : ""%> value="<%= fotoArticulo %>">
-                            <img align="right" id="blah" title="Fotografia articulo" style="width: 150px; height: 150px;" alt="Agregar foto articulo" src = "<%= fotoArticulo %>"/>
+                            <div style="width: 150px; height: 150px;"> 
+                                <img align="right" id="blah" title="Fotografia articulo" style="position: absolute; width: 150px; height: 150px;" alt="Agregar foto articulo" src = "<%= fotoArticulo == null ? "Css/usuari.png" : fotoArticulo %>"/>
+                             <input style="height: 200px; width: 200px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" accept="image/jpeg" <%= artis == null ? "required" : ""%> value="<%= fotoArticulo %>">
+                            
+                    </div>
+                            
+                           
                         </td>
                     </tr>
 
@@ -337,6 +343,31 @@
                             </select>
                         </td>
                     </tr>
+                    
+                    <tr>
+                        <td class="estilotd">
+                            Sucursal:
+                        </td>
+                        <td>
+                            <select name="sucursal">
+                                <option value="0" <%= artis == null ? "selected" : ""%>>
+                                    Seleccione una opcion...
+                                </option>
+                                <%
+                                    List<Sucursal> suc = (List<Sucursal>) request.getAttribute("sucursal");
+                                    if (suc != null) {
+                                        for (Sucursal sucu : suc) {
+                                %>
+                                <option value="<%= sucu.getIdSucursal()%>" <%= artis != null && artis.getSucursal().getIdSucursal() == sucu.getIdSucursal()? "selected" : ""%> >
+                                    <%= sucu.getNombreSucursal()%>
+                                </option>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </select>
+                        </td>
+                    </tr>
 
                     <tr>
                         <td class="estilotd">
@@ -361,27 +392,34 @@
                             ¿Aplica impuesto?
                         </td>
                         <td>
-                            <input id="id_radio1" type="radio" name="Impuestosa" value="siI" checked >SI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input id="id_radio2" type= "radio" name= "Impuestosa"  value="noI"  >NO
+                            <input id="id_radio1" type="radio" name="Impuestosa"  value="siI" <%= artis != null && artis.getImpuesto() > 0 ? "checked" : ""%> >SI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="id_radio2" type= "radio" name= "Impuestosa" checked value="noI" <%= artis != null && artis.getImpuesto() <= 0 ? "checked" : ""%> >NO
                             <br>
                             <div id="div1">
-                                <input type="radio" name="Impuestos" value="siI" checked>10% &nbsp;
-                                <input type= "radio" name= "Impuestos"  value="noI"  >16%
+                                <input type="radio" id="ola" name="Impuestos" value="1.10"  <%= artis != null && artis.getImpuesto() == 1.1 ? "checked" : ""%> >10% &nbsp;
+                                <input type= "radio" name= "Impuestos"  value="1.16" <%= artis != null && artis.getImpuesto() == 1.16 ? "checked" : ""%> >16%
                             </div>
+                            <br>
                         </td>
                     </tr>
 
 
                     <tr>
                         <td class="estilotd">
-                            Descuento: 
+                            ¿Aplica Descuento? 
                         </td>
                         <td>
-                            <input id="id_radio3" type="radio" name="descuentoa" value="siI" checked >Por porcentaje &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input id="id_radio4" type= "radio" name= "descuentoa"  value="noI"  >Por monto
+                            <input id="id_radio3" type="radio" name="descuentoa"  value="siD" <%= artis != null && descuento > 0 ? "checked" : ""%> >SI &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="id_radio4" type= "radio" name= "descuentoa" checked value="noD" <%= artis != null && descuento <= 0 ? "checked" : ""%>  >NO
                             <br>
-                            <div class="div2"><input id="txt" type="text"  name="descuentop" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" >%</div>
-                            <input id="txt" class="div3"  type="text"  name="descuentom" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" >
+                            <div id="div9">
+                            <input id="id_radio5" type="radio" name="descuentopm" value="P" <%= artis != null && "P".equals(artis.getTipoDescuento()) ? "checked" : ""%> >Por porcentaje &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="id_radio6" type= "radio" name= "descuentopm"  value="M" <%= artis != null && "M".equals(artis.getTipoDescuento()) ? "checked" : ""%> >Por monto
+                            </div>
+                            <div id="novo" style="display: inline;">
+                            <input id="txt" type="text"  name="descuento" value="<%= descuento == 0 ? "" : descuento%>" onkeypress="javascript:return validarNum(event)" maxlength="11" >
+                            </div>
+                            <div style="display: inline;" class="div2">%</div>
                         </td>
                     </tr>
 
@@ -389,7 +427,7 @@
 
 <!-- Impuesto: <input id="txt"  type="text"  name="impuesto" value="<%= impuesto == 0 ? "" : impuesto%>"onkeypress="javascript:return validarNum(event)" maxlength="10" ><br><br>-->
 
-
+                            <input type="hidden" name="respaldo" value="<%= fotoArticulo %>" />
 
                 <input id="botones" type="submit" value="Agregar" />
 
@@ -400,29 +438,44 @@
             </fieldset>
         </form>
 
-
 <script>
     $(document).ready(function () {
-        $('.div3').hide();
     $('#id_radio3').click(function () {
-        $('.div3').hide('fast');
-        $('.div2').show('fast');
+        $('#id_radio5').prop("checked", "checked");
+        $('#div9').show('slow');
+        $('#novo').show('slow');
+        $('.div2').show('slow');
     });
     $('#id_radio4').click(function () {
-        $('.div2').hide('fast');
-        $('.div3').show('fast');
+        $('#div9').hide('slow');
+        $('.div2').hide('slow');
+        $('#novo').hide('slow');
     });
 });
 </script>
 
+<script>
+    $(document).ready(function () {
+        $('.div3').hide();
+    $('#id_radio5').click(function () {
+        $('.div3').hide('slow');
+        $('.div2').show('slow');
+    });
+    $('#id_radio6').click(function () {
+        $('.div2').hide('slow');
+        $('.div3').show('slow');
+    });
+});
+</script>
 
         <script>
             $(document).ready(function () {
                 $('#id_radio1').click(function () {
-                    $('#div1').show('fast');
+                    $('#div1').show('slow');
+                    $('#ola').prop("checked", "checked");
                 });
                 $('#id_radio2').click(function () {
-                    $('#div1').hide('fast');
+                    $('#div1').hide('slow');
                 });
             });
         </script>

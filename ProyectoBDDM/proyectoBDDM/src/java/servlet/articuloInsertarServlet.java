@@ -7,6 +7,7 @@ package servlet;
 
 import dao.ArticuloDao;
 import dao.DepartamentoDao;
+import dao.SucursalDao;
 import dao.UsuarioDao;
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +25,7 @@ import model.Articulo;
 import model.Departamento;
 import model.Estado;
 import model.Imagen;
+import model.Sucursal;
 
 /**
  *
@@ -63,6 +65,8 @@ public class articuloInsertarServlet extends HttpServlet {
 
             List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
             request.setAttribute("departamentos", dep);
+            List<Sucursal> suc = SucursalDao.buscarSucursales();
+            request.setAttribute("sucursal", suc);
 
             String strinicio = request.getParameter("inicio");
             String strId = request.getParameter("id");
@@ -123,27 +127,74 @@ public class articuloInsertarServlet extends HttpServlet {
                 if (strexistencia != null && !strexistencia.equals("")) {
                     existenshia = Integer.parseInt(strexistencia);
                 }
-                String strcalle = request.getParameter("calle");
-                String strimpuesto = request.getParameter("impuesto");
+                               
+                String strimpuestoaplica = request.getParameter("Impuestosa");
                 double impuestosh = 0;
+                if("siI".contains(strimpuestoaplica))
+                {
+                String strimpuesto = request.getParameter("Impuestos");
+                
                 if (strimpuesto != null && !strimpuesto.equals("")) {
                     impuestosh = Double.parseDouble(strimpuesto);
                 }
-                String strdescuento = request.getParameter("descuento");
-                double descuentosh = 0;
-                if (strdescuento != null && !strdescuento.equals("")) {
-                    descuentosh = Double.parseDouble(strdescuento);
                 }
-                Articulo a = new Articulo(strcodigoArticulo, strdescriCorta, strdescriLarga, preshio, strmedida, existenshia, impuestosh, descuentosh);
+                
+                 String strdescuentoAplica = request.getParameter("descuentoa");
+                 double descuentosh = 0;
+                 String tipoDescuento="";
+                 
+                 if("siD".contains(strdescuentoAplica))
+                 {                
+                     tipoDescuento = request.getParameter("descuentopm");
+                     String strdescuento = request.getParameter("descuento");
+                
+                     if (strdescuento != null && !strdescuento.equals("")) {
+                          descuentosh = Double.parseDouble(strdescuento);
+                        }
+                 }
+                 
+                 if("".contains(path))
+                 {
+                     path = request.getParameter("respaldo");
+                 }
+                 
+                String strsucursal = request.getParameter("sucursal");
+                int sucursal = 0;
+                if (strsucursal != null && !strsucursal.equals("")) {
+                    sucursal = Integer.parseInt(strsucursal);
+                }
+                
+                Articulo a = new Articulo(strcodigoArticulo, strdescriCorta, strdescriLarga, preshio, strmedida, existenshia, impuestosh, descuentosh, tipoDescuento);
                 Departamento d = new Departamento(departamentosh);
                 a.setDepartamento(d);
 
+                Sucursal suc1 = null;
+                Imagen image = null;
+                
                 if (id > 0) {
                     a.setIdArticulo(id);
                     ArticuloDao.actualizarArticulo(a);
+                    
+                    suc1 = new Sucursal(sucursal);
+                   a.setSucursal(suc1);
+                   ArticuloDao.actualizarArticuloSucursal(a);
+                   image = new Imagen(path);
+                    image.setArticuloImagen(a);
+                    ArticuloDao.actualizarArticuloImagen(image);
+                    
                 } else {
-                    ArticuloDao.insertarArticulo(a);
+                   id = ArticuloDao.insertarArticulo(a);
+                   a.setIdArticulo(id);
+                   suc1 = new Sucursal(sucursal);
+                   a.setSucursal(suc1);
+                   ArticuloDao.insertarArticuloSucursal(a);
+                   image = new Imagen(path);
+                    image.setArticuloImagen(a);
+                    ArticuloDao.insertarArticuloImagen(image);
                 }
+                
+                
+                
 
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/articuloConsultaServlet");
                 disp.forward(request, response);

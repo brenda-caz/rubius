@@ -22,6 +22,25 @@ public class Venta {
     private Articulo articuloVenta;
     private String fecha;
 
+    public Venta(int cantidadVenta, double subtotal, String fecha) {
+        this.cantidadVenta = cantidadVenta;
+        this.subtotal = subtotal;
+        this.fecha = fecha;
+    }
+
+    
+    
+    
+    public Venta(int idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public Venta(double subtotal) {
+        this.subtotal = subtotal;
+    }
+    
+    
+    
     public String getFecha() {
         return fecha;
     }
@@ -77,6 +96,13 @@ public class Venta {
         this.fecha = fecha;
     }
 
+    public Venta(int idVenta, int cantidadVenta) {
+        this.idVenta = idVenta;
+        this.cantidadVenta = cantidadVenta;
+    }
+
+    
+    
     public int getIdVenta() {
         return idVenta;
     }

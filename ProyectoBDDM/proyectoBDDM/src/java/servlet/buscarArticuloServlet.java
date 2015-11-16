@@ -5,31 +5,25 @@
  */
 package servlet;
 
-import dao.CiudadDao;
-import dao.EstadoDao;
-import dao.SucursalDao;
-import dao.UsuarioDao;
+import dao.ArticuloDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Ciudad;
-import model.Estado;
-import model.NivelEstudios;
-import model.Sucursal;
+import model.Articulo;
 import model.Usuario;
 
 /**
  *
- * @author
+ * @author ErickAlejandro
  */
-public class usuarioConsultaServlet extends HttpServlet {
+@WebServlet(name = "buscarArticuloServlet", urlPatterns = {"/buscarArticuloServlet"})
+public class buscarArticuloServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,52 +36,22 @@ public class usuarioConsultaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         HttpSession session = request.getSession();
-        if (session.getAttribute("user") != null) {
-        
-        String accion = request.getParameter("accion");
-        String strIdUsuario = request.getParameter("id");
-        int id = 0;
-        if (strIdUsuario != null && !strIdUsuario.equals("")) {
-            id = Integer.parseInt(strIdUsuario);
-        }
-
-        if ("borrar".equals(accion) && strIdUsuario != "") {
-            UsuarioDao.borrar(id);
-            List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
-            request.setAttribute("usuarios", usuarios);
-
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
-            disp.forward(request, response);
-        } else if ("editar".equals(accion) && strIdUsuario != "") {
-            Usuario usua = UsuarioDao.buscarUsuario(id);
-            request.setAttribute("usuario", usua);
-            List<NivelEstudios> nes = UsuarioDao.buscarNivelEstudios();
-            request.setAttribute("estudios", nes);
-            List<Ciudad> ciu = UsuarioDao.buscarCiudades();
-            request.setAttribute("ciudades", ciu);
-            List<Estado> est = UsuarioDao.buscarEstados();
-            request.setAttribute("estados", est);
-            List<Sucursal> suc = SucursalDao.buscarSucursales();
-            request.setAttribute("sucursal", suc);
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionUsuarios.jsp");
-            disp.forward(request, response);
-        } else {
-
-            List<Usuario> usuarios = UsuarioDao.buscarUsuarios();
-            request.setAttribute("usuarios", usuarios);
-
-            RequestDispatcher disp = getServletContext().getRequestDispatcher("/consuUsuario.jsp");
-            disp.forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        String description = request.getParameter("descr");
+        HttpSession session = request.getSession();
+        Usuario usu = (Usuario) session.getAttribute("user");
+        int suc = usu.getSucursal().getIdSucursal();
+        String msj = "";
+        List<Articulo> arti = ArticuloDao.buscarArticuloDes(description, suc);
+       
+        if (arti != null) {
+            for(int bc=0; bc < arti.size(); bc++)
+            msj += "<tr id='ccl'><td>" + arti.get(bc).getDescripcionCorta()+ "</td>" + "<td> " + "<a href=" + "javascript:pasaros("+ arti.get(bc).getDescripcionCorta() +");" + "><img src='"+ arti.get(bc).getImagen().getPath() +"'/></a>" +" </td>";
+           } else {
+            msj = "Producto inexistente";
         }
         
-        } else {
-            RequestDispatcher disp = getServletContext().
-                    getRequestDispatcher("/index.jsp");
-            disp.forward(request, response);
-        }
-        
+        response.getWriter().write(msj);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

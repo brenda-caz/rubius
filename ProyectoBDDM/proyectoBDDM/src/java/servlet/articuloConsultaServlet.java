@@ -7,6 +7,7 @@ package servlet;
 
 import dao.ArticuloDao;
 import dao.DepartamentoDao;
+import dao.SucursalDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Articulo;
 import model.Departamento;
+import model.Sucursal;
 
 ;
 
@@ -62,6 +64,8 @@ public class articuloConsultaServlet extends HttpServlet {
                 request.setAttribute("articulo", arti);
                 List<Departamento> dep = DepartamentoDao.buscarDepartamentos();
                 request.setAttribute("departamentos", dep);
+                 List<Sucursal> suc = SucursalDao.buscarSucursales();
+                request.setAttribute("sucursal", suc);
                 RequestDispatcher disp = getServletContext().getRequestDispatcher("/gestionArticulos.jsp");
                 disp.forward(request, response);
             } else {

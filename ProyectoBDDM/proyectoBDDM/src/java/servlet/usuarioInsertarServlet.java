@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dao.SucursalDao;
 import dao.UsuarioDao;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import javax.servlet.http.Part;
 import model.Ciudad;
 import model.Estado;
 import model.NivelEstudios;
+import model.Sucursal;
 import model.Usuario;
 
 /**
@@ -66,7 +68,8 @@ public class usuarioInsertarServlet extends HttpServlet {
             request.setAttribute("ciudades", ciu);
             List<Estado> est = UsuarioDao.buscarEstados();
             request.setAttribute("estados", est);
-
+            List<Sucursal> suc = SucursalDao.buscarSucursales();
+            request.setAttribute("sucursal", suc);
             String strinicio = request.getParameter("inicio");
             String strId = request.getParameter("id");
             int id = 0;
@@ -139,6 +142,12 @@ public class usuarioInsertarServlet extends HttpServlet {
                 if (strnomina != null && !strnomina.equals("")) {
                     nominap = Integer.parseInt(strnomina);
                 }
+                
+                String strsucursal = request.getParameter("sucursal");
+                int sucursal = 0;
+                if (strsucursal != null && !strsucursal.equals("")) {
+                    sucursal = Integer.parseInt(strsucursal);
+                }
 
                 String encriptado = "";
                 encriptado = Utilidades.Encriptar(strcontra);
@@ -152,6 +161,8 @@ public class usuarioInsertarServlet extends HttpServlet {
                 u.setMunicipio(ci);
                 Estado es = new Estado(idEstado);
                 u.setEstado(es);
+                Sucursal sucur = new Sucursal(sucursal);
+                u.setSucursal(sucur);
 
                 if (id > 0) {
                     u.setId(id);

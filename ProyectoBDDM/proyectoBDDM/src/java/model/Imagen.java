@@ -19,6 +19,11 @@ public class Imagen {
     private Articulo articuloImagen;
     private Empresa empresaImagen;
 
+    public Imagen(int idImagen, String path) {
+        this.idImagen = idImagen;
+        this.path = path;
+    }
+
     public Imagen(int idImagen, String path, String fechaImagen, String horaImagen) {
         this.idImagen = idImagen;
         this.path = path;

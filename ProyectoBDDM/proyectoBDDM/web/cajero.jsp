@@ -5,6 +5,7 @@ cajero
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Pago"%>
 <%@page import="model.Video"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,6 +20,8 @@ cajero
         <!-- Copiar estos dos para el estilo tablas -->
         <link href="Css/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <link href="Css/dataTables.jqueryui.min.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="Css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
         <!-- Copiar estos dos para el estilo tablas -->
         <script src="jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="jquery.js" type="text/javascript"></script>
@@ -27,13 +30,35 @@ cajero
         <script src="Css/jquery.dataTables.min.js" type="text/javascript"></script>
         <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
 
+        
+        <script>
+function tecla(e){
+ var charCode = (e.which) ? e.which : event.keyCode
+ if (charCode == 16){ document.getElementById('alggo').click();
+      document.getElementById('txt').value='';
+      document.getElementById('txt1').value='';
+        }
+        
+ if(charCode == 18)
+ {
+     document.getElementById('txt').value='';
+      document.getElementById('txt1').value='';
+      $(".descuento").val('');
+      document.getElementById('subtotal').value='';
+      document.getElementById('total1').innerHTML='';
+      $(".impuesto").val('');
+       $( "tr" ).each(function() {
+      $(".seeya").remove();
+      $("#respuesta").attr("src", '');
+                                      });
+ }
+}
+</script>
+        
     </head>
-    <body onLoad="setInterval('contador()',1000);">
+    <body ONKEYDOWN="javascript:return tecla(event)" onLoad="setInterval('contador()',1000);">
          <div id="menu" class="menuCaja">
                 <ul>
-                    
-                   <label for="contador">Contador:</label><input type="text" id="contador">
-
                     <ul>
                         <li>  <a href="<%= request.getServletContext().getContextPath()%>/indexServlet?accion=borrar" align="left">Cerrar Sesión</a></li>
                     </ul>
@@ -56,7 +81,6 @@ cajero
     width: 120px;
                  
                  " alt="Imagen Corporativa" src = "Css/corporativa1.jpg"/> <br><br>
-
             <div class="TICKET">  
 
                 <fieldset class="fieldset" id="fiTicket">
@@ -64,9 +88,10 @@ cajero
                     <table class="example" border="2" align="left" id="Products">
                         <thead>
                             <tr>
-                                <th id="productin" >ID</th>
+                                <th id="productin" style="display: none;" >ID</th>
                                 <th id="productin">CODIGO</th>
                                 <th id="productin">DESCRIPCION</th>
+                                <th id="productin" style="display: none;">depa</th>
                                 <th id="productin">CANTIDAD</th>
                                 <th id="productin" >SUBTOTAL</th>
                                 <th id="productin">TOTAL</th>
@@ -84,12 +109,27 @@ cajero
                     <div id="textoBuscar">
                      
                         <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Codigo Articulo">
-                        <input id="txt" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad">
-                        <input type="button" id="btn" name="btn" value="enviar"/>
+                        <input id="txt1" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad">
+                        <input type="button" class="btn btn10" name="btn" value="enviar"/>
 <input type="button" id="btn1" name="btn1" value="finalizar"/>
 
-
-                        <input id="txt" class="Texto" align="center" type="text" name="Buscar" placeholder="Buscar Articulo">
+<select id="idMetodoPago">
+      <option value="0"  selected>
+                        Seleccione una opcion...
+                    </option>
+                    <%
+                        List<Pago> pago = (List<Pago>) request.getAttribute("pago");
+                        if (pago != null) {
+                            for (Pago pag : pago) {
+                    %>
+                    <option value="<%= pag.getIdPago()%>">
+                        <%= pag.getNombrePago()%>
+                    </option>
+                    <%
+                            }
+                        }
+                    %>
+</select> 
                     </div>
                 </fieldset>
 
@@ -102,14 +142,14 @@ cajero
                          
                             <img id="corpo1" align="left"  title="Imagen Corporativa" alt="Imagen Corporativa" src = "Css/corporativo2.jpg"/>
                             <form id="formtotales">
-                                <table  id="totalines2"> 
+                                <table  id="totalines2" style=" margin-left: 300px; margin-top: 20px;"> 
                                 
                                  <tr>
                         <td id="totalines">
                         Subtotal:
                         </td>
                         <td>
-                           <input id="txt" class="subtotal" align="center" type="text" name="subtotal">
+                           <input id="subtotal" class="subtotal" align="center" type="text" name="subtotal" disabled style="-moz-border-radius: 10px;-webkit-border-radius: 10px; border-radius: 10px; border: 1px solid #000000; padding: 0 4px 0 4px;">
                         </td>
                     </tr>
                     
@@ -118,7 +158,7 @@ cajero
                         Descuento:
                         </td>
                         <td>
-                          <input id="txt" class="descuento" type="text" name="descuento">
+                          <input id="txt" class="descuento" type="text" name="descuento" disabled>
                         </td>
                     </tr>
                     
@@ -127,7 +167,7 @@ cajero
                     Impuesto Total:
                         </td>
                         <td>
-                           <input id="txt" class="impuesto" type="text" name="impuesto">
+                           <input id="txt" class="impuesto" type="text" name="impuesto" disabled>
                         </td>
                     </tr>
                     
@@ -198,6 +238,39 @@ cajero
         <label id="info" visible="false" style=" color:whitesmoke;" ></label>
 
         
+         <div id="stack1" class="modal hide fade" tabindex="-1" data-focus-on="input:first">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 style="color:purple;">Articulos</h3>
+            </div>
+                <div class="modal-body">
+                     
+                    <input id="descr" class="Texto" align="center" type="text" name="Buscar" placeholder="Buscar Articulo">
+                    <input id="chaval" class="cantidad" placeholder="Cantidad" type="text">
+                    <button type="button" id="btn23" class="btn btn-primary">Buscar</button>
+                    <input id="hostia" class="nueva" type="hidden" >
+                    <div id="dataa" style="width: 100%; overflow:scroll; height: 360px;">
+                        <button type="button" class="btn10" id="daleee" style="display: none;">save</button>
+                        <table class="example" border="2" align="left" id="Products1" style="width: 508px;">
+                        <thead>
+                            <tr>
+                                <th id="productin" style="width: 100px;">CODIGO</th>
+                                <th id="productin">IMAGEN</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" id="adiosh" class="btn btn-primary">Cancelar</button>
+                </div>
+        </div>
+        
+        
+        
          <script>
             $(document).ready(
                     function () {
@@ -218,7 +291,7 @@ for (var i = 0, row; row = table.rows[i]; i++) {
      if(j > -1 && j <6)
      {
          if(j != 2)
-             if(j!=5)
+             if(j!=6)
        ticket += row.cells[j].innerHTML + ",";
        else
             ticket += row.cells[j].innerHTML
@@ -230,14 +303,34 @@ for (var i = 0, row; row = table.rows[i]; i++) {
    
 }
 
-alert(ticket);
+
+var subtotal = document.getElementById("subtotal").value;
+var idMetodoPago = document.getElementById("idMetodoPago").value;
 
 
-                                    $.get('guardarVentaServlet', {ticket: ticket},
+                                    $.get('guardarVentaServlet', {ticket: ticket, subtotal: subtotal, idMetodoPago: idMetodoPago},
                                     function (responsetext)
                                     {
-                                        var respuesta = responsetext;
+                                        var respuesta = responsetext.split("¬");
+                                         if(respuesta[0] == "limpiar")
+                                         {
+                                             $("#respuesta").attr("src", '');
+                                        
+                                        for(var bc = 0; bc <= respuesta[1]; bc++)
+                                        {
+                                        var id = "#"+bc;
+                                        $(id).remove();
+                                    }
 
+                                        $(".subtotal").val('');
+                                        $(".descuento").val('');
+                                        $(".impuesto").val('');
+                                        $("#total1").text('');
+
+                                        $(".nueva").val('');
+                                        $(".cantidad").val('');
+                                             document.getElementById("idMetodoPago").value = 0;
+                                         }
                                     }
 
                                     );
@@ -302,20 +395,33 @@ var hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds();
 
 
         <script src="Css/jquery-latest.js" type="text/javascript"></script>
-
-        <script>
+        
+        
+        
+        
+        
+        
+        
+        
+         <script>
             $(document).ready(
                     function () {
 
-                        $("#btn").click(
+                        $(".btn10").click(
                                 function () {
 
                                     var codigo = $(".nueva").val();
                                     var cantidad = $(".cantidad").val();
-
+                                    
+                                    if(codigo=="")
+                                        codigo = document.getElementById("hostia").value;
+                                    if(cantidad=="")
+                                        cantidad=document.getElementById("chaval").value;
+                                    
                                     $.get('ajaxServlet', {codigo: codigo, cantidad: cantidad},
                                     function (responsetext)
                                     {
+                                        
                                         var respuesta = responsetext.split("|");
 
                                         $("#respuesta").attr("src", respuesta[1]);
@@ -329,7 +435,78 @@ var hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds();
 
                                         $(".nueva").val('');
                                         $(".cantidad").val('');
+                                        document.getElementById('adiosh').click();
+                                    }
 
+                                    );
+                                }
+
+                        );
+
+
+                    }
+
+
+            );
+
+
+        </script>
+        
+        
+
+<script type="text/javascript">
+function quitar(val) {
+
+var id = "#"+val;
+
+  $(id).remove();
+  
+  
+  
+}
+</script>
+
+<script type="text/javascript">
+function pasaros(val) {
+
+document.getElementById("hostia").value = val;
+  
+  document.getElementById('daleee').click();
+  
+}
+</script>
+
+<script type="text/javascript">
+function editar(val) {
+document.getElementById("e"+val).innerHTML  = document.getElementById("txt1").value;
+document.getElementById("txt1").value='';
+}
+</script>
+        
+
+
+<input type="button" id="alggo" data-toggle="modal" href="#stack1" style="display: none" />
+
+
+<script>
+            $(document).ready(
+                    function () {
+
+                        $("#btn23").click(
+                                function () {
+
+                                    var descr = $("#descr").val();
+
+                                    $.get('buscarArticuloServlet', {descr: descr},
+                                    function (responsetext)
+                                    {
+                                        $( "td" ).each(function() {
+                                          $("#ccl").remove();
+                                      });
+                                        
+                                        $("#Products1").append(responsetext);
+                                      
+                                        $("#descr").val('');
                                     }
 
                                     );
@@ -346,23 +523,10 @@ var hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds();
 
         </script>
 
-<script type="text/javascript">
-function quitar(val) {
+<script src="Css/jquery.min.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modalmanager.js" type="text/javascript"></script>
+            <script src="Css/bootstrap-modal.js" type="text/javascript"></script>
 
-var id = "#"+val;
 
-  $(id).remove();
-  
-  
-  
-}
-</script>
-
-<script type="text/javascript">
-function editar() {
-alert('val');
-}
-</script>
-        
     </body>
 </html>

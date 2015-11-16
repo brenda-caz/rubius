@@ -25,9 +25,22 @@ public class Articulo {
     private double descuento;
     private Imagen imagen;
     private String tipoDescuento;
-
-  
+    private Sucursal sucursal;
     private Departamento departamento;
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
+    public Articulo(int idArticulo) {
+        this.idArticulo = idArticulo;
+    }
+    
+    
 
     public Articulo(String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, double impuesto, double descuento) {
         this.codigoArticulo = codigoArticulo;
@@ -71,6 +84,18 @@ public class Articulo {
         this.codigoArticulo = codigoArticulo;
         this.descripcionCorta = descripcionCorta;
         this.precioPublico = precioPublico;
+        this.existencia = existencia;
+        this.impuesto = impuesto;
+        this.descuento = descuento;
+        this.tipoDescuento = tipoDescuento;
+    }
+
+    public Articulo(String codigoArticulo, String descripcionCorta, String descripcionLarga, double precioPublico, String medida, int existencia, double impuesto, double descuento, String tipoDescuento) {
+        this.codigoArticulo = codigoArticulo;
+        this.descripcionCorta = descripcionCorta;
+        this.descripcionLarga = descripcionLarga;
+        this.precioPublico = precioPublico;
+        this.medida = medida;
         this.existencia = existencia;
         this.impuesto = impuesto;
         this.descuento = descuento;

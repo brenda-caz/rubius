@@ -6,6 +6,7 @@
 package servlet;
 
 import dao.EmpresaDao;
+import dao.PagoDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Pago;
 import model.Video;
 
 /**
@@ -50,6 +52,8 @@ public class cajeroServlet extends HttpServlet {
             request.setAttribute("vidios", vid2);
             }
             
+            List<Pago> pago = PagoDao.buscarPagos();
+            request.setAttribute("pago", pago);
             
             RequestDispatcher disp = getServletContext().
                     getRequestDispatcher("/cajero.jsp");

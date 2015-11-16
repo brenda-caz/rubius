@@ -35,6 +35,7 @@ public class Usuario {
     private InputStream foto;
     private String email;
     private String contrasenia;
+    private Sucursal sucursal;
 
     public Usuario(int id, String nombre, String apellidoPaterno, String apellidoMaterno, String puesto, String sexo, String fechaNacimiento, String calle, int numero, String colonia, int postal, String RFC, String CURP, int nomina, InputStream foto, String email) {
         this.id = id;
@@ -122,6 +123,14 @@ public class Usuario {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 
 

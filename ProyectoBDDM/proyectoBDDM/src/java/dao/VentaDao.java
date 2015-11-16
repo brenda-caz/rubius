@@ -42,7 +42,6 @@ public class VentaDao {
             rs = cs.executeQuery();
             while (rs.next()) {
                 Venta ven = new Venta(
-                        rs.getInt("idVenta"),
                         rs.getInt("cantidadVenta"),
                         rs.getDouble("subtotal"),
                         rs.getString("fechaVenta")
@@ -96,23 +95,53 @@ public class VentaDao {
         }
     }
 
-    public static void insertarVenta(Venta v) {
+    public static int insertarVenta(Venta v) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
+        ResultSet rs = null;
+        Venta ven = null;
         try {
-            cs = connection.prepareCall("{ call insertVenta(?, ?, ?, ?,?,?,?,?) }");
-            cs.setInt(1, v.getSucursalVenta().getIdSucursal());
-            cs.setInt(2, v.getDepartamentoVenta().getIdDepartamento());
-            cs.setInt(3, v.getUsuarioVenta().getId());
-            cs.setInt(4, v.getCantidadVenta());
-            cs.setDouble(5, v.getSubtotal());
-            cs.setInt(6, v.getPagoVenta().getIdPago());
-            cs.setInt(7, v.getArticuloVenta().getIdArticulo());
-            cs.setString(8, v.getFecha());
+            cs = connection.prepareCall("{ call insertVenta(?, ?, ?, ?) }");
+            cs.setInt(1, v.getUsuarioVenta().getId());          
+            cs.setDouble(2, v.getSubtotal());
+            cs.setInt(3, v.getPagoVenta().getIdPago());
+            cs.setInt(4, v.getUsuarioVenta().getSucursal().getIdSucursal());
 
-            cs.execute();
+            rs = cs.executeQuery();
+            while (rs.next()) {
+                ven = new Venta(
+                        rs.getInt("idVenta")
+                );
+            }
+            
+            return ven.getIdVenta();
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
+
+        } finally {
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }    
+    }
+    
+    
+    public static void insertarVentaVenta(Venta v) {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = connection.prepareCall("{ call insertVentaVenta(?, ?, ?, ?) }");
+            cs.setInt(1, v.getIdVenta());
+            cs.setInt(2, v.getCantidadVenta());
+            cs.setInt(3, v.getArticuloVenta().getIdArticulo());
+            cs.setInt(4, v.getDepartamentoVenta().getIdDepartamento());
+
+            cs.executeQuery();
+            
         } catch (Exception ex) {
             ex.printStackTrace();
 

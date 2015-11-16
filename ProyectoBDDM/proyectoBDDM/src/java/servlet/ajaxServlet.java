@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Articulo;
+import model.Usuario;
 
 /**
  *
@@ -52,7 +53,11 @@ public class ajaxServlet extends HttpServlet {
 
         String msj = "";
         
-        Articulo arti = ArticuloDao.buscarArticuloC(codigin);
+        HttpSession session = request.getSession();
+        Usuario usu = (Usuario) session.getAttribute("user");
+        int suc = usu.getSucursal().getIdSucursal();
+        
+        Articulo arti = ArticuloDao.buscarArticuloC(codigin, suc);
 
         HttpSession sessionC = request.getSession();
         HttpSession sessiont = request.getSession();
@@ -179,7 +184,7 @@ public class ajaxServlet extends HttpServlet {
         */
 
         if (arti != null) {
-            msj = "<tr id=" + idtabla +"><td>" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>" + "<td id="+"e"+ idtabla + ">" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + precioFinalMaster + "</td>" + "<td><a href=" + "javascript:editar();" + "><img src=\"Css/pencil-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Editar\"/></a></td>" + "<td><a href=" + "javascript:quitar("+ idtabla +");" + "><img src=\"Css/bote-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Borrar\"/></a></td>"  + "|" + arti.getImagen().getPath() + "|" + sumaSubtotal + "|" + sumaDescuento + "|" + sumaImpuesto + "|" + sumaTotal;
+            msj = "<tr class='seeya' id=" + idtabla +"><td style=\"display: none;\">" + arti.getIdArticulo() + "</td>" + "<td>" + arti.getCodigoArticulo() + "</td>" + "<td>" + arti.getDescripcionCorta() + "</td>"+ "<td style=\"display: none;\">" + arti.getDepartamento().getIdDepartamento() + "</td>" + "<td id=e"+ idtabla + ">" + cantidad + "</td>" + "<td>" + subtotal + "</td>" + "<td>" + precioFinalMaster + "</td>" + "<td><a href=" + "javascript:editar("+ idtabla +");" + "><img src=\"Css/pencil-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Editar\"/></a></td>" + "<td><a href=" + "javascript:quitar("+ idtabla +");" + "><img src=\"Css/bote-1.png\" style=\" width: 30px; height: 30px; \" alt=\"Borrar\"/></a></td>"  + "|" + arti.getImagen().getPath() + "|" + sumaSubtotal + "|" + sumaDescuento + "|" + sumaImpuesto + "|" + sumaTotal;
            idtabla++;
            sessiont.setAttribute("idtabla", idtabla);
         } else {

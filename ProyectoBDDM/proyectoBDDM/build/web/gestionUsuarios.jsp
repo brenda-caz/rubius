@@ -4,6 +4,7 @@
     Author     : BrendaCázares
 --%>
 
+<%@page import="model.Sucursal"%>
 <%@page import="model.Estado"%>
 <%@page import="model.Ciudad"%>
 <%@page import="java.util.List"%>
@@ -259,7 +260,6 @@
                 }
 
                 if (booleana == 0) {
-                    alert("Usuario guardado exitosamente.");
                     return true;
                 }
                 else {
@@ -361,6 +361,7 @@
                 InputStream foto = null;
                 String emails = "";
                 String contra = "";
+                int sucursal = 0;
 
                 if (usua != null) {
                     id = usua.getId();
@@ -383,14 +384,14 @@
                     foto = usua.getFoto();
                     emails = usua.getEmail() != null ? usua.getEmail() : "";
                     contra = usua.getContrasenia() != null ? usua.getContrasenia() : "";
-
+                    sucursal = usua.getSucursal().getIdSucursal();
                 }
             %>
 
             <form name="addUser" method="post" enctype="multipart/form-data" action="usuarioInsertarServlet" onsubmit="return validacion()">
                   <fieldset id="f1">
               
-                      <img align="right" id="blah" title="Fotografia empledo" style="width: 150px; height: 150px;" alt="Agregar foto usuario" src = "<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"/>
+                      
                       <table>
                           
                            <tr>
@@ -398,7 +399,11 @@
                         Foto:
                         </td>
                         <td>
-                            <input type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
+                            <div style="width: 150px; height: 150px;"> 
+<img align="right" id="blah" style=" position: absolute;width: 150px; height: 150px;" src = "<%= id == 0 ? "Css/usuari.png" : request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"/>
+ <input style="height: 200px; width: 200px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
+                    </div>
+                           
                         </td>
                     </tr>
                          
@@ -592,27 +597,18 @@
                 </select>
                         </td>
                     </tr>
-                    
-                      <tr>
-                        <td class="estilotd">
-                Codigo postal:
-                        </td>
-                        <td>
- <input id="txt"  type="text" name="postal" value="<%= postal == 0 ? "" : postal%>" onkeypress="javascript:return validarNum(event)" maxlength="10">
-                        </td>
-                    </tr>
-                    
+                          
                       <tr>
                         <td class="estilotd">
      Puesto:
                         </td>
                         <td>
    <% if ("A".equals(puesto)) { %>
-                <input type="radio" value="A" name="puesto" checked/>Administrador
-                <input type="radio" value="C" name="puesto"/>Cajero
+   <input type="radio" class="posiciao" value="A" name="puesto" checked/>Administrador
+                <input class="posiciao2" type="radio" value="C" name="puesto"/>Cajero
                 <% } else { %>
-                <input type="radio" value="A" name="puesto" />Administrador
-                <input type="radio" value="C" name="puesto" checked/>Cajero
+                <input type="radio" class="posiciao" value="A" name="puesto" />Administrador
+                <input type="radio" class="posiciao2" value="C" name="puesto" checked/>Cajero
                 <%}%>
             
                         </td>
@@ -637,6 +633,35 @@
                     </tr>
                     
                     
+                      <tr>
+                        <td class="estilotd">
+                            <div class="div1">
+                Sucursal:
+                </div>
+                        </td>
+                        <td>
+                            <div class="div1">
+<select name="sucursal">
+                    <option value="0"  <%= usua == null ? "selected" : ""%>>
+                        Seleccione una opcion...
+                    </option>
+                    <%
+                        List<Sucursal> sucurs = (List<Sucursal>) request.getAttribute("sucursal");
+                        if (sucurs != null) {
+                            for (Sucursal suc : sucurs) {
+                    %>
+                    <option value="<%= suc.getIdSucursal()%>" <%= usua != null && usua.getSucursal().getIdSucursal() == suc.getIdSucursal() ? "selected" : ""%> >
+                        <%= suc.getNombreSucursal() %>
+                    </option>
+                    <%
+                            }
+                        }
+                    %>
+                </select>
+</div>
+                        </td>
+                    </tr>
+                    
                       </table>
               
                 <input type="hidden" name="id" value="<%= id%>">
@@ -645,6 +670,19 @@
 <input id="botones" type="reset" value="Cancelar"/>
             </form>
         </fieldset>
+               
+               
+               <script>
+            $(document).ready(function () {
+                $('.posiciao').click(function () {
+                    $('.div1').hide('slow');
+                });
+                $('.posiciao2').click(function () {
+                    $('.div1').show('slow');
+                });
+            });
+        </script>
+               
                
                <script>
                 

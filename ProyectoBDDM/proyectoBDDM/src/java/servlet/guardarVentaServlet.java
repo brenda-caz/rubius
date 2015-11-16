@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dao.VentaDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,6 +16,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Articulo;
+import model.Departamento;
+import model.Pago;
+import model.Sucursal;
+import model.Usuario;
+import model.Venta;
 
 /**
  *
@@ -36,6 +44,25 @@ public class guardarVentaServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
            String ticket = request.getParameter("ticket");
+           String strsubtotal = request.getParameter("subtotal");
+           double subtotal = 0;
+        if (strsubtotal != null && !strsubtotal.equals("")) {
+            subtotal = Double.parseDouble(strsubtotal);
+        }
+           String stridMetodoPago = request.getParameter("idMetodoPago");
+           int idMetodoPago = 0;
+        if (stridMetodoPago != null && !stridMetodoPago.equals("")) {
+            idMetodoPago = Integer.parseInt(stridMetodoPago);
+        }
+        
+        HttpSession session = request.getSession();
+        Usuario usu = (Usuario) session.getAttribute("user");
+        Venta v = new Venta(subtotal);
+        Pago p = new Pago(idMetodoPago);
+        v.setPagoVenta(p);
+        v.setUsuarioVenta(usu);
+        
+        int idVenta = VentaDao.insertarVenta(v);
            
            if(!"".contains(ticket))
            {
@@ -45,8 +72,18 @@ public class guardarVentaServlet extends HttpServlet {
            {
                String datos = filas.get(i);
                List<String> datosseparados = Arrays.asList(datos.split(","));
-               String alsa = "";
-           }
+               v = new Venta(idVenta, Integer.parseInt(datosseparados.get(3)));
+               Articulo ar = new Articulo(Integer.parseInt(datosseparados.get(0)));
+               
+               Departamento dp = new Departamento(Integer.parseInt(datosseparados.get(2))); 
+               v.setArticuloVenta(ar);
+               v.setDepartamentoVenta(dp);               
+               VentaDao.insertarVentaVenta(v);
+               
+            }
+           
+           response.getWriter().write("limpiar¬"+filas.size());
+           
            }
            
     }
