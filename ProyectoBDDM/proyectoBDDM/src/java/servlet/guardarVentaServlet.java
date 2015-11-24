@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dao.ArticuloDao;
 import dao.VentaDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,7 +55,7 @@ public class guardarVentaServlet extends HttpServlet {
         if (stridMetodoPago != null && !stridMetodoPago.equals("")) {
             idMetodoPago = Integer.parseInt(stridMetodoPago);
         }
-        
+        if(idMetodoPago>0){
         HttpSession session = request.getSession();
         Usuario usu = (Usuario) session.getAttribute("user");
         Venta v = new Venta(subtotal);
@@ -77,14 +78,20 @@ public class guardarVentaServlet extends HttpServlet {
                
                Departamento dp = new Departamento(Integer.parseInt(datosseparados.get(2))); 
                v.setArticuloVenta(ar);
-               v.setDepartamentoVenta(dp);               
-               VentaDao.insertarVentaVenta(v);
+               v.setDepartamentoVenta(dp);
+               
+               int existencia23 = ArticuloDao.getExistencia(Integer.parseInt(datosseparados.get(0)));
+               
+                int resultado = existencia23 - Integer.parseInt(datosseparados.get(3));
+               if(resultado >= 0)
+               VentaDao.insertarVentaVenta(v,resultado);
                
             }
            
            response.getWriter().write("limpiar¬"+filas.size());
            
            }
+        }
            
     }
 

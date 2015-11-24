@@ -31,6 +31,71 @@ cajero
         <script src="Css/dataTables.jqueryui.min.js" type="text/javascript"></script>
 
         
+         <script>
+            function validarNum(e) {
+                var key;
+                if (window.event) // IE
+                {
+                    key = e.keyCode;
+                }
+                else if (e.which) // Netscape/Firefox/Opera
+                {
+                    key = e.which;
+                }
+                if (key < 48 || key > 57)
+                {
+                    if (key == 8) // Detectar backspace (retroceso)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            function validacion() {
+                var Codigo = document.forms["addUser"]["Codigo"].value;
+                 var cantidad = document.forms["addUser"]["cantidad"].value;
+                var msj = "";
+                 var booleana = 0;
+                
+                
+                if (Codigo == null || Codigo.length == 0 || /^\s+$/.test(Codigo) || Codigo == "") {
+                     booleana = 1;
+                     document.forms["addUser"]["Codigo"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["Codigo"].style.borderColor = "black";
+                }
+                
+                 if (cantidad == null || cantidad.length == 0 || /^\s+$/.test(cantidad) || cantidad == "") {
+                     booleana = 1;
+                     document.forms["addUser"]["cantidad"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["cantidad"].style.borderColor = "black";
+                }
+              
+              
+       
+              
+                if (booleana == 0) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
+
+        </script>
+        
+        
+        
         <script>
 function tecla(e){
  var charCode = (e.which) ? e.which : event.keyCode
@@ -56,7 +121,8 @@ function tecla(e){
 </script>
         
     </head>
-    <body ONKEYDOWN="javascript:return tecla(event)" onLoad="setInterval('contador()',1000);">
+    <body ONKEYDOWN="javascript:return tecla(event)">    
+        
          <div id="menu" class="menuCaja">
                 <ul>
                     <ul>
@@ -108,10 +174,17 @@ function tecla(e){
          <div id="respuesta1"><img id="respuesta"/></div>
                     <div id="textoBuscar">
                      
+<<<<<<< HEAD
                         <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Código Artículo">
                         <input id="txt1" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad">
                         <input type="button" class="btn btn10" name="btn" value="Enviar"/>
 <input type="button" id="btn1" name="btn1" value="Finalizar"/>
+=======
+                        <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Codigo Articulo" maxlength="100">
+                        <input id="txt1" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad" onkeypress="javascript:return validarNum(event)" maxlength="10">
+                        <input type="button" class="btn btn10" name="btn" value="enviar" onclick="validacion()"/>
+<input type="button" id="btn1" name="btn1" value="finalizar"/>
+>>>>>>> 381189319a6b2467cbb4886dc799b6b34be9bbeb
 
 <select id="idMetodoPago">
       <option value="0"  selected>
@@ -353,20 +426,7 @@ var idMetodoPago = document.getElementById("idMetodoPago").value;
         </script>
         
 
-<script type="text/javascript">
-var cont = 0;
-function contador(){
 
-var f = new Date();
-var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-
-var hora = f.getHours()+":"+f.getMinutes()+":"+f.getSeconds(); 
-
-	var contador = document.getElementById("contador");
-	contador.value = cont;
-	cont++;
-}
-</script>
         
         
 

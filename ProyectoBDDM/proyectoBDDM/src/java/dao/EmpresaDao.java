@@ -129,7 +129,9 @@ public class EmpresaDao {
             while (rs.next()) {
                 Video vid = new Video(
                         rs.getInt("idVideo"), 
-                        rs.getString("pathVideo").replace(".mp4","")
+                        rs.getString("pathVideo").replace(".mp4",""),
+                        rs.getString("fechaVideo"), 
+                        rs.getString("horaVideo")
                 );
                     Videos.add(vid);
             }

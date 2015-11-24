@@ -59,13 +59,21 @@
                 var precio = document.forms["addUser"]["precioArticulo"].value;
                 var medida = document.forms["addUser"]["medida"].value;
                 var existencia = document.forms["addUser"]["existencia"].value;
-                var impuesto = document.forms["addUser"]["impuesto"].value;
-                var descuento = document.forms["addUser"]["descuento"].value;
                 var departamento = document.forms["addUser"]["departamento"].value;
                 var msj = "";
                 var booleana = 0;
 
+                var sucursal = document.forms["addUser"]["sucursal"].value;
 
+
+                if (sucursal == null || sucursal.length == 0 || /^\s+$/.test(sucursal) || sucursal == "" || sucursal == "0" || sucursal == 0) {
+                    booleana = 1;
+                    document.forms["addUser"]["sucursal"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["sucursal"].style.borderColor = "black";
+                }
 
                 if (codigoArticulo == null || codigoArticulo.length == 0 || /^\s+$/.test(codigoArticulo) || codigoArticulo == "" || codigoArticulo == "0" || codigoArticulo == 0) {
                     booleana = 1;
@@ -122,26 +130,6 @@
                 else
                 {
                     document.forms["addUser"]["existencia"].style.borderColor = "black";
-                }
-
-
-                if (impuesto == null || impuesto.length == 0 || /^\s+$/.test(impuesto) || impuesto == "" || impuesto == "0" || impuesto == 0) {
-                    booleana = 1;
-                    document.forms["addUser"]["impuesto"].style.borderColor = "red";
-                }
-                else
-                {
-                    document.forms["addUser"]["impuesto"].style.borderColor = "black";
-                }
-
-
-                if (descuento == null || descuento.length == 0 || /^\s+$/.test(descuento) || descuento == "" || descuento == "0" || descuento == 0) {
-                    booleana = 1;
-                    document.forms["addUser"]["descuento"].style.borderColor = "red";
-                }
-                else
-                {
-                    document.forms["addUser"]["descuento"].style.borderColor = "black";
                 }
 
 

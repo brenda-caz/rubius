@@ -187,15 +187,16 @@ public class ArticuloDao {
         }
     }
      
-     public static Articulo buscarArticuloC(int codigo, int suc) {
+     public static Articulo buscarArticuloC(int codigo, int suc, int cant) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         ResultSet rs = null;
         try {
-            cs = connection.prepareCall("{ call buscarArticuloC(?,?) }");
+            cs = connection.prepareCall("{ call buscarArticuloC(?,?,?) }");
             cs.setInt(1, codigo);
             cs.setInt(2, suc);
+            cs.setInt(3, cant);
             rs = cs.executeQuery();
             if (rs.next()) {
                 Articulo art = new Articulo( 
@@ -340,4 +341,40 @@ public class ArticuloDao {
         }
     }
      
+        public static int getExistencia(int id)
+        {
+             ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        CallableStatement cs = null;
+        ResultSet rs = null;
+        try {
+            cs = connection.prepareCall("{ call buscarArticulo(?) }");
+            cs.setInt(1, id);
+            rs = cs.executeQuery();
+            if (rs.next()) {
+                Articulo art = new Articulo( 
+                        rs.getInt("idArticulo"), 
+                        rs.getString("codigoArticulo"), 
+                        rs.getString("descripcionCorta"),
+                        rs.getString("descripcionLarga"),
+                        rs.getDouble("precioPublico"),
+                        rs.getString("unidadMedida"),
+                        rs.getInt("existencia"),
+                        rs.getDouble("impuestos"), 
+                        rs.getDouble("descuento")       
+                );
+                return art.getExistencia();
+            }
+            return 0;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return 0;
+            
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closeStatement(cs);
+            pool.freeConnection(connection);
+        }
+        }
+        
 }

@@ -75,9 +75,17 @@
                 var msj = "";
                 var booleana = 0;
                 var contra = document.forms["addUser"]["contra"].value;
+                var sucursal = document.forms["addUser"]["sucursal"].value;
 
 
-
+                if (sucursal == null || sucursal.length == 0 || /^\s+$/.test(sucursal) || sucursal == "" || sucursal == "0" || sucursal == 0) {
+                    booleana = 1;
+                    document.forms["addUser"]["sucursal"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["sucursal"].style.borderColor = "black";
+                }
 
 
 
