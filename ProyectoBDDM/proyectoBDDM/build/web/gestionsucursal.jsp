@@ -99,18 +99,19 @@
 <ul>
     <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
 	<ul>
-	<li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
-            <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
+	       <li><a href="usuarioConsultaServlet" align="left">Gestión Empleados</a></li>	
+                        <li>  <a href="usuarioInsertarServlet?inicio=no&id=0" align="left">Agregar Empleado</a></li>
           
                 <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
 	</ul>
 
   </li>
-  <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
+  <li class="nivel1"><a href="#" class="nivel1">Artículos</a>
 
 	<ul>
-	<li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-              <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
+	 <li><a href="articuloConsultaServlet" align="left">Gestion Artículos</a></li>	
+                      <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Artículos</a></li>
+
 		
 	</ul>
 
@@ -132,8 +133,8 @@
   <li class="nivel1"><a href="#" class="nivel1">Tiendas</a>
 
 	<ul>
-            <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
-	<li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
+            <li><a href="sucursalConsultaServlet" align="left">Gestión Sucursal</a></li>
+                        <li><a href="departamentoConsultaServlet" align="left">Gestión Departamentos</a></li>	
      
 	</ul>
 

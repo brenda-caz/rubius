@@ -35,18 +35,18 @@
             <ul>
                 <li class="nivel1"><a href="#" class="nivel1">Empleados</a>
                     <ul>
-                        <li><a href="usuarioConsultaServlet" align="left">Gestion Empleados</a></li>	
-                        <li>  <a href="gestionUsuarios.jsp" align="left">Agregar Empleado</a></li>
+                        <li><a href="usuarioConsultaServlet" align="left">Gestión Empleados</a></li>	
+                        <li>  <a href="usuarioInsertarServlet?inicio=no&id=0" align="left">Agregar Empleado</a></li>
 
                         <!--<li><a href="http://www.idplus.org">idplus.org</a></li>-->
                     </ul>
 
                 </li>
-                <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
+                <li class="nivel1"><a href="#" class="nivel1">Artículos</a>
 
                     <ul>
-                        <li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-                          <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
+                        <li><a href="articuloConsultaServlet" align="left">Gestión Artículos</a></li>	
+                          <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Artículos</a></li>
 
                     </ul>
 
@@ -68,8 +68,8 @@
                 <li class="nivel1"><a href="#" class="nivel1">Sucursales</a>
 
                     <ul>
-                        <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
-                        <li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
+                        <li><a href="sucursalConsultaServlet" align="left">Gestión Sucursal</a></li>
+                        <li><a href="departamentoConsultaServlet" align="left">Gestión Departamentos</a></li>	
 
 
                     </ul>
@@ -89,15 +89,15 @@
             </ul>
         </div>
         <br><br>
-        <br><br><br><br>   <h2 id="encabezado">Consulta de Articulos</h2>
+        <br><br><br><br>   <h2 id="encabezado">Consulta de Artículos</h2>
         <br> <fieldset id="f1"><br>
             <table class="example" id="grid" border="1" align="left">
                 <thead>
                 <tr>
                     <th style="width: 0.1px;">Editar</th>
                     <th style="width: 0.1px;">Borrar</th>
-                    <th>Codigo</th>
-                    <th>Descripcion Corta</th>
+                    <th>Código</th>
+                    <th>Descripción Corta</th>
                     <th>Precio</th>
                     <th>Existencia</th>
                     <th>Impuesto</th>
@@ -155,11 +155,11 @@
          <div id="stack1" class="modal hide fade" tabindex="-1" data-focus-on="input:first">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 style="color:purple;">Eliminar Articulo</h3>
+                <h3 style="color:purple;">Eliminar Artículo</h3>
             </div>
             <form action="articuloConsultaServlet" method="post">
                 <div class="modal-body">
-                    <p style="color:purple;">Estas seguro que deseas borrar el articulo?</p>
+                    <p style="color:purple;">Está seguro que desea borrar el artículo?</p>
                     <input type="hidden" name="id" id="id"/>
                     <input type="hidden" name="accion" id="accion"/>
                 </div>

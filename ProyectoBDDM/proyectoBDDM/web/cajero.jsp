@@ -89,8 +89,8 @@ function tecla(e){
                         <thead>
                             <tr>
                                 <th id="productin" style="display: none;" >ID</th>
-                                <th id="productin">CODIGO</th>
-                                <th id="productin">DESCRIPCION</th>
+                                <th id="productin">CÓDIGO</th>
+                                <th id="productin">DESCRIPCIÓN</th>
                                 <th id="productin" style="display: none;">depa</th>
                                 <th id="productin">CANTIDAD</th>
                                 <th id="productin" >SUBTOTAL</th>
@@ -108,14 +108,14 @@ function tecla(e){
          <div id="respuesta1"><img id="respuesta"/></div>
                     <div id="textoBuscar">
                      
-                        <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Codigo Articulo">
+                        <input id="txt" class="Texto nueva" align="center" type="text" name="Codigo" placeholder="Código Artículo">
                         <input id="txt1" class="Texto cantidad" align="center" type="text" name="cantidad" placeholder="Cantidad">
-                        <input type="button" class="btn btn10" name="btn" value="enviar"/>
-<input type="button" id="btn1" name="btn1" value="finalizar"/>
+                        <input type="button" class="btn btn10" name="btn" value="Enviar"/>
+<input type="button" id="btn1" name="btn1" value="Finalizar"/>
 
 <select id="idMetodoPago">
       <option value="0"  selected>
-                        Seleccione una opcion...
+                        Seleccione una opción...
                     </option>
                     <%
                         List<Pago> pago = (List<Pago>) request.getAttribute("pago");
@@ -203,12 +203,12 @@ function tecla(e){
             <div id="VID" style="
 
 
-                 width: 390px;
+                 width: 370px;
                  height: 320px;
                  "
                  >
 
-                <video id="reproductor" muted width="390px" height="320px"></video>
+                <video id="reproductor" muted width="370px" height="320px"></video>
 
                 <!-- <video src="Css/video1.mp4" width="390px" height="320px"  autoplay muted loop ></video>-->
 

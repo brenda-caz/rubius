@@ -275,7 +275,7 @@
                         <td>
                             <div style="width: 150px; height: 150px;"> 
                                 <img align="right" id="blah" title="Fotografia articulo" style="position: absolute; width: 150px; height: 150px;" alt="Agregar foto articulo" src = "<%= fotoArticulo == null ? "Css/usuari.png" : fotoArticulo %>"/>
-                             <input style="height: 200px; width: 200px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" accept="image/jpeg" <%= artis == null ? "required" : ""%> value="<%= fotoArticulo %>">
+                             <input style="height: 150px; width: 150px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" accept="image/jpeg" <%= artis == null ? "required" : ""%> value="<%= fotoArticulo %>">
                             
                     </div>
                             

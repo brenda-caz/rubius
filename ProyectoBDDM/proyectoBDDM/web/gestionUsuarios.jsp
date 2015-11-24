@@ -289,11 +289,11 @@
                     </ul>
 
                 </li>
-                <li class="nivel1"><a href="#" class="nivel1">Articulos</a>
+                <li class="nivel1"><a href="#" class="nivel1">Artículos</a>
 
                     <ul>
-                        <li><a href="articuloConsultaServlet" align="left">Gestion Articulos</a></li>	
-                       <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Articulos</a></li>
+                             <li><a href="articuloConsultaServlet" align="left">Gestion Artículos</a></li>	
+                      <li><a href="articuloInsertarServlet?inicio=no&id=0" align="left">Agregar Artículos</a></li>
 
                     </ul>
 
@@ -315,9 +315,9 @@
                 <li class="nivel1"><a href="#" class="nivel1">Tiendas</a>
 
                     <ul>
-                        <li><a href="sucursalConsultaServlet" align="left">Gestion Sucursal</a></li>
-                        <li><a href="departamentoConsultaServlet" align="left">Gestion Departamentos</a></li>	
-
+                        <li><a href="sucursalConsultaServlet" align="left">Gestión Sucursal</a></li>
+                        <li><a href="departamentoConsultaServlet" align="left">Gestión Departamentos</a></li>	
+	
                     </ul>
 
                 </li>
@@ -401,7 +401,7 @@
                         <td>
                             <div style="width: 150px; height: 150px;"> 
 <img align="right" id="blah" style=" position: absolute;width: 150px; height: 150px;" src = "<%= id == 0 ? "Css/usuari.png" : request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"/>
- <input style="height: 200px; width: 200px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
+ <input style="height: 150px; width: 150px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
                     </div>
                            
                         </td>
@@ -469,7 +469,7 @@
                     
                      <tr>
                         <td class="estilotd">
-                  Correo Electronico:
+                  Correo Electrónico:
                         </td>
                         <td>
  <input id="txt"  type="text" name="emails" value="<%= emails%>" maxlength="145">
@@ -497,7 +497,7 @@
                     
                        <tr>
                         <td class="estilotd">
-                 Numero:
+                 Número:
                         </td>
                         <td>
  <input id="txt"  type="text" name="numero" value="<%= numero == 0 ? "" : numero%>" onkeypress="javascript:return validarNum(event)" maxlength="10">
@@ -566,7 +566,7 @@
                     
                      <tr>
                         <td class="estilotd">
-                Codigo postal:
+                Código postal:
                         </td>
                         <td>
  <input id="txt"  type="text" name="postal" value="<%= postal == 0 ? "" : postal%>" onkeypress="javascript:return validarNum(event)" maxlength="10">
@@ -575,12 +575,12 @@
                     
                         <tr>
                         <td class="estilotd">
-                 Nivel academico:
+                 Nivel académico:
                         </td>
                         <td>
  <select name="estudios">
                     <option value="0"  <%= usua == null ? "selected" : ""%>>
-                        Seleccione una opcion...
+                        Seleccione una opción...
                     </option>
                     <%
                         List<NivelEstudios> nes = (List<NivelEstudios>) request.getAttribute("estudios");
@@ -625,7 +625,7 @@
                     
                      <tr>
                         <td class="estilotd">
-             Numero de nomina: 
+             Número de nómina: 
                         </td>
                         <td>
  <input id="txt"  type="text" name="nomina" value="<%= nomina == 0 ? "" : nomina%>" onkeypress="javascript:return validarNum(event)" maxlength="10"><br><br>
