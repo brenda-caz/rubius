@@ -128,18 +128,19 @@ public class VentaDao {
     }
     
     
-    public static void insertarVentaVenta(Venta v) {
+    public static void insertarVentaVenta(Venta v, int cantidad) {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
         CallableStatement cs = null;
         ResultSet rs = null;
         try {
-            cs = connection.prepareCall("{ call insertVentaVenta(?, ?, ?, ?) }");
+            cs = connection.prepareCall("{ call insertVentaVenta(?, ?, ?, ?, ?) }");
             cs.setInt(1, v.getIdVenta());
             cs.setInt(2, v.getCantidadVenta());
             cs.setInt(3, v.getArticuloVenta().getIdArticulo());
             cs.setInt(4, v.getDepartamentoVenta().getIdDepartamento());
-
+            cs.setInt(5, cantidad);
+            
             cs.executeQuery();
             
         } catch (Exception ex) {

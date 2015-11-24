@@ -57,7 +57,7 @@ public class ajaxServlet extends HttpServlet {
         Usuario usu = (Usuario) session.getAttribute("user");
         int suc = usu.getSucursal().getIdSucursal();
         
-        Articulo arti = ArticuloDao.buscarArticuloC(codigin, suc);
+        Articulo arti = ArticuloDao.buscarArticuloC(codigin, suc, cantidad);
 
         HttpSession sessionC = request.getSession();
         HttpSession sessiont = request.getSession();

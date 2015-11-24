@@ -75,9 +75,17 @@
                 var msj = "";
                 var booleana = 0;
                 var contra = document.forms["addUser"]["contra"].value;
+                var sucursal = document.forms["addUser"]["sucursal"].value;
 
 
-
+                if (sucursal == null || sucursal.length == 0 || /^\s+$/.test(sucursal) || sucursal == "" || sucursal == "0" || sucursal == 0) {
+                    booleana = 1;
+                    document.forms["addUser"]["sucursal"].style.borderColor = "red";
+                }
+                else
+                {
+                    document.forms["addUser"]["sucursal"].style.borderColor = "black";
+                }
 
 
 
@@ -401,7 +409,7 @@
                         <td>
                             <div style="width: 150px; height: 150px;"> 
 <img align="right" id="blah" style=" position: absolute;width: 150px; height: 150px;" src = "<%= id == 0 ? "Css/usuari.png" : request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>"/>
- <input style="height: 200px; width: 200px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
+ <input style="height: 150px; width: 150px; border:1px; display: block !important; opacity: 0 !important; overflow: hidden !important; margin: 2px;" type="file" name="archivo" id="txt" <%= usua == null ? "required" : ""%> value="<%= request.getServletContext().getContextPath() + "/imagenUsuario?id=" + id%>">
                     </div>
                            
                         </td>
